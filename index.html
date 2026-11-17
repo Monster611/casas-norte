@@ -10,181 +10,274 @@
 <body>
 
 <meta name="claude:viewport-fit-sides" content="cover">
+<meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
 <style>.leaflet-image-layer,.leaflet-layer,.leaflet-marker-icon,.leaflet-marker-shadow,.leaflet-pane,.leaflet-pane>canvas,.leaflet-pane>svg,.leaflet-tile,.leaflet-tile-container,.leaflet-zoom-box{position:absolute;left:0;top:0}.leaflet-container{overflow:hidden}.leaflet-marker-icon,.leaflet-marker-shadow,.leaflet-tile{-webkit-user-select:none;-moz-user-select:none;user-select:none;-webkit-user-drag:none}.leaflet-tile::selection{background:0 0}.leaflet-safari .leaflet-tile{image-rendering:-webkit-optimize-contrast}.leaflet-safari .leaflet-tile-container{width:1600px;height:1600px;-webkit-transform-origin:0 0}.leaflet-marker-icon,.leaflet-marker-shadow{display:block}.leaflet-container .leaflet-overlay-pane svg{max-width:none!important;max-height:none!important}.leaflet-container .leaflet-marker-pane img,.leaflet-container .leaflet-shadow-pane img,.leaflet-container .leaflet-tile,.leaflet-container .leaflet-tile-pane img,.leaflet-container img.leaflet-image-layer{max-width:none!important;max-height:none!important;width:auto;padding:0}.leaflet-container img.leaflet-tile{mix-blend-mode:plus-lighter}.leaflet-container.leaflet-touch-zoom{-ms-touch-action:pan-x pan-y;touch-action:pan-x pan-y}.leaflet-container.leaflet-touch-drag{-ms-touch-action:pinch-zoom;touch-action:none;touch-action:pinch-zoom}.leaflet-container.leaflet-touch-drag.leaflet-touch-zoom{-ms-touch-action:none;touch-action:none}.leaflet-container{-webkit-tap-highlight-color:transparent}.leaflet-container a{-webkit-tap-highlight-color:rgba(51,181,229,.4)}.leaflet-tile{filter:inherit;visibility:hidden}.leaflet-tile-loaded{visibility:inherit}.leaflet-zoom-box{width:0;height:0;-moz-box-sizing:border-box;box-sizing:border-box;z-index:800}.leaflet-overlay-pane svg{-moz-user-select:none}.leaflet-pane{z-index:400}.leaflet-tile-pane{z-index:200}.leaflet-overlay-pane{z-index:400}.leaflet-shadow-pane{z-index:500}.leaflet-marker-pane{z-index:600}.leaflet-tooltip-pane{z-index:650}.leaflet-popup-pane{z-index:700}.leaflet-map-pane canvas{z-index:100}.leaflet-map-pane svg{z-index:200}.leaflet-vml-shape{width:1px;height:1px}.lvml{behavior:none;display:inline-block;position:absolute}.leaflet-control{position:relative;z-index:800;pointer-events:visiblePainted;pointer-events:auto}.leaflet-bottom,.leaflet-top{position:absolute;z-index:1000;pointer-events:none}.leaflet-top{top:0}.leaflet-right{right:0}.leaflet-bottom{bottom:0}.leaflet-left{left:0}.leaflet-control{float:left;clear:both}.leaflet-right .leaflet-control{float:right}.leaflet-top .leaflet-control{margin-top:10px}.leaflet-bottom .leaflet-control{margin-bottom:10px}.leaflet-left .leaflet-control{margin-left:10px}.leaflet-right .leaflet-control{margin-right:10px}.leaflet-fade-anim .leaflet-popup{opacity:0;-webkit-transition:opacity .2s linear;-moz-transition:opacity .2s linear;transition:opacity .2s linear}.leaflet-fade-anim .leaflet-map-pane .leaflet-popup{opacity:1}.leaflet-zoom-animated{-webkit-transform-origin:0 0;-ms-transform-origin:0 0;transform-origin:0 0}svg.leaflet-zoom-animated{will-change:transform}.leaflet-zoom-anim .leaflet-zoom-animated{-webkit-transition:-webkit-transform .25s cubic-bezier(0,0,.25,1);-moz-transition:-moz-transform .25s cubic-bezier(0,0,.25,1);transition:transform .25s cubic-bezier(0,0,.25,1)}.leaflet-pan-anim .leaflet-tile,.leaflet-zoom-anim .leaflet-tile{-webkit-transition:none;-moz-transition:none;transition:none}.leaflet-zoom-anim .leaflet-zoom-hide{visibility:hidden}.leaflet-interactive{cursor:pointer}.leaflet-grab{cursor:-webkit-grab;cursor:-moz-grab;cursor:grab}.leaflet-crosshair,.leaflet-crosshair .leaflet-interactive{cursor:crosshair}.leaflet-control,.leaflet-popup-pane{cursor:auto}.leaflet-dragging .leaflet-grab,.leaflet-dragging .leaflet-grab .leaflet-interactive,.leaflet-dragging .leaflet-marker-draggable{cursor:move;cursor:-webkit-grabbing;cursor:-moz-grabbing;cursor:grabbing}.leaflet-image-layer,.leaflet-marker-icon,.leaflet-marker-shadow,.leaflet-pane>svg path,.leaflet-tile-container{pointer-events:none}.leaflet-image-layer.leaflet-interactive,.leaflet-marker-icon.leaflet-interactive,.leaflet-pane>svg path.leaflet-interactive,svg.leaflet-image-layer.leaflet-interactive path{pointer-events:visiblePainted;pointer-events:auto}.leaflet-container{background:#ddd;outline-offset:1px}.leaflet-container a{color:#0078a8}.leaflet-zoom-box{border:2px dotted #38f;background:rgba(255,255,255,.5)}.leaflet-container{font-family:"Helvetica Neue",Arial,Helvetica,sans-serif;font-size:12px;font-size:.75rem;line-height:1.5}.leaflet-bar{box-shadow:0 1px 5px rgba(0,0,0,.65);border-radius:4px}.leaflet-bar a{background-color:#fff;border-bottom:1px solid #ccc;width:26px;height:26px;line-height:26px;display:block;text-align:center;text-decoration:none;color:#000}.leaflet-bar a,.leaflet-control-layers-toggle{background-position:50% 50%;background-repeat:no-repeat;display:block}.leaflet-bar a:focus,.leaflet-bar a:hover{background-color:#f4f4f4}.leaflet-bar a:first-child{border-top-left-radius:4px;border-top-right-radius:4px}.leaflet-bar a:last-child{border-bottom-left-radius:4px;border-bottom-right-radius:4px;border-bottom:none}.leaflet-bar a.leaflet-disabled{cursor:default;background-color:#f4f4f4;color:#bbb}.leaflet-touch .leaflet-bar a{width:30px;height:30px;line-height:30px}.leaflet-touch .leaflet-bar a:first-child{border-top-left-radius:2px;border-top-right-radius:2px}.leaflet-touch .leaflet-bar a:last-child{border-bottom-left-radius:2px;border-bottom-right-radius:2px}.leaflet-control-zoom-in,.leaflet-control-zoom-out{font:bold 18px 'Lucida Console',Monaco,monospace;text-indent:1px}.leaflet-touch .leaflet-control-zoom-in,.leaflet-touch .leaflet-control-zoom-out{font-size:22px}.leaflet-control-layers{box-shadow:0 1px 5px rgba(0,0,0,.4);background:#fff;border-radius:5px}.leaflet-control-layers-toggle{background-image:none;width:36px;height:36px}.leaflet-retina .leaflet-control-layers-toggle{background-image:none;background-size:26px 26px}.leaflet-touch .leaflet-control-layers-toggle{width:44px;height:44px}.leaflet-control-layers .leaflet-control-layers-list,.leaflet-control-layers-expanded .leaflet-control-layers-toggle{display:none}.leaflet-control-layers-expanded .leaflet-control-layers-list{display:block;position:relative}.leaflet-control-layers-expanded{padding:6px 10px 6px 6px;color:#333;background:#fff}.leaflet-control-layers-scrollbar{overflow-y:scroll;overflow-x:hidden;padding-right:5px}.leaflet-control-layers-selector{margin-top:2px;position:relative;top:1px}.leaflet-control-layers label{display:block;font-size:13px;font-size:1.08333em}.leaflet-control-layers-separator{height:0;border-top:1px solid #ddd;margin:5px -10px 5px -6px}.leaflet-default-icon-path{background-image:none}.leaflet-container .leaflet-control-attribution{background:#fff;background:rgba(255,255,255,.8);margin:0}.leaflet-control-attribution,.leaflet-control-scale-line{padding:0 5px;color:#333;line-height:1.4}.leaflet-control-attribution a{text-decoration:none}.leaflet-control-attribution a:focus,.leaflet-control-attribution a:hover{text-decoration:underline}.leaflet-attribution-flag{display:inline!important;vertical-align:baseline!important;width:1em;height:.6669em}.leaflet-left .leaflet-control-scale{margin-left:5px}.leaflet-bottom .leaflet-control-scale{margin-bottom:5px}.leaflet-control-scale-line{border:2px solid #777;border-top:none;line-height:1.1;padding:2px 5px 1px;white-space:nowrap;-moz-box-sizing:border-box;box-sizing:border-box;background:rgba(255,255,255,.8);text-shadow:1px 1px #fff}.leaflet-control-scale-line:not(:first-child){border-top:2px solid #777;border-bottom:none;margin-top:-2px}.leaflet-control-scale-line:not(:first-child):not(:last-child){border-bottom:2px solid #777}.leaflet-touch .leaflet-bar,.leaflet-touch .leaflet-control-attribution,.leaflet-touch .leaflet-control-layers{box-shadow:none}.leaflet-touch .leaflet-bar,.leaflet-touch .leaflet-control-layers{border:2px solid rgba(0,0,0,.2);background-clip:padding-box}.leaflet-popup{position:absolute;text-align:center;margin-bottom:20px}.leaflet-popup-content-wrapper{padding:1px;text-align:left;border-radius:12px}.leaflet-popup-content{margin:13px 24px 13px 20px;line-height:1.3;font-size:13px;font-size:1.08333em;min-height:1px}.leaflet-popup-content p{margin:17px 0;margin:1.3em 0}.leaflet-popup-tip-container{width:40px;height:20px;position:absolute;left:50%;margin-top:-1px;margin-left:-20px;overflow:hidden;pointer-events:none}.leaflet-popup-tip{width:17px;height:17px;padding:1px;margin:-10px auto 0;pointer-events:auto;-webkit-transform:rotate(45deg);-moz-transform:rotate(45deg);-ms-transform:rotate(45deg);transform:rotate(45deg)}.leaflet-popup-content-wrapper,.leaflet-popup-tip{background:#fff;color:#333;box-shadow:0 3px 14px rgba(0,0,0,.4)}.leaflet-container a.leaflet-popup-close-button{position:absolute;top:0;right:0;border:none;text-align:center;width:24px;height:24px;font:16px/24px Tahoma,Verdana,sans-serif;color:#757575;text-decoration:none;background:0 0}.leaflet-container a.leaflet-popup-close-button:focus,.leaflet-container a.leaflet-popup-close-button:hover{color:#585858}.leaflet-popup-scrolled{overflow:auto}.leaflet-oldie .leaflet-popup-content-wrapper{-ms-zoom:1}.leaflet-oldie .leaflet-popup-tip{width:24px;margin:0 auto}.leaflet-oldie .leaflet-control-layers,.leaflet-oldie .leaflet-control-zoom,.leaflet-oldie .leaflet-popup-content-wrapper,.leaflet-oldie .leaflet-popup-tip{border:1px solid #999}.leaflet-div-icon{background:#fff;border:1px solid #666}.leaflet-tooltip{position:absolute;padding:6px;background-color:#fff;border:1px solid #fff;border-radius:3px;color:#222;white-space:nowrap;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;pointer-events:none;box-shadow:0 1px 3px rgba(0,0,0,.4)}.leaflet-tooltip.leaflet-interactive{cursor:pointer;pointer-events:auto}.leaflet-tooltip-bottom:before,.leaflet-tooltip-left:before,.leaflet-tooltip-right:before,.leaflet-tooltip-top:before{position:absolute;pointer-events:none;border:6px solid transparent;background:0 0;content:""}.leaflet-tooltip-bottom{margin-top:6px}.leaflet-tooltip-top{margin-top:-6px}.leaflet-tooltip-bottom:before,.leaflet-tooltip-top:before{left:50%;margin-left:-6px}.leaflet-tooltip-top:before{bottom:0;margin-bottom:-12px;border-top-color:#fff}.leaflet-tooltip-bottom:before{top:0;margin-top:-12px;margin-left:-6px;border-bottom-color:#fff}.leaflet-tooltip-left{margin-left:-6px}.leaflet-tooltip-right{margin-left:6px}.leaflet-tooltip-left:before,.leaflet-tooltip-right:before{top:50%;margin-top:-6px}.leaflet-tooltip-left:before{right:0;margin-right:-12px;border-left-color:#fff}.leaflet-tooltip-right:before{left:0;margin-left:-12px;border-right-color:#fff}@media print{.leaflet-control{-webkit-print-color-adjust:exact;print-color-adjust:exact}}</style>
 <style>
-/* Layout: cabecera con el mapa de la costa de fondo, pestañas grandes, rejilla de fichas con su trozo de mapa, comentarios generales y la calculadora al final */
+/* Layout: app de una pantalla con barra de pestañas (abajo en móvil, arriba en ordenador), título grande por vista, lista de tarjetas con filtros y una hoja de detalle que sube desde abajo */
 :root{
-  --bg:#eef2ef; --surface:#ffffff; --fg:#17211c; --muted:#5b6861; --line:#d6ded8;
-  --moss:#2f6a4a; --moss-soft:#dfece3; --sea:#245a7e; --sea-soft:#dde9f2;
-  --heart:#c2334d; --heart-soft:#fbe4e8; --warn:#8a5a12; --warn-soft:#f7ecd6; --bad:#9b3326;
-  --shadow:0 1px 2px rgba(20,35,28,.06),0 6px 18px rgba(20,35,28,.06);
-  --display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
-  --body:"Inter","Segoe UI",system-ui,sans-serif;
-  --tiles:saturate(.55) contrast(.95) brightness(1.03);
+  --bg:#f2f2f7; --surface:#ffffff; --surface2:#f2f2f7; --fg:#1c1c1e; --muted:#6e6e73; --sep:rgba(60,60,67,.16);
+  --accent:#007aff; --accent-soft:rgba(0,122,255,.1); --heart:#ff2d55; --heart-soft:rgba(255,45,85,.1);
+  --green:#248a3d; --orange:#c93400; --orange-soft:rgba(255,149,0,.14); --bar:rgba(249,249,251,.82);
+  --shadow:0 1px 3px rgba(0,0,0,.06),0 8px 24px rgba(0,0,0,.06);
+  --font:-apple-system,BlinkMacSystemFont,"SF Pro Text","Inter","Segoe UI",Roboto,sans-serif;
+  --display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter","Segoe UI",Roboto,sans-serif;
+  --tiles:saturate(.7) brightness(1.02); --tabh:64px;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --bg:#0f1512; --surface:#18201c; --fg:#e6ece8; --muted:#9aa8a0; --line:#28332d;
-  --moss:#86c39f; --moss-soft:#1d2e25; --sea:#8bbcdf; --sea-soft:#1b2a36;
-  --heart:#f2879a; --heart-soft:#3d2128; --warn:#e8bd6e; --warn-soft:#352a17; --bad:#ec9a8c;
-  --shadow:0 1px 2px rgba(0,0,0,.3); --tiles:invert(1) hue-rotate(180deg) brightness(.82) saturate(.5) contrast(.9); color-scheme:dark}}
+  --bg:#000000; --surface:#1c1c1e; --surface2:#2c2c2e; --fg:#f5f5f7; --muted:#98989f; --sep:rgba(84,84,88,.6);
+  --accent:#0a84ff; --accent-soft:rgba(10,132,255,.18); --heart:#ff375f; --heart-soft:rgba(255,55,95,.18);
+  --green:#30d158; --orange:#ff9f0a; --orange-soft:rgba(255,159,10,.16); --bar:rgba(22,22,24,.8);
+  --shadow:none; --tiles:invert(1) hue-rotate(180deg) brightness(.85) saturate(.6) contrast(.9); color-scheme:dark}}
 :root[data-theme="dark"]{
-  --bg:#0f1512; --surface:#18201c; --fg:#e6ece8; --muted:#9aa8a0; --line:#28332d;
-  --moss:#86c39f; --moss-soft:#1d2e25; --sea:#8bbcdf; --sea-soft:#1b2a36;
-  --heart:#f2879a; --heart-soft:#3d2128; --warn:#e8bd6e; --warn-soft:#352a17; --bad:#ec9a8c;
-  --shadow:0 1px 2px rgba(0,0,0,.3); --tiles:invert(1) hue-rotate(180deg) brightness(.82) saturate(.5) contrast(.9); color-scheme:dark}
-*{box-sizing:border-box}
-body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.5}
-.in,.wrap{max-width:1080px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0}
-a{color:var(--sea)}
-button{font-family:var(--body)}
-:focus-visible{outline:2px solid var(--sea);outline-offset:2px}
+  --bg:#000000; --surface:#1c1c1e; --surface2:#2c2c2e; --fg:#f5f5f7; --muted:#98989f; --sep:rgba(84,84,88,.6);
+  --accent:#0a84ff; --accent-soft:rgba(10,132,255,.18); --heart:#ff375f; --heart-soft:rgba(255,55,95,.18);
+  --green:#30d158; --orange:#ff9f0a; --orange-soft:rgba(255,159,10,.16); --bar:rgba(22,22,24,.8);
+  --shadow:none; --tiles:invert(1) hue-rotate(180deg) brightness(.85) saturate(.6) contrast(.9); color-scheme:dark}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-padding-top:80px}
+body{background:var(--bg);color:var(--fg);font-family:var(--font);font-size:16px;line-height:1.45;-webkit-font-smoothing:antialiased;letter-spacing:-.01em}
+.page{max-width:1080px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:8px calc(var(--tabh) + 40px + env(safe-area-inset-bottom,0px))}
+h1,h2,h3{font-family:var(--display);margin:0;text-wrap:balance;letter-spacing:-.02em}
+button{font-family:inherit;letter-spacing:inherit}
+a{color:var(--accent)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:6px}
+.ico{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.ico.fill{fill:currentColor;stroke:none}
 
-/* cabecera */
-.hero{position:relative;overflow:hidden;background:var(--moss-soft);border-bottom:1px solid var(--line)}
+/* barra de pestañas */
+.tabbar{position:fixed;left:0;right:0;bottom:0;z-index:50;background:var(--bar);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-top:.5px solid var(--sep);
+  padding:6px max(8px,env(safe-area-inset-right,0px)) calc(6px + env(safe-area-inset-bottom,0px)) max(8px,env(safe-area-inset-left,0px));display:grid;grid-template-columns:repeat(5,1fr)}
+.tabbar a{display:grid;justify-items:center;gap:2px;padding:4px 0;color:var(--muted);text-decoration:none;font-size:10.5px;font-weight:500;position:relative}
+.tabbar a[aria-current="page"]{color:var(--accent)}
+.tabbar .badge{position:absolute;top:0;left:calc(50% + 6px);min-width:17px;height:17px;border-radius:9px;background:var(--heart);color:#fff;font-size:11px;font-weight:600;display:grid;place-items:center;padding:0 4px}
+.tabbar .badge:empty{display:none}
+@media (min-width:760px){
+  .tabbar{top:0;bottom:auto;border-top:0;border-bottom:.5px solid var(--sep);display:flex;justify-content:center;gap:4px;padding:8px 16px}
+  .tabbar a{display:flex;align-items:center;gap:7px;font-size:14px;padding:8px 14px;border-radius:999px}
+  .tabbar a[aria-current="page"]{background:var(--accent-soft)}
+  .tabbar .ico{width:20px;height:20px}
+  .tabbar .badge{position:static}
+  .page{padding-top:72px;padding-bottom:60px}
+}
+
+/* cabecera de cada vista */
+.vhead{display:grid;gap:4px;padding:18px 0 14px}
+.vhead h1{font-size:34px;font-weight:700;line-height:1.1}
+.hello{font-size:15px;color:var(--muted)}
+.hello b{color:var(--fg)}
+.linkbtn{font:inherit;font-weight:500;color:var(--accent);background:none;border:0;padding:0;cursor:pointer}
+.view[hidden]{display:none}
+
+/* resumen inicial */
+.shortcuts{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:22px}
+.shortcut{background:var(--surface);border-radius:16px;padding:12px 14px;text-align:left;border:0;cursor:pointer;color:var(--fg);display:grid;gap:2px;box-shadow:var(--shadow)}
+.shortcut b{font:700 26px var(--display);letter-spacing:-.02em}
+.shortcut span{font-size:13px;color:var(--muted);line-height:1.25}
+.shortcut.on{outline:2px solid var(--accent)}
+.shortcut.hearts b{color:var(--heart)}
+@media (max-width:560px){.shortcuts{grid-template-columns:repeat(2,1fr)}}
+
+/* control segmentado */
+.segm{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;background:rgba(118,118,128,.12);border-radius:10px;padding:2px;gap:2px}
+.segm button{border:0;background:none;border-radius:8px;padding:7px 6px;font-size:14px;font-weight:500;color:var(--fg);cursor:pointer}
+.segm button[aria-pressed="true"]{background:var(--surface);box-shadow:0 1px 3px rgba(0,0,0,.12),0 0 0 .5px rgba(0,0,0,.04);font-weight:600}
+:root[data-theme="dark"] .segm button[aria-pressed="true"]{background:#636366}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .segm button[aria-pressed="true"]{background:#636366}}
+
+/* buscador, orden y filtros */
+.tools{display:grid;grid-template-columns:minmax(0,1fr);gap:10px;margin:0 0 14px}
+.toolrow{display:flex;gap:8px;align-items:center}
+.search{flex:1;min-width:0;display:flex;align-items:center;gap:6px;background:rgba(118,118,128,.12);border-radius:10px;padding:0 10px;color:var(--muted)}
+.search .ico{width:18px;height:18px}
+.search input{flex:1;min-width:0;width:100%;border:0;background:none;font:inherit;font-size:16px;color:var(--fg);padding:9px 0;outline:none}
+.pillbtn{flex:none;display:inline-flex;align-items:center;gap:6px;border:0;background:var(--surface);color:var(--fg);border-radius:999px;padding:8px 13px;font-size:14px;font-weight:500;cursor:pointer;box-shadow:var(--shadow);white-space:nowrap}
+.pillbtn .ico{width:17px;height:17px}
+.pillbtn .n{background:var(--accent);color:#fff;border-radius:9px;font-size:12px;font-weight:600;padding:0 6px;line-height:18px}
+.pillbtn .n:empty{display:none}
+select.pillbtn{appearance:none;-webkit-appearance:none;padding-right:13px;font-family:inherit}
+.active{display:flex;gap:6px;flex-wrap:wrap}
+.active:empty{display:none}
+.atag{display:inline-flex;align-items:center;gap:4px;border:0;background:var(--accent-soft);color:var(--accent);border-radius:999px;padding:5px 10px;font-size:13px;font-weight:500;cursor:pointer}
+.count{font-size:13px;color:var(--muted);margin:2px 2px 0}
+@media (max-width:560px){.toolrow{flex-wrap:wrap}.search{flex:1 1 100%}}
+
+/* tarjetas */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:22px 18px}
+.card{display:grid;gap:8px;cursor:pointer;min-width:0;border:0;background:none;padding:0;text-align:left;color:inherit;font:inherit}
+.thumb{position:relative;aspect-ratio:16/10;border-radius:16px;overflow:hidden;background:var(--surface2);max-width:100%}
 .mosaic{position:absolute;left:50%;top:50%;display:grid;pointer-events:none}
 .mosaic img{width:256px;height:256px;display:block;filter:var(--tiles)}
-.hero .mosaic{opacity:.55}
-.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--bg) 0%,color-mix(in srgb,var(--bg) 82%,transparent) 45%,color-mix(in srgb,var(--bg) 20%,transparent) 100%)}
-.hero .in{position:relative;z-index:1;padding-block:44px 34px;display:grid;gap:12px}
-.kicker{margin:0;font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--moss)}
-.hero h1{font-size:clamp(38px,7vw,68px);font-weight:800;line-height:.95;letter-spacing:-.02em}
-.sub{margin:0;font-size:17px;color:var(--fg);max-width:34ch}
-.hero-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:6px}
-.me{font-size:14px;color:var(--muted)}
-.me b{color:var(--fg)}
-.linkbtn{font:inherit;font-weight:600;color:var(--sea);background:none;border:0;padding:0;cursor:pointer;text-decoration:underline;text-underline-offset:2px}
-.btn{display:inline-flex;align-items:center;gap:6px;font:600 14px var(--body);border-radius:999px;padding:9px 16px;text-decoration:none;cursor:pointer;border:1px solid var(--line);background:var(--surface);color:var(--fg)}
-.btn.solid{background:var(--moss);border-color:var(--moss);color:var(--bg)}
-
-/* pestañas y filtros */
-.seg{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:4px;margin:24px 0 14px;box-shadow:var(--shadow)}
-.tab{border:0;background:none;border-radius:10px;padding:10px 8px;cursor:pointer;color:var(--muted);font:600 15px var(--body);display:grid;gap:1px;justify-items:center}
-.tab small{font-weight:500;font-size:12px}
-.tab[aria-selected="true"]{background:var(--moss);color:var(--bg)}
-.tab[aria-selected="true"] small{color:inherit;opacity:.85}
-.bar{display:flex;gap:10px;align-items:center;margin-bottom:16px}
-.chips{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;flex:1;min-width:0;padding:2px}
-.chips::-webkit-scrollbar{display:none}
-.chip{flex:none;font:500 13px var(--body);color:var(--fg);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:7px 13px;cursor:pointer;white-space:nowrap}
-.chip[aria-pressed="true"]{background:var(--fg);border-color:var(--fg);color:var(--bg)}
-.chip.heart[aria-pressed="true"]{background:var(--heart);border-color:var(--heart);color:var(--bg)}
-.toggle{flex:none;display:flex;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:3px}
-.toggle button{border:0;background:none;border-radius:999px;padding:5px 12px;font:600 13px var(--body);color:var(--muted);cursor:pointer}
-.toggle button[aria-pressed="true"]{background:var(--sea-soft);color:var(--sea)}
-.empty{color:var(--muted);padding:30px 0;text-align:center}
-
-/* fichas */
-.list{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,330px),1fr));gap:16px}
-.zone-h{grid-column:1/-1;font:600 13px var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:10px 0 -4px}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;box-shadow:var(--shadow);min-width:0}
-.thumb{position:relative;height:150px;overflow:hidden;background:var(--moss-soft);display:block}
-.thumb::after{content:"";position:absolute;left:50%;top:50%;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;background:var(--heart);border:3px solid #fff;box-shadow:0 0 0 6px color-mix(in srgb,var(--heart) 25%,transparent)}
-.thumb .tagz{position:absolute;left:10px;top:10px;z-index:1;font:600 12px var(--body);background:var(--surface);color:var(--fg);border-radius:999px;padding:3px 10px;box-shadow:var(--shadow)}
-.thumb .pre{position:absolute;right:10px;top:10px;z-index:1;font:600 12px var(--body);background:var(--sea);color:var(--bg);border-radius:999px;padding:3px 10px}
-.c-body{padding:14px 16px 16px;display:grid;gap:8px;flex:1;align-content:start}
-.c-top{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
-.card h3{font-size:18px;line-height:1.2;min-width:0}
-.price{font:800 21px var(--display);white-space:nowrap;font-variant-numeric:tabular-nums}
-.price small{font:500 12px var(--body);color:var(--muted)}
-.specs{display:flex;flex-wrap:wrap;gap:6px;font-size:13px;font-variant-numeric:tabular-nums}
-.specs span{background:var(--bg);border-radius:6px;padding:2px 8px}
-.note{margin:0;color:var(--muted);font-size:14px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.note.open{display:block}
-.warn{margin:0;font-size:13px;color:var(--warn);background:var(--warn-soft);border-radius:8px;padding:5px 9px}
-.svc{font-size:12px;color:var(--muted)}
-.go{margin-left:auto;font:600 13px var(--body);color:var(--sea);text-decoration:none;white-space:nowrap;padding:6px 2px}
-.go:hover{text-decoration:underline}
-
-/* corazones y comentarios */
-.social{display:grid;gap:8px;margin-top:4px}
-.soc-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
-.soc-row button{font:600 13px var(--body);border-radius:999px;padding:7px 13px;cursor:pointer;border:1px solid var(--line);background:var(--surface);color:var(--fg)}
-.heart[aria-pressed="true"]{background:var(--heart-soft);border-color:var(--heart);color:var(--heart)}
-.who{font-size:13px;font-weight:600;color:var(--heart)}
-.clist{display:grid;gap:6px}
-.clist:empty{display:none}
-.cm{display:flex;flex-wrap:wrap;gap:2px 8px;align-items:baseline;font-size:14px;background:var(--bg);border-radius:10px;padding:8px 11px}
-.cm .ctext{flex:1 1 180px;min-width:0;white-space:pre-wrap;overflow-wrap:anywhere}
-.cm small{color:var(--muted);font-size:12px}
-.cm .del{font:inherit;font-size:12px;color:var(--bad);background:none;border:0;cursor:pointer;padding:0}
-.cform{display:grid;gap:8px}
-.cform textarea{font:inherit;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:9px 11px;width:100%;resize:vertical}
-.cf-actions{display:flex;gap:8px;flex-wrap:wrap}
-.cf-actions button{font:600 13px var(--body);border-radius:999px;padding:7px 14px;cursor:pointer;border:1px solid var(--line);background:var(--surface);color:var(--fg)}
-.cf-actions .save{background:var(--moss);border-color:var(--moss);color:var(--bg)}
+.pin{position:absolute;left:50%;top:50%;width:18px;height:18px;margin:-9px 0 0 -9px;border-radius:50%;background:var(--accent);border:3px solid #fff;box-shadow:0 0 0 7px color-mix(in srgb,var(--accent) 22%,transparent),0 2px 6px rgba(0,0,0,.25)}
+.badge-pre{position:absolute;left:10px;top:10px;font-size:12px;font-weight:600;background:rgba(255,255,255,.9);color:#1c1c1e;border-radius:999px;padding:4px 10px;backdrop-filter:blur(8px)}
+.hbtn{position:absolute;right:8px;top:8px;width:38px;height:38px;border-radius:50%;border:0;background:rgba(255,255,255,.88);backdrop-filter:blur(8px);display:grid;place-items:center;cursor:pointer;color:#1c1c1e}
+.hbtn .ico{width:21px;height:21px}
+.hbtn[aria-pressed="true"]{color:var(--heart)}
+.hbtn[aria-pressed="true"] .ico{fill:currentColor}
+.c-line{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+.c-title{font-size:16px;font-weight:600;line-height:1.25;min-width:0}
+.c-price{font-weight:700;font-size:16px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.c-sub{font-size:14px;color:var(--muted);display:flex;flex-wrap:wrap;gap:4px 10px}
+.c-social{font-size:13px;display:flex;gap:10px;color:var(--muted)}
+.c-social .h{color:var(--heart);font-weight:600}
+.c-social:empty{display:none}
+.sec-h{grid-column:1/-1;font-size:22px;font-weight:700;margin:8px 0 -6px}
+.empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:48px 16px;display:grid;gap:10px;justify-items:center}
+.empty .ico{width:40px;height:40px;color:var(--heart)}
+.btn{display:inline-flex;justify-content:center;align-items:center;gap:8px;border:0;border-radius:12px;padding:12px 18px;font-size:16px;font-weight:600;cursor:pointer;text-decoration:none;background:var(--accent);color:#fff}
+.btn.sec{background:var(--accent-soft);color:var(--accent)}
+.btn.small{padding:8px 14px;font-size:14px;border-radius:999px}
 
 /* mapa */
-.mapwrap{display:grid;gap:8px}
-#map{height:min(70vh,600px);min-height:380px;border-radius:14px;border:1px solid var(--line);background:var(--moss-soft);z-index:0}
+#map{height:calc(100dvh - 300px);min-height:420px;border-radius:16px;overflow:hidden;background:var(--surface2);z-index:0}
 .leaflet-tile{filter:var(--tiles)}
-.leaflet-container{font-family:var(--body)}
-.pop{display:grid;gap:4px;width:220px}
-.pop strong{font:700 15px var(--display);line-height:1.25}
-.pop-price{font-weight:700}
-.pop-specs{font-size:12px;color:#4a5550}
-.pop .go{margin:0;padding:0;color:#245a7e}
-.pop .soc-row button{padding:4px 10px;font-size:12px}
-.leaflet-popup-content-wrapper,.leaflet-popup-tip{background:#fff;color:#17211c}
+.leaflet-container{font-family:var(--font)}
+.leaflet-popup-content-wrapper{border-radius:14px}
+.mpop{display:grid;gap:4px;width:210px;color:#1c1c1e}
+.mpop b{font-size:15px;line-height:1.25}
+.mpop span{font-size:13px;color:#6e6e73}
+.mpop button{margin-top:6px;border:0;border-radius:10px;background:#007aff;color:#fff;font:600 14px var(--font);padding:9px;cursor:pointer}
 
-/* secciones finales */
-.block{margin-top:40px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 20px;display:grid;gap:10px;box-shadow:var(--shadow)}
-.block h2{font-size:22px}
-.block p.lead{margin:0;color:var(--muted);font-size:14px}
-details.about{margin-top:16px;color:var(--muted);font-size:14px}
-details.about summary{cursor:pointer;font-weight:600;color:var(--fg)}
-details.about ul{margin:8px 0 0;padding-left:20px;display:grid;gap:4px;max-width:70ch}
-.foot{margin:40px auto 0;padding-block:20px 40px;color:var(--muted);font-size:12px;border-top:1px solid var(--line)}
+/* hoja de detalle */
+.sheet-wrap{position:fixed;inset:0;z-index:100;display:grid;align-items:end;justify-items:center;background:rgba(0,0,0,.38)}
+.sheet-wrap[hidden]{display:none}
+.sheet{background:var(--bg);width:100%;max-width:640px;max-height:94dvh;overflow-y:auto;border-radius:14px 14px 0 0;padding-bottom:calc(24px + env(safe-area-inset-bottom,0px));overscroll-behavior:contain}
+@media (min-width:760px){.sheet-wrap{align-items:center}.sheet{border-radius:18px;max-height:88dvh}}
+@media (prefers-reduced-motion:no-preference){.sheet{animation:up .28s cubic-bezier(.2,.8,.2,1)}@keyframes up{from{transform:translateY(40px);opacity:.4}}}
+.sheet-top{position:sticky;top:0;z-index:2;display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:var(--bar);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+.sheet-top .grab{position:absolute;left:50%;top:5px;width:36px;height:5px;margin-left:-18px;border-radius:3px;background:var(--sep)}
+.round{width:34px;height:34px;border-radius:50%;border:0;background:rgba(118,118,128,.16);color:var(--fg);display:grid;place-items:center;cursor:pointer}
+.round .ico{width:18px;height:18px}
+.round[disabled]{opacity:.35;cursor:default}
+.navbtns{display:flex;gap:8px;align-items:center}
+.navbtns small{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.sheet .thumb{aspect-ratio:auto;height:220px;border-radius:0}
+.sheet-body{padding:16px;display:grid;gap:16px}
+.d-title{font-size:26px;font-weight:700;line-height:1.15}
+.d-price{font:700 22px var(--display);font-variant-numeric:tabular-nums}
+.d-price small{font-size:15px;color:var(--muted);font-weight:500}
+.d-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.d-actions .btn{width:100%}
+.d-actions .wide{grid-column:1/-1}
+.group{background:var(--surface);border-radius:12px;overflow:hidden}
+.group-h{font-size:13px;text-transform:uppercase;letter-spacing:.02em;color:var(--muted);margin:0 0 6px 16px}
+.row{display:flex;justify-content:space-between;gap:16px;padding:12px 16px;font-size:16px}
+.row+.row{border-top:.5px solid var(--sep)}
+.row span:last-child{color:var(--muted);text-align:right;font-variant-numeric:tabular-nums}
+.desc{background:var(--surface);border-radius:12px;padding:14px 16px;font-size:16px;line-height:1.5}
+.dwarn{background:var(--orange-soft);color:var(--orange);border-radius:12px;padding:12px 16px;font-size:15px;font-weight:500}
+
+/* corazones y comentarios */
+.social{display:grid;gap:10px}
+.soc-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.soc-row button{border:0;border-radius:999px;padding:9px 16px;font-size:15px;font-weight:600;cursor:pointer;background:var(--surface);color:var(--fg);box-shadow:var(--shadow)}
+.soc-row .heart[aria-pressed="true"]{background:var(--heart-soft);color:var(--heart);box-shadow:none}
+.who{font-size:14px;font-weight:600;color:var(--heart)}
+.clist{display:grid;gap:8px}
+.clist:empty{display:none}
+.cm{background:var(--surface);border-radius:14px;padding:10px 14px;display:flex;flex-wrap:wrap;gap:2px 8px;align-items:baseline;font-size:15px}
+.cm b{font-weight:600}
+.cm .ctext{flex:1 1 100%;white-space:pre-wrap;overflow-wrap:anywhere;order:3}
+.cm small{color:var(--muted);font-size:12px}
+.cm .del{margin-left:auto;font:inherit;font-size:13px;color:var(--heart);background:none;border:0;cursor:pointer;padding:0}
+.cform{display:grid;gap:8px}
+.cform textarea{font:inherit;font-size:16px;color:var(--fg);background:var(--surface);border:0;border-radius:12px;padding:12px 14px;width:100%;resize:vertical;outline:1px solid var(--sep)}
+.cf-actions{display:flex;gap:8px}
+.cf-actions button{border:0;border-radius:999px;padding:9px 16px;font-size:15px;font-weight:600;cursor:pointer;background:var(--surface);color:var(--fg)}
+.cf-actions .save{background:var(--accent);color:#fff}
+
+/* comentarios */
+.feed{display:grid;gap:10px}
+.fitem{background:var(--surface);border-radius:14px;padding:12px 14px;display:grid;gap:4px;border:0;text-align:left;font:inherit;color:inherit;cursor:pointer}
+.fitem .meta{font-size:13px;color:var(--muted)}
+.fitem .t{font-size:15px;white-space:pre-wrap;overflow-wrap:anywhere}
+.fitem .house{font-size:13px;color:var(--accent);font-weight:500}
+.block-h{font-size:22px;font-weight:700;margin:22px 0 10px}
+
+/* calculadora dentro de la app */
+#calculadora#calculadora{--k-bg:var(--surface2);--k-surface:var(--surface);--k-line:var(--sep);--k-fg:var(--fg);--k-muted:var(--muted);--k-accent:var(--accent);--k-accent-soft:var(--accent-soft);
+  --k-jorge:var(--accent);--k-sam:var(--heart);--k-sam-soft:var(--heart-soft);--k-warn:var(--orange);--k-warn-soft:var(--orange-soft);--k-display:var(--display);--k-body:var(--font);margin:0;padding:0;border:0}
+#calculadora#calculadora .panel{border:0;border-radius:14px;box-shadow:var(--shadow)}
+#calculadora#calculadora > header{display:none}
+#calculadora#calculadora .res{top:calc(72px + env(safe-area-inset-top,0px))}
+@media (max-width:860px){#calculadora#calculadora .res{top:auto;order:1}#calculadora#calculadora .stack{display:contents}#calculadora#calculadora .stack > *{order:2}#calculadora#calculadora .stack > :first-child{order:0}}
 
 /* ¿quién eres? */
-.dlg{position:fixed;inset:0;z-index:1000;background:rgba(10,15,12,.55);display:grid;place-items:center;padding:16px}
-.dlg-card{background:var(--surface);color:var(--fg);border-radius:16px;padding:24px;max-width:360px;width:100%;display:grid;gap:12px;border:1px solid var(--line)}
-.dlg-card h2{font-size:24px}
-.dlg-card p{margin:0;color:var(--muted);font-size:14px}
-.dlg-btns{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.dlg-btns button{font:600 16px var(--body);border-radius:12px;padding:12px;cursor:pointer;border:0;background:var(--moss);color:var(--bg)}
+.dlg{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.4);display:grid;place-items:center;padding:16px}
+.dlg[hidden]{display:none}
+.dlg-card{background:var(--surface);color:var(--fg);border-radius:20px;padding:24px;max-width:340px;width:100%;display:grid;gap:12px;text-align:center}
+.dlg-card h2{font-size:22px}
+.dlg-card p{margin:0;color:var(--muted);font-size:15px}
+.dlg-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.dlg-btns button{border:0;border-radius:14px;padding:14px;font-size:17px;font-weight:600;cursor:pointer;background:var(--accent);color:#fff}
 .dlg-card form{display:flex;gap:8px}
-.dlg-card input{font:inherit;flex:1;min-width:0;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:9px 11px}
-.dlg-card form button{font:600 14px var(--body);border-radius:10px;padding:9px 14px;cursor:pointer;border:1px solid var(--line);background:var(--surface);color:var(--fg)}
-@media (max-width:600px){.hero .in{padding-block:32px 26px}.sub{font-size:16px}.tab{font-size:14px}.bar{flex-wrap:wrap}.toggle{margin-left:auto}}
-@media (prefers-reduced-motion:no-preference){.card{transition:transform .15s ease,box-shadow .15s ease}.card:hover{transform:translateY(-2px)}}
+.dlg-card input{font:inherit;font-size:16px;flex:1;min-width:0;color:var(--fg);background:var(--surface2);border:0;border-radius:12px;padding:10px 12px}
+.dlg-card form button{border:0;border-radius:12px;padding:10px 14px;font-size:15px;font-weight:600;cursor:pointer;background:var(--accent-soft);color:var(--accent)}
+
+/* hoja de filtros */
+.fsheet .sheet-body{gap:20px}
+.fsec{display:grid;gap:10px}
+.fsec h3{font-size:17px;font-weight:600}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:0;border-radius:999px;padding:8px 14px;font-size:15px;cursor:pointer;background:var(--surface);color:var(--fg)}
+.chip[aria-pressed="true"]{background:var(--accent);color:#fff}
+.rangev{display:flex;justify-content:space-between;font-size:15px}
+.rangev b{font-variant-numeric:tabular-nums}
+input[type=range]{width:100%;accent-color:var(--accent)}
+.switch{display:flex;justify-content:space-between;align-items:center;background:var(--surface);border-radius:12px;padding:12px 16px;font-size:16px;cursor:pointer}
+.switch input{appearance:none;-webkit-appearance:none;width:51px;height:31px;border-radius:16px;background:rgba(120,120,128,.32);position:relative;cursor:pointer;flex:none;transition:background .2s}
+.switch input::after{content:"";position:absolute;left:2px;top:2px;width:27px;height:27px;border-radius:50%;background:#fff;box-shadow:0 2px 4px rgba(0,0,0,.2);transition:transform .2s}
+.switch input:checked{background:#34c759}
+.switch input:checked::after{transform:translateX(20px)}
+.fsheet-foot{position:sticky;bottom:0;display:flex;gap:10px;padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px));background:var(--bar);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+.fsheet-foot .btn{flex:1}
+.foot{color:var(--muted);font-size:12px;margin-top:40px;text-align:center}
 </style>
 
-<header class="hero">
-  <div class="mosaic" id="heroMap" aria-hidden="true"></div>
-  <div class="in">
-    <p class="kicker">Asturias · Cantabria</p>
-    <h1>Casas en el norte</h1>
-    <p class="sub">Las que estamos mirando. Dale ♥ a las que te gusten y comenta lo que quieras.</p>
-    <div class="hero-row"><a class="btn solid" href="#calculadora">Calculadora a medias</a><span class="me" id="me"></span></div>
-  </div>
-</header>
+<nav class="tabbar" aria-label="Secciones">
+  <a href="#casas" data-view="casas"><svg class="ico" viewBox="0 0 24 24"><path d="M3.5 10.5 12 3.5l8.5 7V20a1 1 0 0 1-1 1H15v-6H9v6H4.5a1 1 0 0 1-1-1z"/></svg>Casas</a>
+  <a href="#mapa" data-view="mapa"><svg class="ico" viewBox="0 0 24 24"><path d="M9 4 3.5 6v14L9 18l6 2 5.5-2V4L15 6 9 4zM9 4v14M15 6v14"/></svg>Mapa</a>
+  <a href="#favoritas" data-view="favoritas"><svg class="ico" viewBox="0 0 24 24"><path d="M12 20.5s-7.6-4.5-9.3-9.3C1.5 7.9 3.6 4.5 7 4.5c2 0 3.6 1.1 5 2.9 1.4-1.8 3-2.9 5-2.9 3.4 0 5.5 3.4 4.3 6.7-1.7 4.8-9.3 9.3-9.3 9.3z"/></svg>Favoritas<span class="badge" id="favBadge"></span></a>
+  <a href="#calculadora" data-view="calculadora"><svg class="ico" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2.5"/><path d="M8 7h8M8.5 11.5h.01M12 11.5h.01M15.5 11.5h.01M8.5 15h.01M12 15h.01M15.5 15h.01M8.5 18h.01M12 18h.01M15.5 18h.01"/></svg>A medias</a>
+  <a href="#comentarios" data-view="comentarios"><svg class="ico" viewBox="0 0 24 24"><path d="M4.5 5.5h15a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H9l-4.5 3.5V6.5a1 1 0 0 1 1-1z"/></svg>Comentarios</a>
+</nav>
 
-<main class="wrap">
-  <div class="seg" role="tablist" id="tabs"></div>
-  <div class="bar"><div class="chips" id="controls"></div><div class="toggle" id="modes"></div></div>
-  <div class="mapwrap" id="mapwrap" hidden><div id="map" role="region" aria-label="Mapa de las viviendas"></div></div>
-  <div class="list" id="list"></div>
-
-  <section class="block" aria-labelledby="gen-h">
-    <h2 id="gen-h">Comentarios generales</h2>
-    <p class="lead">Zonas, presupuesto, ideas… lo que no sea de una casa concreta.</p>
-    <div id="general"></div>
+<main class="page">
+  <section class="view" id="v-casas" aria-labelledby="h-casas">
+    <div class="vhead"><h1 id="h-casas">Casas en el norte</h1><div class="hello" id="me"></div></div>
+    <div class="shortcuts" id="shortcuts"></div>
+    <div class="tools">
+      <div class="segm" id="tabs" role="group" aria-label="Tipo de vivienda"></div>
+      <div class="toolrow">
+        <label class="search"><svg class="ico" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg><input id="q" type="search" placeholder="Buscar pueblo o zona" aria-label="Buscar pueblo o zona"></label>
+        <select class="pillbtn" id="sort" aria-label="Ordenar">
+          <option value="rec">Recomendadas</option><option value="pasc">Más baratas</option><option value="pdesc">Más caras</option><option value="m2">Más grandes</option><option value="love">Más ♥</option>
+        </select>
+        <button class="pillbtn" id="openFilters" type="button"><svg class="ico" viewBox="0 0 24 24"><path d="M4 6h16M7 12h10M10 18h4"/></svg>Filtros<span class="n" id="nf"></span></button>
+      </div>
+      <div class="active" id="activeTags"></div>
+      <div class="count" id="count"></div>
+    </div>
+    <div class="grid" id="list"></div>
   </section>
 
-  <details class="about">
-    <summary>Cómo hemos elegido estas casas</summary>
-    <ul>
-      <li>Nada de ruinas ni «a reformar»: he leído cada anuncio entero.</li>
-      <li>Hasta 170.000 € pueden ser segunda residencia. Por encima, tienen colegio a 6 km o menos y hospital a 25 km o menos.</li>
-      <li>Los alquileres serían nuestra casa principal, así que también cumplen lo del colegio y el hospital.</li>
-      <li>«Preseleccionada» son las que ya habíamos apartado. Precios del 15 y el 17/11/2026: confírmalos en el anuncio.</li>
-    </ul>
-  </details>
+  <section class="view" id="v-mapa" hidden aria-labelledby="h-mapa">
+    <div class="vhead"><h1 id="h-mapa">Mapa</h1><div class="hello">Toca un punto para ver la casa. Rojo: con ♥.</div></div>
+    <div class="tools"><div class="segm" id="tabsMap" role="group" aria-label="Tipo de vivienda"></div><div class="active" id="activeTagsMap"></div></div>
+    <div id="map" role="region" aria-label="Mapa de las viviendas"></div>
+  </section>
 
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Manrope:wght@400;500;600;700&display=swap">
+  <section class="view" id="v-favoritas" hidden aria-labelledby="h-fav">
+    <div class="vhead"><h1 id="h-fav">Favoritas</h1><div class="hello">Las que tienen ♥, de cada uno.</div></div>
+    <div class="grid" id="favList"></div>
+  </section>
+
+  <section class="view" id="v-calculadora" hidden aria-labelledby="h-calc">
+    <div class="vhead"><h1 id="h-calc">Comprar a medias</h1><div class="hello">Elige una casa y mira cuánto pondría cada uno.</div></div>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Manrope:wght@400;500;600;700&display=swap">
 <style>
 #calculadora{
   --k-bg:#f3f5f2; --k-surface:#ffffff; --k-line:#d9dfd8; --k-fg:#1d2621; --k-muted:#5d6b62;
@@ -415,12 +508,24 @@ details.about ul{margin:8px 0 0;padding-left:20px;display:grid;gap:4px;max-width
   </details>
 </section>
 
+  </section>
 
-  <footer class="foot">Mapas © colaboradores de OpenStreetMap. Fotos y detalles en cada anuncio de idealista o pisos.com.</footer>
+  <section class="view" id="v-comentarios" hidden aria-labelledby="h-com">
+    <div class="vhead"><h1 id="h-com">Comentarios</h1><div class="hello">Lo que vamos pensando.</div></div>
+    <h2 class="block-h">En general</h2>
+    <div id="general"></div>
+    <h2 class="block-h">En las casas</h2>
+    <div class="feed" id="feed"></div>
+  </section>
+
+  <p class="foot">Mapas © colaboradores de OpenStreetMap · Fotos y detalles en cada anuncio · Precios del 15 y el 17/11/2026</p>
 </main>
 
+<div class="sheet-wrap" id="detail" hidden role="dialog" aria-modal="true" aria-label="Ficha de la casa"><div class="sheet" id="detailSheet"></div></div>
+<div class="sheet-wrap" id="filters" hidden role="dialog" aria-modal="true" aria-labelledby="fh"><div class="sheet fsheet" id="filtersSheet"></div></div>
+
 <div class="dlg" id="who-dlg" hidden role="dialog" aria-modal="true" aria-labelledby="who-h"><div class="dlg-card">
-  <h2 id="who-h">¿Quién eres?</h2><p>Para saber de quién es cada corazón y cada comentario.</p>
+  <h2 id="who-h">¿Quién eres?</h2><p>Para saber de quién es cada ♥ y cada comentario.</p>
   <div class="dlg-btns"><button type="button" data-name="Sam">Sam</button><button type="button" data-name="Jorge">Jorge</button></div>
   <form><input type="text" maxlength="30" placeholder="Otro nombre" aria-label="Otro nombre"><button type="submit">Vale</button></form>
   <button type="button" class="linkbtn later">Ahora no</button>
@@ -428,20 +533,27 @@ details.about ul{margin:8px 0 0;padding-left:20px;display:grid;gap:4px;max-width
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
-const DATA = [{"key":"i108471190","url":"https://www.idealista.com/inmueble/108471190/","site":"idealista","tab":"campo","zone":"sidra","place":"Puelles, junto a Valdediós (Villaviciosa)","price":130000,"hab":3,"m2":112,"parc":600,"note":"Casa de pueblo con garaje.","fav":true,"warn":"","ll":[43.4516876,-5.5650174],"out":null,"school_km":4.5,"hosp":"Cabueñes (Gijón)","hosp_km":8.8,"nuevo":false},{"key":"i111145800","url":"https://www.idealista.com/inmueble/111145800/","site":"idealista","tab":"campo","zone":"sidra","place":"Vallina-Breceña (Villaviciosa)","price":164900,"hab":3,"m2":96,"parc":350,"note":"A 10-15 minutos de Villaviciosa.","fav":true,"warn":"","ll":[43.4396266,-5.3885047],"out":null,"school_km":5.1,"hosp":"Oriente (Arriondas)","hosp_km":17.6,"nuevo":false},{"key":"i112936790","url":"https://www.idealista.com/inmueble/112936790/","site":"idealista","tab":"campo","zone":"gijon","place":"Pillarno (Castrillón)","price":215000,"hab":2,"m2":100,"parc":1659,"note":"Casa con hórreo y jardín, cerca de la costa.","fav":true,"warn":"","ll":[43.5199554,-5.9937255],"out":null,"school_km":3.4,"hosp":"San Agustín (Avilés)","hosp_km":5.9,"nuevo":false},{"key":"i99023833","url":"https://www.idealista.com/inmueble/99023833/","site":"idealista","tab":"campo","zone":"nalon","place":"Pozobal (Langreo)","price":210000,"hab":4,"m2":260,"parc":12916,"note":"Casa de 1940 junto a la ermita del Carbayu, con buen acceso a la autopista.","fav":true,"warn":"Sin calefacción","ll":[43.2805811,-5.6884265],"out":null,"school_km":1.6,"hosp":"Valle del Nalón (Langreo)","hosp_km":5.9,"nuevo":false},{"key":"i25801846","url":"https://www.idealista.com/inmueble/25801846/","site":"idealista","tab":"alquiler","zone":"costa","place":"Bones, a 3 km de Ribadesella","price":1200,"hab":3,"m2":172,"parc":500,"note":"Casa independiente amueblada, 3 baños y garaje. Junto a la salida 326 de la A-8.","fav":true,"warn":"Contrato de 11 meses","ll":[43.4619436,-5.1214808],"out":null,"school_km":4.4,"hosp":"Oriente (Arriondas)","hosp_km":10.3,"nuevo":false},{"key":"i110230984","url":"https://www.idealista.com/inmueble/110230984/","site":"idealista","tab":"alquiler","zone":"oviedo","place":"Careses (Siero)","price":900,"hab":2,"m2":100,"parc":550,"note":"Casa independiente amueblada, para larga estancia. Chimenea de pellets.","fav":true,"warn":"","ll":[43.4112307,-5.6212916],"out":null,"school_km":3.6,"hosp":"Valle del Nalón (Langreo)","hosp_km":12.3,"nuevo":false},{"key":"i112901861","url":"https://www.idealista.com/inmueble/112901861/","site":"idealista","tab":"alquiler","zone":"nalon","place":"La Molatera (San Martín del Rey Aurelio)","price":1200,"hab":2,"m2":80,"parc":"—","note":"Casa recién reformada; el precio incluye luz e internet.","fav":true,"warn":"","ll":[43.276016,-5.6048409],"out":null,"school_km":0.2,"hosp":"Valle del Nalón (Langreo)","hosp_km":11.1,"nuevo":false},{"key":"i112691163","url":"https://www.idealista.com/inmueble/112691163/","site":"idealista","tab":"alquiler","zone":"cant","place":"La Hayuela (Udías)","price":1500,"hab":3,"m2":216,"parc":160,"note":"Chalet independiente de 2004 con vistas abiertas, 4 baños y garaje. Cerca de Comillas.","fav":true,"warn":"","ll":[43.3365144,-4.2672032],"out":null,"school_km":2.1,"hosp":"Sierrallana (Torrelavega)","hosp_km":15.7,"nuevo":false},{"key":"i112746155","url":"https://www.idealista.com/inmueble/112746155/","site":"idealista","tab":"alquiler","zone":"cant","place":"Boo (Piélagos)","price":1600,"hab":3,"m2":217,"parc":"jardín","note":"Chalet independiente con 3 baños y jardín privado.","fav":true,"warn":"","ll":[43.43049,-3.94551],"out":null,"school_km":0.8,"hosp":"Mompía","hosp_km":2.3,"nuevo":false},{"key":"i112481364","url":"https://www.idealista.com/inmueble/112481364/","site":"idealista","tab":"ciudad","zone":"c_gijon","place":"Ático en calle Miguel Servet (Gijón)","price":238000,"hab":2,"m2":108,"parc":"—","note":"Séptima planta reformada, en esquina, edificio con dos ascensores.","fav":true,"warn":"","ll":[43.5403016,-5.6975679],"out":null,"school_km":0.2,"hosp":"Jove (Gijón)","hosp_km":1.1,"nuevo":false},{"key":"i110283833","url":"https://www.idealista.com/inmueble/110283833/","site":"idealista","tab":"ciudad","zone":"c_oviedo","place":"Junto al HUCA, Ventanielles (Oviedo)","price":289000,"hab":4,"m2":110,"parc":"—","note":"Quinta planta exterior con vistas a la naturaleza, garaje incluido.","fav":true,"warn":"","ll":[43.3712521,-5.8196734],"out":null,"school_km":0.2,"hosp":"HUCA (Oviedo)","hosp_km":0.9,"nuevo":false},{"key":"i112757267","url":"https://www.idealista.com/inmueble/112757267/","site":"idealista","tab":"ciudad","zone":"c_santander","place":"Calle Enrique Gran, General Dávila (Santander)","price":214000,"hab":2,"m2":65,"parc":"—","note":"Reformado a estrenar, con vistas al mar y aislamiento exterior.","fav":true,"warn":"Segunda planta sin ascensor","ll":[43.4660152,-3.8039092],"out":null,"school_km":0.0,"hosp":"Valdecilla (Santander)","hosp_km":2.3,"nuevo":false},{"key":"p61678202605","url":"https://www.pisos.com/comprar/casa-jove_verina33212-61678202605_109300/","site":"pisos.com","tab":"campo","zone":"gijon","place":"Camín de Arnao, El Muselín (Gijón)","price":212000,"hab":3,"m2":281,"parc":"—","note":"Casa de tres plantas con garaje y vistas al mar, estufa de pellets.","fav":true,"warn":"Anunciada como «tipo dúplex»: confirma si es independiente","ll":[43.5599113,-5.7048002],"out":null,"school_km":1.5,"hosp":"Jove (Gijón)","hosp_km":1.2,"nuevo":false},{"key":"p59227577069","url":"https://www.pisos.com/comprar/casa-puerto_faro_de_aviles-59227577069_100500/","site":"pisos.com","tab":"campo","zone":"gijon","place":"San Juan de Nieva (Gozón)","price":210000,"hab":4,"m2":140,"parc":"—","note":"Casa de 1880 rehabilitada entera en 2025: tejado, instalaciones, cocina y suelos nuevos.","fav":true,"warn":"Junto al puerto de Avilés","ll":[43.5955951,-5.9453306],"out":null,"school_km":1.9,"hosp":"San Agustín (Avilés)","hosp_km":4.9,"nuevo":false},{"key":"p59253840481","url":"https://www.pisos.com/comprar/casa-acebo_sariego-59253840481_106500/","site":"pisos.com","tab":"campo","zone":"oviedo","place":"San Román (Sariego)","price":160000,"hab":3,"m2":95,"parc":"—","note":"Casa lista para entrar a vivir, con vistas y un anexo del mismo tamaño.","fav":true,"warn":"","ll":[43.4093351,-5.5119759],"out":null,"school_km":3.8,"hosp":"Cabueñes (Gijón)","hosp_km":15.0,"nuevo":false},{"key":"p60029440479","url":"https://www.pisos.com/comprar/chalet-estacion_bimenes-60029440479_100500/","site":"pisos.com","tab":"campo","zone":"nalon","place":"La Mesnada (Bimenes)","price":139900,"hab":3,"m2":121,"parc":1993,"note":"Casa de piedra caliza reformada, lista para entrar a vivir, con vistas a Peñamayor.","fav":true,"warn":"","ll":[43.3254793,-5.5676797],"out":null,"school_km":0.7,"hosp":"Valle del Nalón (Langreo)","hosp_km":12.5,"nuevo":false},{"key":"p68398177747","url":"https://www.pisos.com/comprar/casa-bimenes-68398177747_100500/","site":"pisos.com","tab":"campo","zone":"nalon","place":"La Baragaña, Suares (Bimenes)","price":210000,"hab":6,"m2":181,"parc":"—","note":"Casa de 20-30 años con 3 baños, orientación sur y vistas por encima de las nieblas del valle.","fav":true,"warn":"","ll":[43.3388376,-5.5904617],"out":null,"school_km":0.2,"hosp":"Valle del Nalón (Langreo)","hosp_km":10.7,"nuevo":false},{"key":"p63432547189","url":"https://www.pisos.com/comprar/casa-pola_de_laviana-63432547189_109300/","site":"pisos.com","tab":"campo","zone":"nalon","place":"Caleao, Parque de Redes (Caso)","price":149900,"hab":5,"m2":177,"parc":"—","note":"Casa grande orientada al sur con chimenea, porche y garaje, en pleno parque natural.","fav":true,"warn":"","ll":[43.1232902,-5.4063341],"out":null,"school_km":6.8,"hosp":"Álvarez Buylla (Mieres)","hosp_km":32.5,"nuevo":false},{"key":"i112789817","url":"https://www.idealista.com/inmueble/112789817/","site":"idealista","tab":"ciudad","zone":"c_santander","place":"El Alisal (Santander)","price":265000,"hab":3,"m2":97,"parc":"—","note":"En perfecto estado, con garaje y todos los servicios cerca.","fav":true,"warn":"","ll":[43.4598139,-3.8549811],"out":null,"school_km":0.2,"hosp":"Valdecilla (Santander)","hosp_km":2.1,"nuevo":false},{"key":"i112955645","url":"https://www.idealista.com/inmueble/112955645/","site":"idealista","tab":"ciudad","zone":"c_santander","place":"Calle Castilla (Santander)","price":240000,"hab":3,"m2":78,"parc":"—","note":"Recién reformado. Garaje opcional por 39.000 €.","fav":true,"warn":"","ll":[43.4549131,-3.8189296],"out":null,"school_km":0.3,"hosp":"Valdecilla (Santander)","hosp_km":0.8,"nuevo":false},{"key":"i107379954","url":"https://www.idealista.com/inmueble/107379954/","site":"idealista","tab":"alquiler","zone":"c_oviedo","place":"Calle Valparaíso, La Tenderina (Oviedo)","price":900,"hab":3,"m2":116,"parc":"—","note":"Séptima planta en edificio de 2007, 2 baños y garaje. Parcialmente amueblado.","fav":false,"warn":"","ll":[43.3594917,-5.8316082],"out":null,"school_km":0.3,"hosp":"HUCA (Oviedo)","hosp_km":1.9,"nuevo":false},{"key":"i110028243","url":"https://www.idealista.com/inmueble/110028243/","site":"idealista","tab":"alquiler","zone":"c_oviedo","place":"Calle Pérez de la Sala, centro (Oviedo)","price":1495,"hab":5,"m2":146,"parc":"—","note":"Calle peatonal con vistas al Auditorio. Prefieren larga estancia.","fav":false,"warn":"","ll":[43.3576697,-5.8501718],"out":null,"school_km":0.1,"hosp":"Monte Naranco (Oviedo)","hosp_km":2.3,"nuevo":false},{"key":"i97165868","url":"https://www.idealista.com/inmueble/97165868/","site":"idealista","tab":"alquiler","zone":"c_oviedo","place":"Ático en plaza Primo de Rivera, centro (Oviedo)","price":1100,"hab":2,"m2":70,"parc":"—","note":"Ático vacío con una terraza fantástica y garaje.","fav":false,"warn":"","ll":[43.3676717,-5.8503946],"out":null,"school_km":0.2,"hosp":"Monte Naranco (Oviedo)","hosp_km":1.8,"nuevo":false},{"key":"i112998317","url":"https://www.idealista.com/inmueble/112998317/","site":"idealista","tab":"alquiler","zone":"c_oviedo","place":"Ático en plaza Ángel González, Vallobín (Oviedo)","price":1200,"hab":2,"m2":79,"parc":"—","note":"Ático moderno con garaje.","fav":false,"warn":"","ll":[43.3661109,-5.8659812],"out":null,"school_km":0.4,"hosp":"Monte Naranco (Oviedo)","hosp_km":0.7,"nuevo":false},{"key":"i112479484","url":"https://www.idealista.com/inmueble/112479484/","site":"idealista","tab":"alquiler","zone":"c_oviedo","place":"Ático en calle Tineo, Las Campas (Oviedo)","price":1200,"hab":4,"m2":140,"parc":"—","note":"2 baños, terraza de 40 m² y doble plaza de garaje.","fav":false,"warn":"","ll":[43.3632786,-5.8855888],"out":null,"school_km":0.3,"hosp":"Monte Naranco (Oviedo)","hosp_km":1.3,"nuevo":false},{"key":"i109200994","url":"https://www.idealista.com/inmueble/109200994/","site":"idealista","tab":"alquiler","zone":"c_oviedo","place":"La Ería (Oviedo)","price":1300,"hab":3,"m2":95,"parc":"—","note":"Sexta planta de 2006 con terraza, vistas y garaje. Sin honorarios de agencia.","fav":false,"warn":"","ll":[43.3613086,-5.8666248],"out":null,"school_km":0.1,"hosp":"Monte Naranco (Oviedo)","hosp_km":1.1,"nuevo":false},{"key":"i112772980","url":"https://www.idealista.com/inmueble/112772980/","site":"idealista","tab":"alquiler","zone":"c_oviedo","place":"Ático en calle Río San Pedro, centro (Oviedo)","price":1350,"hab":2,"m2":78,"parc":"—","note":"Terraza de 30 m², amueblado y con garaje.","fav":false,"warn":"","ll":[43.3668629,-5.8518375],"out":null,"school_km":0.3,"hosp":"Monte Naranco (Oviedo)","hosp_km":1.7,"nuevo":false},{"key":"i111946179","url":"https://www.idealista.com/inmueble/111946179/","site":"idealista","tab":"alquiler","zone":"c_oviedo","place":"Buenavista (Oviedo)","price":1400,"hab":3,"m2":130,"parc":"—","note":"Sexta planta con tres terrazas y vistas, impecable y amueblado.","fav":false,"warn":"","ll":[43.3579375,-5.8630667],"out":null,"school_km":0.1,"hosp":"Monte Naranco (Oviedo)","hosp_km":1.6,"nuevo":false},{"key":"i110513950","url":"https://www.idealista.com/inmueble/110513950/","site":"idealista","tab":"alquiler","zone":"c_oviedo","place":"Ático dúplex en Montecerrao (Oviedo)","price":1500,"hab":3,"m2":174,"parc":"—","note":"Moderno (2008), muy amplio y luminoso.","fav":false,"warn":"","ll":[43.3504687,-5.8630645],"out":null,"school_km":0.7,"hosp":"Monte Naranco (Oviedo)","hosp_km":2.3,"nuevo":false},{"key":"i109569496","url":"https://www.idealista.com/inmueble/109569496/","site":"idealista","tab":"alquiler","zone":"c_santander","place":"Alto Miranda, El Sardinero (Santander)","price":1300,"hab":2,"m2":85,"parc":"—","note":"Vistas impresionantes, entrada independiente, garaje y amueblado.","fav":false,"warn":"","ll":[43.46988,-3.7885938],"out":null,"school_km":0.1,"hosp":"Valdecilla (Santander)","hosp_km":3.6,"nuevo":false},{"key":"i98046351","url":"https://www.idealista.com/inmueble/98046351/","site":"idealista","tab":"alquiler","zone":"c_santander","place":"General Dávila, novena planta (Santander)","price":1195,"hab":4,"m2":130,"parc":"—","note":"Vistas despejadas, orientación suroeste, amueblado.","fav":false,"warn":"","ll":[43.4663944,-3.8164254],"out":null,"school_km":0.3,"hosp":"Valdecilla (Santander)","hosp_km":1.5,"nuevo":false},{"key":"i112631411","url":"https://www.idealista.com/inmueble/112631411/","site":"idealista","tab":"alquiler","zone":"c_santander","place":"Avenida de Cantabria, Valdenoja (Santander)","price":1300,"hab":2,"m2":72,"parc":"—","note":"Recién actualizado, con garaje, cerca de las playas.","fav":false,"warn":"","ll":[43.4770314,-3.7971795],"out":null,"school_km":0.4,"hosp":"Valdecilla (Santander)","hosp_km":3.5,"nuevo":false},{"key":"i112957562","url":"https://www.idealista.com/inmueble/112957562/","site":"idealista","tab":"alquiler","zone":"c_santander","place":"Centro, junto a la catedral (Santander)","price":1450,"hab":3,"m2":85,"parc":"—","note":"Octava planta, solo alquiler fijo y sin muebles.","fav":false,"warn":"Piden aval bancario de 12 meses","ll":[43.4610442,-3.8073704],"out":null,"school_km":0.3,"hosp":"Valdecilla (Santander)","hosp_km":1.8,"nuevo":false},{"key":"i112969288","url":"https://www.idealista.com/inmueble/112969288/","site":"idealista","tab":"alquiler","zone":"c_santander","place":"Ático junto a la catedral (Santander)","price":1450,"hab":3,"m2":100,"parc":"—","note":"Exterior, 2 baños, sin amueblar salvo la cocina.","fav":false,"warn":"","ll":[43.4610442,-3.8073704],"out":null,"school_km":0.3,"hosp":"Valdecilla (Santander)","hosp_km":1.8,"nuevo":false},{"key":"i112884608","url":"https://www.idealista.com/inmueble/112884608/","site":"idealista","tab":"alquiler","zone":"c_santander","place":"Jardines del Sardinero, Valdenoja (Santander)","price":1300,"hab":2,"m2":93,"parc":"—","note":"Urbanización de 2004, amueblado, en perfecto estado y con garaje.","fav":false,"warn":"","ll":[43.4755522,-3.8031264],"out":null,"school_km":0.5,"hosp":"Valdecilla (Santander)","hosp_km":3.0,"nuevo":false},{"key":"i113020567","url":"https://www.idealista.com/inmueble/113020567/","site":"idealista","tab":"alquiler","zone":"c_santander","place":"Frente al parque de Las Llamas (Santander)","price":1200,"hab":3,"m2":115,"parc":"—","note":"Amueblado, con garaje y trastero.","fav":false,"warn":"","ll":[43.4748997,-3.805574],"out":null,"school_km":0.6,"hosp":"Valdecilla (Santander)","hosp_km":2.8,"nuevo":false},{"key":"i112667312","url":"https://www.idealista.com/inmueble/112667312/","site":"idealista","tab":"alquiler","zone":"c_santander","place":"Puertochico (Santander)","price":1500,"hab":3,"m2":95,"parc":"—","note":"Salón y cocina con terraza, en una de las zonas más animadas.","fav":false,"warn":"","ll":[43.464858,-3.7964997],"out":null,"school_km":0.1,"hosp":"Valdecilla (Santander)","hosp_km":2.8,"nuevo":false},{"key":"p66760477783","url":"https://www.pisos.com/comprar/casa-la_carcoba-66760477783_109300/","site":"pisos.com","tab":"campo","zone":"cant","place":"La Cárcoba, Mirones (Miera)","price":179000,"hab":4,"m2":262,"parc":"998 m²","note":"Casa tradicional de piedra en buen estado, con choco para reuniones y finca de casi 1.000 m², en el valle del Miera.","fav":true,"warn":"La casa principal figura como almacén en catastro","ll":[43.2947373,-3.7026329],"out":null,"school_km":0.3,"hosp":"Valdecilla (Santander)","hosp_km":20.6,"nuevo":false},{"key":"p59242883273","url":"https://www.pisos.com/comprar/casa-beranga-59242883273_106000/","site":"pisos.com","tab":"campo","zone":"cant","place":"Beranga (Hazas de Cesto), cerca de Noja","price":220000,"hab":4,"m2":232,"parc":"2.600 m²","note":"Casa de piedra independiente con gran jardín y tejado renovado, a pocos minutos de Noja e Isla.","fav":true,"warn":"Necesita cierta actualización","ll":[43.413626,-3.5770717],"out":null,"school_km":2.3,"hosp":"Laredo","hosp_km":10.9,"nuevo":false},{"key":"p62595212269","url":"https://www.pisos.com/comprar/casa-villafufre-62595212269_106000/","site":"pisos.com","tab":"campo","zone":"cant","place":"San Martín de Villafufre (Valles Pasiegos)","price":189000,"hab":4,"m2":169,"parc":"5.300 m²","note":"Casa independiente en buen estado, orientada al sur con vistas abiertas al valle; 169 m² de vivienda más anexos.","fav":true,"warn":"","ll":[43.25925,-3.877583],"out":null,"school_km":3.6,"hosp":"Mompía","hosp_km":19.7,"nuevo":false},{"key":"p65092063166","url":"https://www.pisos.com/comprar/casa-prases-65092063166_109200/","site":"pisos.com","tab":"campo","zone":"cant","place":"Cillero, Prases (Corvera de Toranzo)","price":125000,"hab":3,"m2":223,"parc":"5 fincas","note":"Casa tradicional en buen estado, 2 baños, calefacción de gas y fibra; incluye 5 fincas.","fav":true,"warn":"Pareada (de esquina)","ll":[43.2464512,-3.9478989],"out":null,"school_km":2.3,"hosp":"Sierrallana (Torrelavega)","hosp_km":16.5,"nuevo":false},{"key":"p65905665116","url":"https://www.pisos.com/comprar/casa-prases-65905665116_109200/","site":"pisos.com","tab":"campo","zone":"cant","place":"Prases (Corvera de Toranzo)","price":220000,"hab":3,"m2":199,"parc":"3,2 ha","note":"Casa de 1960 en buen estado con terraza y vistas, sobre una finca de más de 3 hectáreas en el valle de Toranzo.","fav":true,"warn":"","ll":[43.2464512,-3.9478989],"out":null,"school_km":2.3,"hosp":"Sierrallana (Torrelavega)","hosp_km":16.5,"nuevo":false},{"key":"p68366702922","url":"https://www.pisos.com/comprar/casa-cartes_centro_urbano-68366702922_109300/","site":"pisos.com","tab":"campo","zone":"cant","place":"Barrio Mercadal (Cartes)","price":229000,"hab":3,"m2":347,"parc":"369 m²","note":"Casa reformada con chimenea, 2 baños y suelos de madera, más 98 m² diáfanos para garaje o taller.","fav":true,"warn":"","ll":[43.3235918,-4.1000206],"out":null,"school_km":2.6,"hosp":"Sierrallana (Torrelavega)","hosp_km":4.7,"nuevo":false},{"key":"p55860876594","url":"https://www.pisos.com/comprar/casa-mazcuerras_centro_urbano-55860876594_108900/","site":"pisos.com","tab":"campo","zone":"cant","place":"Mazcuerras (valle del Saja)","price":190000,"hab":4,"m2":140,"parc":"1,7 ha","note":"Cuadra de piedra reformada a estrenar, con chimenea y finca arbolada; acceso por pista, muy aislada.","fav":true,"warn":"El anuncio dice que no admite cambio de uso: confirmar que es vivienda","ll":[43.29764,-4.20947],"out":null,"school_km":2.1,"hosp":"Sierrallana (Torrelavega)","hosp_km":13.0,"nuevo":false},{"key":"p57598846358","url":"https://www.pisos.com/comprar/casa-arenas_de_iguna_centro_urbano-57598846358_100500/","site":"pisos.com","tab":"campo","zone":"cant","place":"Arenas de Iguña (valle del Besaya)","price":220000,"hab":3,"m2":142,"parc":"—","note":"Independiente y reformada hace poco (electricidad y tejado), 2 baños, garaje y balcón con vistas.","fav":true,"warn":"","ll":[43.1870286,-4.0496673],"out":null,"school_km":1.9,"hosp":"Sierrallana (Torrelavega)","hosp_km":19.6,"nuevo":false},{"key":"i106658134","url":"https://www.idealista.com/inmueble/106658134/","site":"idealista","tab":"campo","zone":"cant","place":"Llueva (Voto), a 15 km de Laredo","price":120000,"hab":3,"m2":310,"parc":"—","note":"Casa de piedra totalmente restaurada, todo nuevo: 3 baños, garaje, bodega y salón con chimenea.","fav":true,"warn":"","ll":[43.3346827,-3.5494794],"out":null,"school_km":4.0,"hosp":"Laredo","hosp_km":12.4,"nuevo":false},{"key":"i109677181","url":"https://www.idealista.com/inmueble/109677181/","site":"idealista","tab":"campo","zone":"cant","place":"Hijas (Puente Viesgo)","price":155000,"hab":3,"m2":135,"parc":"117 m²","note":"Casa independiente en buen estado en el valle del Pas, a 20 min de Santander y 10 de Torrelavega.","fav":true,"warn":"","ll":[43.28152,-3.98234],"out":null,"school_km":4.3,"hosp":"Sierrallana (Torrelavega)","hosp_km":11.7,"nuevo":false},{"key":"i111257702","url":"https://www.idealista.com/inmueble/111257702/","site":"idealista","tab":"campo","zone":"cant","place":"Quintana de Toranzo (Corvera de Toranzo)","price":218000,"hab":3,"m2":70,"parc":"8.075 m²","note":"Cabaña pasiega en perfecto estado, lista para entrar, con chimenea y vistas abiertas a los valles pasiegos.","fav":true,"warn":"Solo 71 m²","ll":[43.2340375,-3.9825057],"out":null,"school_km":5.2,"hosp":"Sierrallana (Torrelavega)","hosp_km":16.1,"nuevo":false},{"key":"i112406716","url":"https://www.idealista.com/inmueble/112406716/","site":"idealista","tab":"campo","zone":"cant","place":"Riotuerto (Trasmiera), a 20 min de Santander","price":205000,"hab":3,"m2":201,"parc":"1 ha","note":"Chalet independiente de 1966 bien cuidado, con garaje, almacén y finca de más de una hectárea; a 20 min de Somo.","fav":true,"warn":"","ll":[43.3519206,-3.7052565],"out":null,"school_km":0.5,"hosp":"Valdecilla (Santander)","hosp_km":15.3,"nuevo":false},{"key":"i112935311","url":"https://www.idealista.com/inmueble/112935311/","site":"idealista","tab":"campo","zone":"cant","place":"Villabáñez (Castañeda)","price":220000,"hab":3,"m2":107,"parc":"197 m²","note":"Chalet independiente con tejado nuevo, jardín al sur y garaje; colegio al lado y a 5 min de Torrelavega.","fav":true,"warn":"","ll":[43.31471,-3.95496],"out":null,"school_km":0.1,"hosp":"Sierrallana (Torrelavega)","hosp_km":11.1,"nuevo":false},{"key":"i112981635","url":"https://www.idealista.com/inmueble/112981635/","site":"idealista","tab":"campo","zone":"cant","place":"Centro de Puente Viesgo, junto al balneario","price":190000,"hab":2,"m2":94,"parc":"—","note":"Casa rústica de 2020 en piedra y madera maciza, en planta baja y orientada al sur.","fav":true,"warn":"","ll":[43.2989919,-3.9649215],"out":null,"school_km":1.9,"hosp":"Sierrallana (Torrelavega)","hosp_km":11.4,"nuevo":false}];
+const DATA = [{"key":"i108471190","url":"https://www.idealista.com/inmueble/108471190/","site":"idealista","tab":"campo","zone":"sidra","place":"Puelles, junto a Valdediós (Villaviciosa)","price":130000,"hab":3,"m2":112,"parc":600,"note":"Casa de pueblo con garaje.","fav":true,"warn":"","ll":[43.4516876,-5.5650174],"out":null,"school_km":4.5,"hosp":"Cabueñes (Gijón)","hosp_km":8.8,"nuevo":false},{"key":"i111145800","url":"https://www.idealista.com/inmueble/111145800/","site":"idealista","tab":"campo","zone":"sidra","place":"Vallina-Breceña (Villaviciosa)","price":164900,"hab":3,"m2":96,"parc":350,"note":"A 10-15 minutos de Villaviciosa.","fav":true,"warn":"","ll":[43.4396266,-5.3885047],"out":null,"school_km":5.1,"hosp":"Oriente (Arriondas)","hosp_km":17.6,"nuevo":false},{"key":"i112936790","url":"https://www.idealista.com/inmueble/112936790/","site":"idealista","tab":"campo","zone":"gijon","place":"Pillarno (Castrillón)","price":215000,"hab":2,"m2":100,"parc":1659,"note":"Casa con hórreo y jardín, cerca de la costa.","fav":true,"warn":"","ll":[43.5199554,-5.9937255],"out":null,"school_km":3.4,"hosp":"San Agustín (Avilés)","hosp_km":5.9,"nuevo":false},{"key":"i99023833","url":"https://www.idealista.com/inmueble/99023833/","site":"idealista","tab":"campo","zone":"nalon","place":"Pozobal (Langreo)","price":210000,"hab":4,"m2":260,"parc":12916,"note":"Casa de 1940 junto a la ermita del Carbayu, con buen acceso a la autopista.","fav":true,"warn":"Sin calefacción","ll":[43.2805811,-5.6884265],"out":null,"school_km":1.6,"hosp":"Valle del Nalón (Langreo)","hosp_km":5.9,"nuevo":false},{"key":"i25801846","url":"https://www.idealista.com/inmueble/25801846/","site":"idealista","tab":"alquiler","zone":"costa","place":"Bones, a 3 km de Ribadesella","price":1200,"hab":3,"m2":172,"parc":500,"note":"Casa independiente amueblada, 3 baños y garaje. Junto a la salida 326 de la A-8.","fav":true,"warn":"Contrato de 11 meses","ll":[43.4619436,-5.1214808],"out":null,"school_km":4.4,"hosp":"Oriente (Arriondas)","hosp_km":10.3,"nuevo":false},{"key":"i110230984","url":"https://www.idealista.com/inmueble/110230984/","site":"idealista","tab":"alquiler","zone":"oviedo","place":"Careses (Siero)","price":900,"hab":2,"m2":100,"parc":550,"note":"Casa independiente amueblada, para larga estancia. Chimenea de pellets.","fav":true,"warn":"","ll":[43.4112307,-5.6212916],"out":null,"school_km":3.6,"hosp":"Valle del Nalón (Langreo)","hosp_km":12.3,"nuevo":false},{"key":"i112901861","url":"https://www.idealista.com/inmueble/112901861/","site":"idealista","tab":"alquiler","zone":"nalon","place":"La Molatera (San Martín del Rey Aurelio)","price":1200,"hab":2,"m2":80,"parc":"—","note":"Casa recién reformada; el precio incluye luz e internet.","fav":true,"warn":"","ll":[43.276016,-5.6048409],"out":null,"school_km":0.2,"hosp":"Valle del Nalón (Langreo)","hosp_km":11.1,"nuevo":false},{"key":"i112691163","url":"https://www.idealista.com/inmueble/112691163/","site":"idealista","tab":"alquiler","zone":"cant","place":"La Hayuela (Udías)","price":1500,"hab":3,"m2":216,"parc":160,"note":"Chalet independiente de 2004 con vistas abiertas, 4 baños y garaje. Cerca de Comillas.","fav":true,"warn":"","ll":[43.3365144,-4.2672032],"out":null,"school_km":2.1,"hosp":"Sierrallana (Torrelavega)","hosp_km":15.7,"nuevo":false},{"key":"i112746155","url":"https://www.idealista.com/inmueble/112746155/","site":"idealista","tab":"alquiler","zone":"cant","place":"Boo (Piélagos)","price":1600,"hab":3,"m2":217,"parc":"jardín","note":"Chalet independiente con 3 baños y jardín privado.","fav":true,"warn":"","ll":[43.43049,-3.94551],"out":null,"school_km":0.8,"hosp":"Mompía","hosp_km":2.3,"nuevo":false},{"key":"i112481364","url":"https://www.idealista.com/inmueble/112481364/","site":"idealista","tab":"ciudad","zone":"c_gijon","place":"Ático en calle Miguel Servet (Gijón)","price":238000,"hab":2,"m2":108,"parc":"—","note":"Séptima planta reformada, en esquina, edificio con dos ascensores.","fav":true,"warn":"","ll":[43.5403016,-5.6975679],"out":null,"school_km":0.2,"hosp":"Jove (Gijón)","hosp_km":1.1,"nuevo":false},{"key":"i110283833","url":"https://www.idealista.com/inmueble/110283833/","site":"idealista","tab":"ciudad","zone":"c_oviedo","place":"Junto al HUCA, Ventanielles (Oviedo)","price":289000,"hab":4,"m2":110,"parc":"—","note":"Quinta planta exterior con vistas a la naturaleza, garaje incluido.","fav":true,"warn":"","ll":[43.3712521,-5.8196734],"out":null,"school_km":0.2,"hosp":"HUCA (Oviedo)","hosp_km":0.9,"nuevo":false},{"key":"i112757267","url":"https://www.idealista.com/inmueble/112757267/","site":"idealista","tab":"ciudad","zone":"c_santander","place":"Calle Enrique Gran, General Dávila (Santander)","price":214000,"hab":2,"m2":65,"parc":"—","note":"Reformado a estrenar, con vistas al mar y aislamiento exterior.","fav":true,"warn":"Segunda planta sin ascensor","ll":[43.4660152,-3.8039092],"out":null,"school_km":0.0,"hosp":"Valdecilla (Santander)","hosp_km":2.3,"nuevo":false},{"key":"p61678202605","url":"https://www.pisos.com/comprar/casa-jove_verina33212-61678202605_109300/","site":"pisos.com","tab":"campo","zone":"gijon","place":"Camín de Arnao, El Muselín (Gijón)","price":212000,"hab":3,"m2":281,"parc":"—","note":"Casa de tres plantas con garaje y vistas al mar, estufa de pellets.","fav":true,"warn":"Anunciada como «tipo dúplex»: confirma si es independiente","ll":[43.5599113,-5.7048002],"out":null,"school_km":1.5,"hosp":"Jove (Gijón)","hosp_km":1.2,"nuevo":false},{"key":"p59227577069","url":"https://www.pisos.com/comprar/casa-puerto_faro_de_aviles-59227577069_100500/","site":"pisos.com","tab":"campo","zone":"gijon","place":"San Juan de Nieva (Gozón)","price":210000,"hab":4,"m2":140,"parc":"—","note":"Casa de 1880 rehabilitada entera en 2025: tejado, instalaciones, cocina y suelos nuevos.","fav":true,"warn":"Junto al puerto de Avilés","ll":[43.5955951,-5.9453306],"out":null,"school_km":1.9,"hosp":"San Agustín (Avilés)","hosp_km":4.9,"nuevo":false},{"key":"p59253840481","url":"https://www.pisos.com/comprar/casa-acebo_sariego-59253840481_106500/","site":"pisos.com","tab":"campo","zone":"oviedo","place":"San Román (Sariego)","price":160000,"hab":3,"m2":95,"parc":"—","note":"Casa lista para entrar a vivir, con vistas y un anexo del mismo tamaño.","fav":true,"warn":"","ll":[43.4093351,-5.5119759],"out":null,"school_km":3.8,"hosp":"Cabueñes (Gijón)","hosp_km":15.0,"nuevo":false},{"key":"p60029440479","url":"https://www.pisos.com/comprar/chalet-estacion_bimenes-60029440479_100500/","site":"pisos.com","tab":"campo","zone":"nalon","place":"La Mesnada (Bimenes)","price":139900,"hab":3,"m2":121,"parc":1993,"note":"Casa de piedra caliza reformada, lista para entrar a vivir, con vistas a Peñamayor.","fav":true,"warn":"","ll":[43.3254793,-5.5676797],"out":null,"school_km":0.7,"hosp":"Valle del Nalón (Langreo)","hosp_km":12.5,"nuevo":false},{"key":"p68398177747","url":"https://www.pisos.com/comprar/casa-bimenes-68398177747_100500/","site":"pisos.com","tab":"campo","zone":"nalon","place":"La Baragaña, Suares (Bimenes)","price":210000,"hab":6,"m2":181,"parc":"—","note":"Casa de 20-30 años con 3 baños, orientación sur y vistas por encima de las nieblas del valle.","fav":true,"warn":"","ll":[43.3388376,-5.5904617],"out":null,"school_km":0.2,"hosp":"Valle del Nalón (Langreo)","hosp_km":10.7,"nuevo":false},{"key":"p63432547189","url":"https://www.pisos.com/comprar/casa-pola_de_laviana-63432547189_109300/","site":"pisos.com","tab":"campo","zone":"nalon","place":"Caleao, Parque de Redes (Caso)","price":149900,"hab":5,"m2":177,"parc":"—","note":"Casa grande orientada al sur con chimenea, porche y garaje, en pleno parque natural.","fav":true,"warn":"","ll":[43.1232902,-5.4063341],"out":null,"school_km":6.8,"hosp":"Álvarez Buylla (Mieres)","hosp_km":32.5,"nuevo":false},{"key":"i112789817","url":"https://www.idealista.com/inmueble/112789817/","site":"idealista","tab":"ciudad","zone":"c_santander","place":"El Alisal (Santander)","price":265000,"hab":3,"m2":97,"parc":"—","note":"En perfecto estado, con garaje y todos los servicios cerca.","fav":true,"warn":"","ll":[43.4598139,-3.8549811],"out":null,"school_km":0.2,"hosp":"Valdecilla (Santander)","hosp_km":2.1,"nuevo":false},{"key":"i112955645","url":"https://www.idealista.com/inmueble/112955645/","site":"idealista","tab":"ciudad","zone":"c_santander","place":"Calle Castilla (Santander)","price":240000,"hab":3,"m2":78,"parc":"—","note":"Recién reformado. Garaje opcional por 39.000 €.","fav":true,"warn":"","ll":[43.4549131,-3.8189296],"out":null,"school_km":0.3,"hosp":"Valdecilla (Santander)","hosp_km":0.8,"nuevo":false},{"key":"i107379954","url":"https://www.idealista.com/inmueble/107379954/","site":"idealista","tab":"alquiler","zone":"c_oviedo","place":"Calle Valparaíso, La Tenderina (Oviedo)","price":900,"hab":3,"m2":116,"parc":"—","note":"Séptima planta en edificio de 2007, 2 baños y garaje. Parcialmente amueblado.","fav":false,"warn":"","ll":[43.3594917,-5.8316082],"out":null,"school_km":0.3,"hosp":"HUCA (Oviedo)","hosp_km":1.9,"nuevo":false},{"key":"i110028243","url":"https://www.idealista.com/inmueble/110028243/","site":"idealista","tab":"alquiler","zone":"c_oviedo","place":"Calle Pérez de la Sala, centro (Oviedo)","price":1495,"hab":5,"m2":146,"parc":"—","note":"Calle peatonal con vistas al Auditorio. Prefieren larga estancia.","fav":false,"warn":"","ll":[43.3576697,-5.8501718],"out":null,"school_km":0.1,"hosp":"Monte Naranco (Oviedo)","hosp_km":2.3,"nuevo":false},{"key":"i97165868","url":"https://www.idealista.com/inmueble/97165868/","site":"idealista","tab":"alquiler","zone":"c_oviedo","place":"Ático en plaza Primo de Rivera, centro (Oviedo)","price":1100,"hab":2,"m2":70,"parc":"—","note":"Ático vacío con una terraza fantástica y garaje.","fav":false,"warn":"","ll":[43.3676717,-5.8503946],"out":null,"school_km":0.2,"hosp":"Monte Naranco (Oviedo)","hosp_km":1.8,"nuevo":false},{"key":"i112998317","url":"https://www.idealista.com/inmueble/112998317/","site":"idealista","tab":"alquiler","zone":"c_oviedo","place":"Ático en plaza Ángel González, Vallobín (Oviedo)","price":1200,"hab":2,"m2":79,"parc":"—","note":"Ático moderno con garaje.","fav":false,"warn":"","ll":[43.3661109,-5.8659812],"out":null,"school_km":0.4,"hosp":"Monte Naranco (Oviedo)","hosp_km":0.7,"nuevo":false},{"key":"i112479484","url":"https://www.idealista.com/inmueble/112479484/","site":"idealista","tab":"alquiler","zone":"c_oviedo","place":"Ático en calle Tineo, Las Campas (Oviedo)","price":1200,"hab":4,"m2":140,"parc":"—","note":"2 baños, terraza de 40 m² y doble plaza de garaje.","fav":false,"warn":"","ll":[43.3632786,-5.8855888],"out":null,"school_km":0.3,"hosp":"Monte Naranco (Oviedo)","hosp_km":1.3,"nuevo":false},{"key":"i109200994","url":"https://www.idealista.com/inmueble/109200994/","site":"idealista","tab":"alquiler","zone":"c_oviedo","place":"La Ería (Oviedo)","price":1300,"hab":3,"m2":95,"parc":"—","note":"Sexta planta de 2006 con terraza, vistas y garaje. Sin honorarios de agencia.","fav":false,"warn":"","ll":[43.3613086,-5.8666248],"out":null,"school_km":0.1,"hosp":"Monte Naranco (Oviedo)","hosp_km":1.1,"nuevo":false},{"key":"i112772980","url":"https://www.idealista.com/inmueble/112772980/","site":"idealista","tab":"alquiler","zone":"c_oviedo","place":"Ático en calle Río San Pedro, centro (Oviedo)","price":1350,"hab":2,"m2":78,"parc":"—","note":"Terraza de 30 m², amueblado y con garaje.","fav":false,"warn":"","ll":[43.3668629,-5.8518375],"out":null,"school_km":0.3,"hosp":"Monte Naranco (Oviedo)","hosp_km":1.7,"nuevo":false},{"key":"i111946179","url":"https://www.idealista.com/inmueble/111946179/","site":"idealista","tab":"alquiler","zone":"c_oviedo","place":"Buenavista (Oviedo)","price":1400,"hab":3,"m2":130,"parc":"—","note":"Sexta planta con tres terrazas y vistas, impecable y amueblado.","fav":false,"warn":"","ll":[43.3579375,-5.8630667],"out":null,"school_km":0.1,"hosp":"Monte Naranco (Oviedo)","hosp_km":1.6,"nuevo":false},{"key":"i110513950","url":"https://www.idealista.com/inmueble/110513950/","site":"idealista","tab":"alquiler","zone":"c_oviedo","place":"Ático dúplex en Montecerrao (Oviedo)","price":1500,"hab":3,"m2":174,"parc":"—","note":"Moderno (2008), muy amplio y luminoso.","fav":false,"warn":"","ll":[43.3504687,-5.8630645],"out":null,"school_km":0.7,"hosp":"Monte Naranco (Oviedo)","hosp_km":2.3,"nuevo":false},{"key":"i109569496","url":"https://www.idealista.com/inmueble/109569496/","site":"idealista","tab":"alquiler","zone":"c_santander","place":"Alto Miranda, El Sardinero (Santander)","price":1300,"hab":2,"m2":85,"parc":"—","note":"Vistas impresionantes, entrada independiente, garaje y amueblado.","fav":false,"warn":"","ll":[43.46988,-3.7885938],"out":null,"school_km":0.1,"hosp":"Valdecilla (Santander)","hosp_km":3.6,"nuevo":false},{"key":"i98046351","url":"https://www.idealista.com/inmueble/98046351/","site":"idealista","tab":"alquiler","zone":"c_santander","place":"General Dávila, novena planta (Santander)","price":1195,"hab":4,"m2":130,"parc":"—","note":"Vistas despejadas, orientación suroeste, amueblado.","fav":false,"warn":"","ll":[43.4663944,-3.8164254],"out":null,"school_km":0.3,"hosp":"Valdecilla (Santander)","hosp_km":1.5,"nuevo":false},{"key":"i112631411","url":"https://www.idealista.com/inmueble/112631411/","site":"idealista","tab":"alquiler","zone":"c_santander","place":"Avenida de Cantabria, Valdenoja (Santander)","price":1300,"hab":2,"m2":72,"parc":"—","note":"Recién actualizado, con garaje, cerca de las playas.","fav":false,"warn":"","ll":[43.4770314,-3.7971795],"out":null,"school_km":0.4,"hosp":"Valdecilla (Santander)","hosp_km":3.5,"nuevo":false},{"key":"i112957562","url":"https://www.idealista.com/inmueble/112957562/","site":"idealista","tab":"alquiler","zone":"c_santander","place":"Centro, junto a la catedral (Santander)","price":1450,"hab":3,"m2":85,"parc":"—","note":"Octava planta, solo alquiler fijo y sin muebles.","fav":false,"warn":"Piden aval bancario de 12 meses","ll":[43.4610442,-3.8073704],"out":null,"school_km":0.3,"hosp":"Valdecilla (Santander)","hosp_km":1.8,"nuevo":false},{"key":"i112969288","url":"https://www.idealista.com/inmueble/112969288/","site":"idealista","tab":"alquiler","zone":"c_santander","place":"Ático junto a la catedral (Santander)","price":1450,"hab":3,"m2":100,"parc":"—","note":"Exterior, 2 baños, sin amueblar salvo la cocina.","fav":false,"warn":"","ll":[43.4610442,-3.8073704],"out":null,"school_km":0.3,"hosp":"Valdecilla (Santander)","hosp_km":1.8,"nuevo":false},{"key":"i112884608","url":"https://www.idealista.com/inmueble/112884608/","site":"idealista","tab":"alquiler","zone":"c_santander","place":"Jardines del Sardinero, Valdenoja (Santander)","price":1300,"hab":2,"m2":93,"parc":"—","note":"Urbanización de 2004, amueblado, en perfecto estado y con garaje.","fav":false,"warn":"","ll":[43.4755522,-3.8031264],"out":null,"school_km":0.5,"hosp":"Valdecilla (Santander)","hosp_km":3.0,"nuevo":false},{"key":"i113020567","url":"https://www.idealista.com/inmueble/113020567/","site":"idealista","tab":"alquiler","zone":"c_santander","place":"Frente al parque de Las Llamas (Santander)","price":1200,"hab":3,"m2":115,"parc":"—","note":"Amueblado, con garaje y trastero.","fav":false,"warn":"","ll":[43.4748997,-3.805574],"out":null,"school_km":0.6,"hosp":"Valdecilla (Santander)","hosp_km":2.8,"nuevo":false},{"key":"i112667312","url":"https://www.idealista.com/inmueble/112667312/","site":"idealista","tab":"alquiler","zone":"c_santander","place":"Puertochico (Santander)","price":1500,"hab":3,"m2":95,"parc":"—","note":"Salón y cocina con terraza, en una de las zonas más animadas.","fav":false,"warn":"","ll":[43.464858,-3.7964997],"out":null,"school_km":0.1,"hosp":"Valdecilla (Santander)","hosp_km":2.8,"nuevo":false},{"key":"p66760477783","url":"https://www.pisos.com/comprar/casa-la_carcoba-66760477783_109300/","site":"pisos.com","tab":"campo","zone":"cant","place":"La Cárcoba, Mirones (Miera)","price":179000,"hab":4,"m2":262,"parc":"998 m²","note":"Casa tradicional de piedra en buen estado, con choco para reuniones y finca de casi 1.000 m², en el valle del Miera.","fav":true,"warn":"La casa principal figura como almacén en catastro","ll":[43.2947373,-3.7026329],"out":null,"school_km":0.3,"hosp":"Valdecilla (Santander)","hosp_km":20.6,"nuevo":false},{"key":"p59242883273","url":"https://www.pisos.com/comprar/casa-beranga-59242883273_106000/","site":"pisos.com","tab":"campo","zone":"cant","place":"Beranga (Hazas de Cesto), cerca de Noja","price":220000,"hab":4,"m2":232,"parc":"2.600 m²","note":"Casa de piedra independiente con gran jardín y tejado renovado, a pocos minutos de Noja e Isla.","fav":true,"warn":"Necesita cierta actualización","ll":[43.413626,-3.5770717],"out":null,"school_km":2.3,"hosp":"Laredo","hosp_km":10.9,"nuevo":false},{"key":"p62595212269","url":"https://www.pisos.com/comprar/casa-villafufre-62595212269_106000/","site":"pisos.com","tab":"campo","zone":"cant","place":"San Martín de Villafufre (Valles Pasiegos)","price":189000,"hab":4,"m2":169,"parc":"5.300 m²","note":"Casa independiente en buen estado, orientada al sur con vistas abiertas al valle; 169 m² de vivienda más anexos.","fav":true,"warn":"","ll":[43.25925,-3.877583],"out":null,"school_km":3.6,"hosp":"Mompía","hosp_km":19.7,"nuevo":false},{"key":"p65092063166","url":"https://www.pisos.com/comprar/casa-prases-65092063166_109200/","site":"pisos.com","tab":"campo","zone":"cant","place":"Cillero, Prases (Corvera de Toranzo)","price":125000,"hab":3,"m2":223,"parc":"5 fincas","note":"Casa tradicional en buen estado, 2 baños, calefacción de gas y fibra; incluye 5 fincas.","fav":true,"warn":"Pareada (de esquina)","ll":[43.2464512,-3.9478989],"out":null,"school_km":2.3,"hosp":"Sierrallana (Torrelavega)","hosp_km":16.5,"nuevo":false},{"key":"p65905665116","url":"https://www.pisos.com/comprar/casa-prases-65905665116_109200/","site":"pisos.com","tab":"campo","zone":"cant","place":"Prases (Corvera de Toranzo)","price":220000,"hab":3,"m2":199,"parc":"3,2 ha","note":"Casa de 1960 en buen estado con terraza y vistas, sobre una finca de más de 3 hectáreas en el valle de Toranzo.","fav":true,"warn":"","ll":[43.2464512,-3.9478989],"out":null,"school_km":2.3,"hosp":"Sierrallana (Torrelavega)","hosp_km":16.5,"nuevo":false},{"key":"p68366702922","url":"https://www.pisos.com/comprar/casa-cartes_centro_urbano-68366702922_109300/","site":"pisos.com","tab":"campo","zone":"cant","place":"Barrio Mercadal (Cartes)","price":229000,"hab":3,"m2":347,"parc":"369 m²","note":"Casa reformada con chimenea, 2 baños y suelos de madera, más 98 m² diáfanos para garaje o taller.","fav":true,"warn":"","ll":[43.3235918,-4.1000206],"out":null,"school_km":2.6,"hosp":"Sierrallana (Torrelavega)","hosp_km":4.7,"nuevo":false},{"key":"p55860876594","url":"https://www.pisos.com/comprar/casa-mazcuerras_centro_urbano-55860876594_108900/","site":"pisos.com","tab":"campo","zone":"cant","place":"Mazcuerras (valle del Saja)","price":190000,"hab":4,"m2":140,"parc":"1,7 ha","note":"Cuadra de piedra reformada a estrenar, con chimenea y finca arbolada; acceso por pista, muy aislada.","fav":true,"warn":"El anuncio dice que no admite cambio de uso: confirmar que es vivienda","ll":[43.29764,-4.20947],"out":null,"school_km":2.1,"hosp":"Sierrallana (Torrelavega)","hosp_km":13.0,"nuevo":false},{"key":"p57598846358","url":"https://www.pisos.com/comprar/casa-arenas_de_iguna_centro_urbano-57598846358_100500/","site":"pisos.com","tab":"campo","zone":"cant","place":"Arenas de Iguña (valle del Besaya)","price":220000,"hab":3,"m2":142,"parc":"—","note":"Independiente y reformada hace poco (electricidad y tejado), 2 baños, garaje y balcón con vistas.","fav":true,"warn":"","ll":[43.1870286,-4.0496673],"out":null,"school_km":1.9,"hosp":"Sierrallana (Torrelavega)","hosp_km":19.6,"nuevo":false},{"key":"i106658134","url":"https://www.idealista.com/inmueble/106658134/","site":"idealista","tab":"campo","zone":"cant","place":"Llueva (Voto), a 15 km de Laredo","price":120000,"hab":3,"m2":310,"parc":"—","note":"Casa de piedra totalmente restaurada, todo nuevo: 3 baños, garaje, bodega y salón con chimenea.","fav":true,"warn":"","ll":[43.3346827,-3.5494794],"out":null,"school_km":4.0,"hosp":"Laredo","hosp_km":12.4,"nuevo":false},{"key":"i109677181","url":"https://www.idealista.com/inmueble/109677181/","site":"idealista","tab":"campo","zone":"cant","place":"Hijas (Puente Viesgo)","price":155000,"hab":3,"m2":135,"parc":"117 m²","note":"Casa independiente en buen estado en el valle del Pas, a 20 min de Santander y 10 de Torrelavega.","fav":true,"warn":"","ll":[43.28152,-3.98234],"out":null,"school_km":4.3,"hosp":"Sierrallana (Torrelavega)","hosp_km":11.7,"nuevo":false},{"key":"i111257702","url":"https://www.idealista.com/inmueble/111257702/","site":"idealista","tab":"campo","zone":"cant","place":"Quintana de Toranzo (Corvera de Toranzo)","price":218000,"hab":3,"m2":70,"parc":"8.075 m²","note":"Cabaña pasiega en perfecto estado, lista para entrar, con chimenea y vistas abiertas a los valles pasiegos.","fav":true,"warn":"Solo 71 m²","ll":[43.2340375,-3.9825057],"out":null,"school_km":5.2,"hosp":"Sierrallana (Torrelavega)","hosp_km":16.1,"nuevo":false},{"key":"i112406716","url":"https://www.idealista.com/inmueble/112406716/","site":"idealista","tab":"campo","zone":"cant","place":"Riotuerto (Trasmiera), a 20 min de Santander","price":205000,"hab":3,"m2":201,"parc":"1 ha","note":"Chalet independiente de 1966 bien cuidado, con garaje, almacén y finca de más de una hectárea; a 20 min de Somo.","fav":true,"warn":"","ll":[43.3519206,-3.7052565],"out":null,"school_km":0.5,"hosp":"Valdecilla (Santander)","hosp_km":15.3,"nuevo":false},{"key":"i112935311","url":"https://www.idealista.com/inmueble/112935311/","site":"idealista","tab":"campo","zone":"cant","place":"Villabáñez (Castañeda)","price":220000,"hab":3,"m2":107,"parc":"197 m²","note":"Chalet independiente con tejado nuevo, jardín al sur y garaje; colegio al lado y a 5 min de Torrelavega.","fav":true,"warn":"","ll":[43.31471,-3.95496],"out":null,"school_km":0.1,"hosp":"Sierrallana (Torrelavega)","hosp_km":11.1,"nuevo":false},{"key":"i112981635","url":"https://www.idealista.com/inmueble/112981635/","site":"idealista","tab":"campo","zone":"cant","place":"Centro de Puente Viesgo, junto al balneario","price":190000,"hab":2,"m2":94,"parc":"—","note":"Casa rústica de 2020 en piedra y madera maciza, en planta baja y orientada al sur.","fav":true,"warn":"","ll":[43.2989919,-3.9649215],"out":null,"school_km":1.9,"hosp":"Sierrallana (Torrelavega)","hosp_km":11.4,"nuevo":false}].filter(r => !r.out);
 const PHOTOS = new Set([]);
-const TABS = [["campo","Comprar casa"],["ciudad","Comprar piso"],["alquiler","Alquilar"]];
-const Z = {
-  cant:"Cantabria", costa:"Costa oriental", sidra:"Comarca de la Sidra", gijon:"Gijón y Avilés", oviedo:"Alrededores de Oviedo",
-  oriente:"Oriente", nalon:"Valle del Nalón", c_oviedo:"Oviedo", c_gijon:"Gijón", c_santander:"Santander"
-};
+const TABS = [["campo", "Casas", "casas para comprar"], ["ciudad", "Pisos", "pisos para comprar"], ["alquiler", "Alquiler", "alquileres"]];
+const Z = {cant:"Cantabria", costa:"Costa oriental", sidra:"Comarca de la Sidra", gijon:"Gijón y Avilés", oviedo:"Alrededores de Oviedo",
+  oriente:"Oriente", nalon:"Valle del Nalón", c_oviedo:"Oviedo", c_gijon:"Gijón", c_santander:"Santander"};
 const fmt = n => n.toLocaleString("es-ES");
-const km = n => n.toLocaleString("es-ES", {maximumFractionDigits: 0}) + " km";
+const euros = r => fmt(r.price) + " €" + (r.tab === "alquiler" ? "/mes" : "");
 const $ = s => document.querySelector(s);
-let view = "campo", zone = "all", onlyFav = false, mode = "lista", map, layer;
-const inTab = r => r.tab === view && !r.out;
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const ICON = {
+  heart: '<svg class="ico" viewBox="0 0 24 24"><path d="M12 20.5s-7.6-4.5-9.3-9.3C1.5 7.9 3.6 4.5 7 4.5c2 0 3.6 1.1 5 2.9 1.4-1.8 3-2.9 5-2.9 3.4 0 5.5 3.4 4.3 6.7-1.7 4.8-9.3 9.3-9.3 9.3z"/></svg>',
+  close: '<svg class="ico" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg>',
+  prev: '<svg class="ico" viewBox="0 0 24 24"><path d="m15 5-7 7 7 7"/></svg>',
+  next: '<svg class="ico" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></svg>',
+  ext: '<svg class="ico" viewBox="0 0 24 24" style="width:18px;height:18px"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>'
+};
 
-// trozo de mapa centrado en un punto, con teselas locales
+// estado de navegación
+const F = {tab: "campo", q: "", sort: "rec", zones: new Set(), maxPrice: null, minHab: 0, onlyPre: false, onlyHeart: false};
+let currentView = "casas", map, layer, shownList = [];
+
 function tileXY(lat, lon, z){ const n = 2 ** z; return [(lon + 180) / 360 * n, (1 - Math.asinh(Math.tan(lat * Math.PI / 180)) / Math.PI) / 2 * n]; }
 function mosaic(el, lat, lon, z, cols, rows){
   const [x, y] = tileXY(lat, lon, z), tx = Math.floor(x), ty = Math.floor(y);
@@ -449,93 +561,242 @@ function mosaic(el, lat, lon, z, cols, rows){
   el.style.gridTemplateColumns = `repeat(${cols}, 256px)`;
   el.style.transform = `translate(${-((tx - c0) * 256 + (x - tx) * 256)}px, ${-((ty - r0) * 256 + (y - ty) * 256)}px)`;
   let h = "";
-  for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) h += `<img src="tiles/${z}/${c0 + c}/${r0 + r}.png" data-osm="https://tile.openstreetmap.org/${z}/${c0 + c}/${r0 + r}.png" alt="" loading="lazy" onerror="if(this.dataset.osm){this.src=this.dataset.osm;this.dataset.osm=''}else{this.style.visibility='hidden'}">`;
+  for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++)
+    h += `<img src="tiles/${z}/${c0 + c}/${r0 + r}.png" data-osm="https://tile.openstreetmap.org/${z}/${c0 + c}/${r0 + r}.png" alt="" loading="lazy" onerror="if(this.dataset.osm){this.src=this.dataset.osm;this.dataset.osm=''}else{this.style.visibility='hidden'}">`;
   el.innerHTML = h;
 }
+const parcOf = r => typeof r.parc === "number" ? fmt(r.parc) + " m²" : (r.parc && r.parc !== "—" ? r.parc : "");
 
-function renderTabs(){
-  const t = $("#tabs"); t.innerHTML = "";
-  TABS.forEach(([k, lab]) => { const b = document.createElement("button"); b.className = "tab"; b.setAttribute("role", "tab");
-    b.setAttribute("aria-selected", String(view === k)); b.innerHTML = `${lab}<small>${DATA.filter(r => r.tab === k && !r.out).length} opciones</small>`;
-    b.onclick = () => { history.replaceState(null, "", "#" + k); setView(k); track("pestana", {value: lab}); }; t.appendChild(b); });
+// filtros
+const inTab = r => r.tab === F.tab;
+function priceBounds(){ const ps = DATA.filter(inTab).map(r => r.price); return [Math.min(...ps), Math.max(...ps)]; }
+function filtered(){
+  const q = F.q.trim().toLowerCase();
+  let rows = DATA.filter(r => inTab(r) && (!F.zones.size || F.zones.has(r.zone)) && (!F.maxPrice || r.price <= F.maxPrice) && (!F.minHab || r.hab >= F.minHab)
+    && (!F.onlyPre || r.fav) && (!F.onlyHeart || heartsOf(r.key).length) && (!q || (r.place + " " + (Z[r.zone] || "") + " " + r.note).toLowerCase().includes(q)));
+  const by = {rec: (a, b) => (b.fav - a.fav) || a.price - b.price, pasc: (a, b) => a.price - b.price, pdesc: (a, b) => b.price - a.price,
+    m2: (a, b) => b.m2 - a.m2, love: (a, b) => heartsOf(b.key).length - heartsOf(a.key).length || (b.fav - a.fav) || a.price - b.price}[F.sort];
+  return rows.sort(by);
 }
-function renderControls(){
-  const zs = [...new Set(DATA.filter(inTab).map(r => r.zone))];
-  const c = $("#controls"); c.innerHTML = "";
-  const mk = (label, pressed, cls, onclick) => { const b = document.createElement("button"); b.className = "chip" + (cls ? " " + cls : ""); b.textContent = label;
-    b.setAttribute("aria-pressed", String(pressed)); b.onclick = onclick; c.appendChild(b); };
-  mk("♥ Con corazón", onlyHeart, "heart", () => { onlyHeart = !onlyHeart; render(); track("filtro", {value: "con corazón: " + (onlyHeart ? "sí" : "no")}); });
-  if (DATA.some(r => r.fav && inTab(r))) mk("Preseleccionadas", onlyFav, "", () => { onlyFav = !onlyFav; render(); track("filtro", {value: "preseleccionadas: " + (onlyFav ? "sí" : "no")}); });
-  if (zs.length > 1) { mk("Todas las zonas", zone === "all", "", () => { zone = "all"; render(); track("zona", {value: "todas"}); });
-    Object.keys(Z).filter(z => zs.includes(z)).forEach(z => mk(Z[z], zone === z, "", () => { zone = z; render(); track("zona", {value: Z[z]}); })); }
-  const m = $("#modes"); m.innerHTML = "";
-  [["lista", "Lista"], ["mapa", "Mapa"]].forEach(([k, lab]) => { const b = document.createElement("button"); b.textContent = lab;
-    b.setAttribute("aria-pressed", String(mode === k)); b.onclick = () => { mode = k; render(); track("modo", {value: lab}); }; m.appendChild(b); });
+function activeTags(){
+  const t = [];
+  F.zones.forEach(z => t.push([Z[z], () => F.zones.delete(z)]));
+  if (F.maxPrice) t.push(["Hasta " + fmt(F.maxPrice) + " €", () => F.maxPrice = null]);
+  if (F.minHab) t.push([F.minHab + "+ hab.", () => F.minHab = 0]);
+  if (F.onlyPre) t.push(["Preseleccionadas", () => F.onlyPre = false]);
+  if (F.onlyHeart) t.push(["Con ♥", () => F.onlyHeart = false]);
+  if (F.q) t.push([`«${F.q}»`, () => { F.q = ""; $("#q").value = ""; }]);
+  return t;
 }
-function card(r){
-  const el = document.createElement("article"); el.className = "card"; el.dataset.key = r.key;
-  const parc = typeof r.parc === "number" ? fmt(r.parc) + " m² parcela" : (r.parc && r.parc !== "—" ? r.parc : "");
-  el.innerHTML = `<a class="thumb" href="${r.url}" target="_blank" rel="noopener" aria-label="Ver el anuncio en ${r.site}"><div class="mosaic"></div><span class="tagz"></span>${r.fav ? '<span class="pre">Preseleccionada</span>' : ""}</a>
-    <div class="c-body"><div class="c-top"><h3></h3><div class="price">${fmt(r.price)} €${r.tab === "alquiler" ? "<small>/mes</small>" : ""}</div></div>
-    <div class="specs"><span>${r.hab} hab.</span><span>${fmt(r.m2)} m²</span>${parc ? "<span></span>" : ""}</div>
-    <p class="note"></p>${r.warn ? '<p class="warn"></p>' : ""}${r.school_km != null && r.tab !== "ciudad" ? `<div class="svc">Colegio a ${km(r.school_km)} · Hospital a ${km(r.hosp_km)}</div>` : ""}</div>`;
-  el.querySelector("h3").textContent = r.place;
-  el.querySelector(".tagz").textContent = Z[r.zone] || "";
-  const sp = el.querySelectorAll(".specs span"); if (sp[2]) sp[2].textContent = parc;
-  const n = el.querySelector(".note"); n.textContent = r.note; n.onclick = () => n.classList.toggle("open");
-  const w = el.querySelector(".warn"); if (w) w.textContent = r.warn;
-  if (r.ll) mosaic(el.querySelector(".mosaic"), r.ll[0], r.ll[1], 11, 3, 3);
-  const go = document.createElement("a"); go.className = "go"; go.href = r.url; go.target = "_blank"; go.rel = "noopener"; go.textContent = `Ver anuncio ↗`;
-  el.querySelector(".c-body").appendChild(socialBox(r.key, {extra: go}));
-  if (IO) IO.observe(el);
-  return el;
+function paintActive(){
+  const tags = activeTags();
+  for (const id of ["#activeTags", "#activeTagsMap"]) {
+    const el = $(id); el.innerHTML = "";
+    tags.forEach(([lab, off]) => { const b = document.createElement("button"); b.className = "atag"; b.type = "button"; b.innerHTML = esc(lab) + ' <span aria-hidden="true">✕</span>';
+      b.setAttribute("aria-label", "Quitar filtro " + lab); b.onclick = () => { off(); update(); track("filtro", {value: "quita " + lab}); }; el.appendChild(b); });
+  }
+  $("#nf").textContent = tags.filter(([l]) => !l.startsWith("«")).length || "";
 }
-function popup(r){
-  const d = document.createElement("div"); d.className = "pop"; d.dataset.popkey = r.key;
-  const add = (tag, cls, txt) => { const e = document.createElement(tag); if (cls) e.className = cls; e.textContent = txt; d.appendChild(e); };
-  add("strong", "", r.place);
-  add("div", "pop-price", fmt(r.price) + " €" + (r.tab === "alquiler" ? " al mes" : ""));
-  add("div", "pop-specs", `${r.hab} hab. · ${fmt(r.m2)} m²`);
-  const a = document.createElement("a"); a.href = r.url; a.target = "_blank"; a.rel = "noopener"; a.className = "go"; a.textContent = "Ver anuncio ↗";
-  d.appendChild(socialBox(r.key, {extra: a}));
-  track("mapa_punto", {key: r.key});
-  return d;
+
+// pintar
+function paintTabs(){
+  for (const id of ["#tabs", "#tabsMap"]) {
+    const el = $(id); el.innerHTML = "";
+    TABS.forEach(([k, lab]) => { const b = document.createElement("button"); b.type = "button"; b.textContent = lab; b.setAttribute("aria-pressed", String(F.tab === k));
+      b.onclick = () => setTab(k); el.appendChild(b); });
+  }
 }
-function renderMap(rows){
-  const css = getComputedStyle(document.documentElement);
+function setTab(k){ if (F.tab === k) return; F.tab = k; F.zones.clear(); F.maxPrice = null; update(); track("pestana", {value: k}); }
+function paintShortcuts(){
+  const el = $("#shortcuts"); el.innerHTML = "";
+  TABS.forEach(([k, lab, long]) => { const b = document.createElement("button"); b.type = "button"; b.className = "shortcut" + (F.tab === k ? " on" : "");
+    b.innerHTML = `<b>${DATA.filter(r => r.tab === k).length}</b><span>${long}</span>`; b.onclick = () => setTab(k); el.appendChild(b); });
+  const n = DATA.filter(r => heartsOf(r.key).length).length;
+  const h = document.createElement("button"); h.type = "button"; h.className = "shortcut hearts"; h.innerHTML = `<b>${n}</b><span>con ♥</span>`; h.onclick = () => go("favoritas"); el.appendChild(h);
+}
+function cardEl(r){
+  const b = document.createElement("article"); b.className = "card"; b.dataset.key = r.key; b.tabIndex = 0; b.setAttribute("role", "button");
+  const hs = heartsOf(r.key), mine = !!ME() && hs.includes(ME()), nc = commentsOf(r.key).length;
+  b.innerHTML = `<div class="thumb"><div class="mosaic"></div><span class="pin"></span>${r.fav ? '<span class="badge-pre">Preseleccionada</span>' : ""}
+      <button class="hbtn" type="button" aria-pressed="${mine}" aria-label="Me gusta">${ICON.heart}</button></div>
+    <div class="c-line"><div class="c-title"></div><div class="c-price">${euros(r)}</div></div>
+    <div class="c-sub"><span>${esc(Z[r.zone] || "")}</span><span>${r.hab} hab.</span><span>${fmt(r.m2)} m²</span>${parcOf(r) ? `<span>${esc(parcOf(r))} parcela</span>` : ""}</div>
+    <div class="c-social">${hs.length ? `<span class="h">♥ ${esc(hs.join(", "))}</span>` : ""}${nc ? `<span>${nc} comentario${nc > 1 ? "s" : ""}</span>` : ""}</div>`;
+  b.querySelector(".c-title").textContent = r.place;
+  if (r.ll) mosaic(b.querySelector(".mosaic"), r.ll[0], r.ll[1], 11, 3, 3);
+  b.querySelector(".hbtn").onclick = e => { e.stopPropagation(); toggleHeart(r.key); };
+  b.onclick = () => openDetail(r.key);
+  b.onkeydown = e => { if (e.key === "Enter" && e.target === b) openDetail(r.key); };
+  if (IO) IO.observe(b);
+  return b;
+}
+function paintList(){
+  const rows = filtered(); shownList = rows.map(r => r.key);
+  const el = $("#list"); el.innerHTML = "";
+  $("#count").textContent = rows.length + (rows.length === 1 ? " resultado" : " resultados");
+  if (!rows.length) { el.innerHTML = `<div class="empty"><p>No hay nada con estos filtros.</p><button class="btn sec small" type="button" id="clearF">Quitar filtros</button></div>`;
+    $("#clearF").onclick = () => { clearFilters(); update(); }; return; }
+  rows.forEach(r => el.appendChild(cardEl(r)));
+}
+function clearFilters(){ F.zones.clear(); F.maxPrice = null; F.minHab = 0; F.onlyPre = false; F.onlyHeart = false; F.q = ""; $("#q").value = ""; }
+function paintMap(){
+  if (!window.L || currentView !== "mapa") return;
+  const rows = filtered();
   if (!map) {
-    map = L.map("map", { minZoom: 8, maxZoom: 16, maxBounds: [[42.95,-6.5],[43.85,-3.3]] });
-    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", { minZoom: 8, maxZoom: 16, attribution: "© OpenStreetMap" }).addTo(map);
+    map = L.map("map", {minZoom: 7, maxZoom: 16, zoomControl: false});
+    L.control.zoom({position: "topright"}).addTo(map);
+    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {minZoom: 7, maxZoom: 16, attribution: "© OpenStreetMap"}).addTo(map);
     layer = L.layerGroup().addTo(map);
   }
   layer.clearLayers();
-  const seen = {}, pts = [];
+  const cs = getComputedStyle(document.documentElement), seen = {}, pts = [];
   rows.forEach(r => { if (!r.ll) return;
-    const k = r.ll.join(","); const i = seen[k] = (seen[k] || 0) + 1;
+    const k = r.ll.join(","), i = seen[k] = (seen[k] || 0) + 1;
     const ll = i === 1 ? r.ll : [r.ll[0] + 0.004 * Math.sqrt(i) * Math.cos(i * 2.4), r.ll[1] + 0.0055 * Math.sqrt(i) * Math.sin(i * 2.4)];
-    const hearted = heartsOf(r.key).length > 0;
-    L.circleMarker(ll, { radius: hearted ? 10 : 8, color: "#ffffff", weight: 2, fillOpacity: .95,
-      fillColor: css.getPropertyValue(hearted ? "--heart" : r.fav ? "--sea" : "--moss").trim() })
-      .bindPopup(() => popup(r), { maxWidth: 250 }).addTo(layer);
+    const loved = heartsOf(r.key).length > 0;
+    const m = L.circleMarker(ll, {radius: loved ? 11 : 8, color: "#fff", weight: 2.5, fillOpacity: 1, fillColor: cs.getPropertyValue(loved ? "--heart" : "--accent").trim()}).addTo(layer);
+    m.bindPopup(() => { const d = document.createElement("div"); d.className = "mpop";
+      d.innerHTML = `<b></b><span>${euros(r)} · ${r.hab} hab. · ${fmt(r.m2)} m²</span><button type="button">Ver ficha</button>`;
+      d.querySelector("b").textContent = r.place; d.querySelector("button").onclick = () => { map.closePopup(); openDetail(r.key, rows.map(x => x.key)); };
+      track("mapa_punto", {key: r.key}); return d; }, {maxWidth: 240});
     pts.push(ll); });
-  map.invalidateSize();
-  if (pts.length) map.fitBounds(pts, { padding: [30, 30], maxZoom: 12 });
+  setTimeout(() => { map.invalidateSize(); if (pts.length) map.fitBounds(pts, {padding: [30, 30], maxZoom: 12}); }, 30);
 }
-function render(){
-  renderTabs(); renderControls();
-  const rows = DATA.filter(r => inTab(r) && (zone === "all" || r.zone === zone) && (!onlyFav || r.fav) && (!onlyHeart || heartsOf(r.key).length));
-  const Lst = $("#list"); Lst.innerHTML = "";
-  $("#mapwrap").hidden = mode !== "mapa"; Lst.hidden = mode === "mapa";
-  if (mode === "mapa") { if (window.L) renderMap(rows); else $("#mapwrap").textContent = "No se pudo cargar el mapa."; return; }
-  if (!rows.length) { Lst.innerHTML = `<p class="empty">${onlyHeart ? "Todavía no hay ninguna con corazón aquí." : "No hay casas con estos filtros."}</p>`; return; }
-  const byZ = {}; rows.forEach(r => (byZ[r.zone] = byZ[r.zone] || []).push(r));
-  const zones = Object.keys(Z).filter(z => byZ[z]);
-  zones.forEach(z => {
-    if (zones.length > 1) { const h = document.createElement("h2"); h.className = "zone-h"; h.textContent = Z[z]; Lst.appendChild(h); }
-    byZ[z].sort((a, b) => (b.fav ? 1 : 0) - (a.fav ? 1 : 0) || a.price - b.price).forEach(r => Lst.appendChild(card(r)));
-  });
+function paintFavs(){
+  const el = $("#favList"); el.innerHTML = "";
+  const loved = DATA.filter(r => heartsOf(r.key).length);
+  $("#favBadge").textContent = loved.length || "";
+  if (currentView !== "favoritas") return;
+  if (!loved.length) { el.innerHTML = `<div class="empty">${ICON.heart}<p>Aún no hay favoritas.<br>Toca el ♥ en las casas que te gusten.</p><a class="btn small" href="#casas">Ver casas</a></div>`; return; }
+  const people = [...new Set(loved.flatMap(r => heartsOf(r.key)))];
+  const both = loved.filter(r => heartsOf(r.key).length > 1);
+  const sec = (title, rows) => { if (!rows.length) return; const h = document.createElement("h2"); h.className = "sec-h"; h.textContent = title; el.appendChild(h);
+    rows.sort((a, b) => a.price - b.price).forEach(r => el.appendChild(cardEl(r))); };
+  if (people.length > 1) sec("Os gustan a los dos", both);
+  people.forEach(p => sec(people.length > 1 ? "Solo a " + p : "Le gustan a " + p, loved.filter(r => { const h = heartsOf(r.key); return h.includes(p) && (people.length === 1 || h.length === 1); })));
+  shownList = [...el.querySelectorAll(".card")].map(c => c.dataset.key);
 }
-function setView(v){ view = TABS.some(t => t[0] === v) ? v : "campo"; zone = "all"; render(); }
+function paintFeed(){
+  if (currentView !== "comentarios") return;
+  const all = DATA.flatMap(r => commentsOf(r.key).map(c => ({...c, r}))).sort((a, b) => String(b.ts).localeCompare(String(a.ts)));
+  const el = $("#feed"); el.innerHTML = "";
+  if (!all.length) { el.innerHTML = '<p class="hello">Todavía no hay comentarios en las casas. Abre una ficha y toca «Comentar».</p>'; return; }
+  all.forEach(c => { const b = document.createElement("button"); b.type = "button"; b.className = "fitem";
+    b.innerHTML = `<span class="meta"><b></b> · ${esc(when(c.ts))}</span><span class="t"></span><span class="house"></span>`;
+    b.querySelector("b").textContent = c.person; b.querySelector(".t").textContent = c.text; b.querySelector(".house").textContent = c.r.place + " · " + euros(c.r) + " ›";
+    b.onclick = () => openDetail(c.r.key, all.map(x => x.r.key)); el.appendChild(b); });
+}
+function update(){ paintTabs(); paintShortcuts(); paintActive(); paintList(); paintMap(); paintFavs(); paintFeed(); }
+window.onShared = () => { paintShortcuts(); paintFavs(); paintFeed(); if (currentView === "casas") paintList(); if (currentView === "mapa") paintMap();
+  document.querySelectorAll(".card").forEach(c => { const h = c.querySelector(".hbtn"); if (h) h.setAttribute("aria-pressed", String(!!ME() && heartsOf(c.dataset.key).includes(ME()))); }); };
+
+// vistas
+function go(v){ location.hash = v; }
+function showView(v){
+  if (!["casas", "mapa", "favoritas", "calculadora", "comentarios"].includes(v)) v = "casas";
+  currentView = v;
+  document.querySelectorAll(".view").forEach(s => s.hidden = s.id !== "v-" + v);
+  document.querySelectorAll(".tabbar a").forEach(a => { if (a.dataset.view === v) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
+  update(); scrollTo(0, 0); track("vista", {value: v});
+}
+function route(){
+  const h = location.hash.slice(1);
+  if (["campo", "ciudad", "alquiler"].includes(h)) { F.tab = h; history.replaceState(null, "", "#casas"); return showView("casas"); }
+  showView(h || "casas");
+}
+
+// ficha
+let dOpen = null, dList = [], dT0 = 0;
+function openDetail(key, list){
+  const r = DATA.find(x => x.key === key); if (!r) return;
+  dList = list || (shownList.includes(key) ? shownList : DATA.filter(x => x.tab === r.tab).map(x => x.key));
+  if (dOpen && dOpen !== key) closeTiming();
+  dOpen = key; dT0 = performance.now();
+  const i = dList.indexOf(key), sh = $("#detailSheet");
+  const calcOk = !!document.querySelector(`#k-casa option[value="${CSS.escape(key)}"]`);
+  sh.innerHTML = `<div class="sheet-top"><span class="grab"></span><button class="round" type="button" id="dClose" aria-label="Cerrar">${ICON.close}</button>
+      <div class="navbtns"><small>${i + 1} de ${dList.length}</small><button class="round" type="button" id="dPrev" aria-label="Anterior" ${i <= 0 ? "disabled" : ""}>${ICON.prev}</button>
+      <button class="round" type="button" id="dNext" aria-label="Siguiente" ${i >= dList.length - 1 ? "disabled" : ""}>${ICON.next}</button></div></div>
+    <div class="thumb"><div class="mosaic"></div><span class="pin"></span></div>
+    <div class="sheet-body">
+      <div><div class="d-title"></div><div class="d-price">${fmt(r.price)} €${r.tab === "alquiler" ? " <small>al mes</small>" : ""}</div></div>
+      <div class="d-actions"><a class="btn ${calcOk ? "" : "wide"}" href="${esc(r.url)}" target="_blank" rel="noopener">Ver anuncio ${ICON.ext}</a>${calcOk ? '<button class="btn sec" type="button" id="dCalc">Calcular a medias</button>' : ""}</div>
+      <div id="dSocial"></div>
+      ${r.warn ? '<div class="dwarn"></div>' : ""}
+      <div class="desc"></div>
+      <div><p class="group-h">Datos</p><div class="group" id="dRows"></div></div>
+    </div>`;
+  sh.querySelector(".d-title").textContent = r.place;
+  sh.querySelector(".desc").textContent = r.note;
+  if (r.warn) sh.querySelector(".dwarn").textContent = "Ojo: " + r.warn;
+  const rows = [["Zona", Z[r.zone] || ""], ["Habitaciones", r.hab], ["Superficie", fmt(r.m2) + " m²"]];
+  if (parcOf(r)) rows.push(["Parcela", parcOf(r)]);
+  if (r.school_km != null) { rows.push(["Colegio más cercano", fmt(r.school_km) + " km"]); rows.push(["Hospital", `${r.hosp}, ${fmt(r.hosp_km)} km`]); }
+  if (r.fav) rows.push(["Estado", "Preseleccionada"]);
+  rows.push(["Anuncio en", r.site]);
+  const g = sh.querySelector("#dRows"); rows.forEach(([a, b]) => { const d = document.createElement("div"); d.className = "row"; d.innerHTML = "<span></span><span></span>"; d.children[0].textContent = a; d.children[1].textContent = b; g.appendChild(d); });
+  if (r.ll) mosaic(sh.querySelector(".mosaic"), r.ll[0], r.ll[1], 11, 5, 3);
+  sh.querySelector("#dSocial").appendChild(socialBox(r.key));
+  sh.querySelector("#dClose").onclick = closeDetail;
+  sh.querySelector("#dPrev").onclick = () => openDetail(dList[i - 1], dList);
+  sh.querySelector("#dNext").onclick = () => openDetail(dList[i + 1], dList);
+  const c = sh.querySelector("#dCalc"); if (c) c.onclick = () => { const sel = document.getElementById("k-casa"); sel.value = key; sel.dispatchEvent(new Event("change", {bubbles: true})); closeDetail(); go("calculadora"); };
+  $("#detail").hidden = false; sh.scrollTop = 0; document.body.style.overflow = "hidden";
+  track("ficha_abierta", {key});
+}
+function closeTiming(){ const s = Math.round((performance.now() - dT0) / 1000); if (dOpen && s >= 2) track("tiempo_ficha", {key: dOpen, value: String(s)}); }
+function closeDetail(){ closeTiming(); dOpen = null; $("#detail").hidden = true; document.body.style.overflow = ""; }
+$("#detail").addEventListener("click", e => { if (e.target.id === "detail") closeDetail(); });
+document.addEventListener("keydown", e => {
+  if ($("#detail").hidden) return;
+  if (e.key === "Escape") closeDetail();
+  const i = dList.indexOf(dOpen);
+  if (e.key === "ArrowRight" && i < dList.length - 1) openDetail(dList[i + 1], dList);
+  if (e.key === "ArrowLeft" && i > 0) openDetail(dList[i - 1], dList);
+});
+(() => { let x0 = null, y0 = 0; const s = $("#detailSheet");
+  s.addEventListener("touchstart", e => { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; }, {passive: true});
+  s.addEventListener("touchend", e => { if (x0 == null) return; const dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0; x0 = null;
+    if (Math.abs(dx) > 70 && Math.abs(dx) > Math.abs(dy) * 1.5) { const i = dList.indexOf(dOpen); if (dx < 0 && i < dList.length - 1) openDetail(dList[i + 1], dList); if (dx > 0 && i > 0) openDetail(dList[i - 1], dList); } }, {passive: true}); })();
+
+// hoja de filtros
+function openFilters(init){
+  const sh = $("#filtersSheet"), [pmin, pmax] = priceBounds(), step = F.tab === "alquiler" ? 50 : 5000;
+  const zs = Object.keys(Z).filter(z => DATA.some(r => inTab(r) && r.zone === z));
+  const draft = init || {zones: new Set(F.zones), maxPrice: F.maxPrice || pmax, minHab: F.minHab, onlyPre: F.onlyPre, onlyHeart: F.onlyHeart};
+  sh.innerHTML = `<div class="sheet-top"><span class="grab"></span><button class="round" type="button" id="fClose" aria-label="Cerrar">${ICON.close}</button><b id="fh">Filtros</b><button class="linkbtn" type="button" id="fClear">Borrar</button></div>
+    <div class="sheet-body">
+      ${zs.length > 1 ? '<div class="fsec"><h3>Zona</h3><div class="chips" id="fz"></div></div>' : ""}
+      <div class="fsec"><h3>Precio máximo</h3><div class="rangev"><span>${fmt(pmin)} €</span><b id="fpv"></b></div>
+        <input type="range" id="fp" min="${Math.floor(pmin / step) * step}" max="${Math.ceil(pmax / step) * step}" step="${step}" value="${draft.maxPrice}" aria-label="Precio máximo"></div>
+      <div class="fsec"><h3>Habitaciones</h3><div class="segm" id="fh2"></div></div>
+      <div class="fsec"><label class="switch">Solo preseleccionadas<input type="checkbox" id="fpre" ${draft.onlyPre ? "checked" : ""}></label>
+        <label class="switch">Solo con ♥<input type="checkbox" id="fhe" ${draft.onlyHeart ? "checked" : ""}></label></div>
+    </div>
+    <div class="fsheet-foot"><button class="btn" type="button" id="fApply"></button></div>`;
+  const count = () => { const save = {...F, zones: F.zones}; Object.assign(F, {zones: draft.zones, maxPrice: draft.maxPrice >= pmax ? null : draft.maxPrice, minHab: draft.minHab, onlyPre: draft.onlyPre, onlyHeart: draft.onlyHeart});
+    const n = filtered().length; Object.assign(F, save); $("#fApply").textContent = `Ver ${n} resultado${n === 1 ? "" : "s"}`; };
+  const fz = sh.querySelector("#fz");
+  if (fz) zs.forEach(z => { const b = document.createElement("button"); b.type = "button"; b.className = "chip"; b.textContent = Z[z]; b.setAttribute("aria-pressed", String(draft.zones.has(z)));
+    b.onclick = () => { draft.zones.has(z) ? draft.zones.delete(z) : draft.zones.add(z); b.setAttribute("aria-pressed", String(draft.zones.has(z))); count(); }; fz.appendChild(b); });
+  const fp = sh.querySelector("#fp"), fpv = sh.querySelector("#fpv");
+  const pv = () => { fpv.textContent = +fp.value >= pmax ? "Sin límite" : "Hasta " + fmt(+fp.value) + " €"; };
+  fp.oninput = () => { draft.maxPrice = +fp.value; pv(); count(); }; pv();
+  const fh = sh.querySelector("#fh2");
+  [[0, "Todas"], [2, "2+"], [3, "3+"], [4, "4+"]].forEach(([n, lab]) => { const b = document.createElement("button"); b.type = "button"; b.textContent = lab; b.setAttribute("aria-pressed", String(draft.minHab === n));
+    b.onclick = () => { draft.minHab = n; fh.querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", String(x === b))); count(); }; fh.appendChild(b); });
+  sh.querySelector("#fpre").onchange = e => { draft.onlyPre = e.target.checked; count(); };
+  sh.querySelector("#fhe").onchange = e => { draft.onlyHeart = e.target.checked; count(); };
+  sh.querySelector("#fClose").onclick = () => { $("#filters").hidden = true; document.body.style.overflow = ""; };
+  sh.querySelector("#fClear").onclick = () => openFilters({zones: new Set(), maxPrice: pmax, minHab: 0, onlyPre: false, onlyHeart: false});
+  sh.querySelector("#fApply").onclick = () => { Object.assign(F, {zones: draft.zones, maxPrice: draft.maxPrice >= pmax ? null : draft.maxPrice, minHab: draft.minHab, onlyPre: draft.onlyPre, onlyHeart: draft.onlyHeart});
+    $("#filters").hidden = true; document.body.style.overflow = ""; update(); track("filtro", {value: activeTags().map(t => t[0]).join(", ") || "sin filtros"}); };
+  count(); $("#filters").hidden = false; document.body.style.overflow = "hidden";
+}
+$("#filters").addEventListener("click", e => { if (e.target.id === "filters") { $("#filters").hidden = true; document.body.style.overflow = ""; } });
+$("#openFilters").onclick = () => openFilters();
+let qT; $("#q").addEventListener("input", e => { F.q = e.target.value; paintActive(); paintList(); clearTimeout(qT); qT = setTimeout(() => F.q && track("busqueda", {value: F.q}), 1500); });
+$("#sort").addEventListener("change", e => { F.sort = e.target.value; paintList(); track("orden", {value: e.target.selectedOptions[0].text}); });
 
 // ---- Corazones, comentarios y registro de lo que se mira (web pública) ----
 const ENDPOINT = "https://script.google.com/macros/s/AKfycbytPwmbw-r9eaQzAvpaJLBuF5mxpIDP1yKbqnMDYt2bIut3fGL9c4vFXXWXjmdQk_zD/exec".startsWith("http") ? "https://script.google.com/macros/s/AKfycbytPwmbw-r9eaQzAvpaJLBuF5mxpIDP1yKbqnMDYt2bIut3fGL9c4vFXXWXjmdQk_zD/exec" : "";
@@ -550,7 +811,7 @@ const ME = () => LS.get("casas-quien", "");
 const MINE = LS.get("casas-mis", {hearts:{}, comments:{}});
 let SRV = {hearts:{}, comments:[]};
 let Q = LS.get("casas-cola", []);
-let onlyHeart = false;
+
 
 const placeOf = key => { if (key === "_general") return "Comentario general"; const r = DATA.find(x => x.key === key); return r ? `${r.place} · ${fmt(r.price)} €${r.tab === "alquiler" ? "/mes" : ""}` : ""; };
 
@@ -590,7 +851,7 @@ function loadShared(){
     const h = {}; (d.hearts || []).forEach(x => (h[x.key] = h[x.key] || []).push(x.person));
     SRV = {hearts: h, comments: d.comments || []};
     document.querySelectorAll("[data-social]").forEach(el => fillSocial(el));
-    if (onlyHeart) render();
+    if (window.onShared) onShared();
   }).catch(() => {});
 }
 
@@ -630,24 +891,27 @@ function fillSocial(d){
     const id = rid(), ts = new Date().toISOString(); MINE.comments[id] = {key, person: ME(), text, ts}; LS.set("casas-mis", MINE);
     track("comentario", {key, id, value: text}); form.hidden = true; ta.value = ""; refresh(key); flush(); };
   const hb = d.querySelector(".heart");
-  if (hb) hb.onclick = () => needName(() => { const on = !heartsOf(key).includes(ME()); MINE.hearts[key] = on; LS.set("casas-mis", MINE);
+  if (hb) hb.onclick = () => toggleHeart(key);
+}
+function toggleHeart(key){
+  needName(() => { const on = !heartsOf(key).includes(ME()); MINE.hearts[key] = on; LS.set("casas-mis", MINE);
     track("corazon", {key, value: on ? "on" : "off"}); refresh(key); flush(); });
 }
-function refresh(key){ document.querySelectorAll(`[data-social="${CSS.escape(key)}"]`).forEach(fillSocial); }
+function refresh(key){ document.querySelectorAll(`[data-social="${CSS.escape(key)}"]`).forEach(fillSocial); if (window.onShared) onShared(key); }
 
 // quién eres
 function needName(then){ if (ME()) return then(); askName(then); }
 function askName(then){
   const dlg = document.getElementById("who-dlg"); dlg.hidden = false;
   const done = name => { name = (name || "").trim().slice(0, 30); if (!name) return; LS.set("casas-quien", name); dlg.hidden = true; paintMe();
-    track("quien", {value: name}); document.querySelectorAll("[data-social]").forEach(fillSocial); if (then) then(); };
+    track("quien", {value: name}); document.querySelectorAll("[data-social]").forEach(fillSocial); if (window.onShared) onShared(); if (then) then(); };
   dlg.querySelectorAll("[data-name]").forEach(b => b.onclick = () => done(b.dataset.name));
   dlg.querySelector("form").onsubmit = e => { e.preventDefault(); done(dlg.querySelector("input").value); };
   dlg.querySelector(".later").onclick = () => { dlg.hidden = true; };
 }
 function paintMe(){
   const el = document.getElementById("me"); const me = ME();
-  el.innerHTML = me ? `Estás como <b></b>. <button type="button" class="linkbtn">Cambiar</button>` : `<button type="button" class="linkbtn">Dime quién eres</button> para guardar tus corazones y comentarios.`;
+  el.innerHTML = me ? `Hola, <b></b> · <button type="button" class="linkbtn">Cambiar</button>` : `<button type="button" class="linkbtn">Dime quién eres</button> para guardar tus ♥ y comentarios`;
   if (me) el.querySelector("b").textContent = me;
   el.querySelector("button").onclick = () => askName();
 }
@@ -703,13 +967,12 @@ function watchCalc(){
 }
 
 
-window.addEventListener("hashchange", () => { const v = location.hash.slice(1); if (TABS.some(t => t[0] === v)) setView(v); });
-mosaic($("#heroMap"), 43.42, -4.9, 10, 9, 3);
-setView(location.hash.slice(1));
+window.addEventListener("hashchange", route);
+route();
 document.getElementById("general").appendChild(socialBox("_general", {noHeart: true}));
-paintMe(); watchCalc(); loadShared(); setInterval(loadShared, 90000);
+paintMe(); watchCalc(); loadShared(); setInterval(loadShared, 60000);
 track("visita", {value: {pantalla: innerWidth + "x" + innerHeight, idioma: navigator.language}}); flush();
-if (!ME()) setTimeout(() => askName(), 700);
+if (!ME()) setTimeout(() => askName(), 600);
 </script>
 <script>
 (() => {
