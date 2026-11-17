@@ -1,0 +1,826 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Casas en el norte</title>
+</head>
+<body>
+
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Inter:wght@400;500;600&display=swap">
+<style>.leaflet-image-layer,.leaflet-layer,.leaflet-marker-icon,.leaflet-marker-shadow,.leaflet-pane,.leaflet-pane>canvas,.leaflet-pane>svg,.leaflet-tile,.leaflet-tile-container,.leaflet-zoom-box{position:absolute;left:0;top:0}.leaflet-container{overflow:hidden}.leaflet-marker-icon,.leaflet-marker-shadow,.leaflet-tile{-webkit-user-select:none;-moz-user-select:none;user-select:none;-webkit-user-drag:none}.leaflet-tile::selection{background:0 0}.leaflet-safari .leaflet-tile{image-rendering:-webkit-optimize-contrast}.leaflet-safari .leaflet-tile-container{width:1600px;height:1600px;-webkit-transform-origin:0 0}.leaflet-marker-icon,.leaflet-marker-shadow{display:block}.leaflet-container .leaflet-overlay-pane svg{max-width:none!important;max-height:none!important}.leaflet-container .leaflet-marker-pane img,.leaflet-container .leaflet-shadow-pane img,.leaflet-container .leaflet-tile,.leaflet-container .leaflet-tile-pane img,.leaflet-container img.leaflet-image-layer{max-width:none!important;max-height:none!important;width:auto;padding:0}.leaflet-container img.leaflet-tile{mix-blend-mode:plus-lighter}.leaflet-container.leaflet-touch-zoom{-ms-touch-action:pan-x pan-y;touch-action:pan-x pan-y}.leaflet-container.leaflet-touch-drag{-ms-touch-action:pinch-zoom;touch-action:none;touch-action:pinch-zoom}.leaflet-container.leaflet-touch-drag.leaflet-touch-zoom{-ms-touch-action:none;touch-action:none}.leaflet-container{-webkit-tap-highlight-color:transparent}.leaflet-container a{-webkit-tap-highlight-color:rgba(51,181,229,.4)}.leaflet-tile{filter:inherit;visibility:hidden}.leaflet-tile-loaded{visibility:inherit}.leaflet-zoom-box{width:0;height:0;-moz-box-sizing:border-box;box-sizing:border-box;z-index:800}.leaflet-overlay-pane svg{-moz-user-select:none}.leaflet-pane{z-index:400}.leaflet-tile-pane{z-index:200}.leaflet-overlay-pane{z-index:400}.leaflet-shadow-pane{z-index:500}.leaflet-marker-pane{z-index:600}.leaflet-tooltip-pane{z-index:650}.leaflet-popup-pane{z-index:700}.leaflet-map-pane canvas{z-index:100}.leaflet-map-pane svg{z-index:200}.leaflet-vml-shape{width:1px;height:1px}.lvml{behavior:none;display:inline-block;position:absolute}.leaflet-control{position:relative;z-index:800;pointer-events:visiblePainted;pointer-events:auto}.leaflet-bottom,.leaflet-top{position:absolute;z-index:1000;pointer-events:none}.leaflet-top{top:0}.leaflet-right{right:0}.leaflet-bottom{bottom:0}.leaflet-left{left:0}.leaflet-control{float:left;clear:both}.leaflet-right .leaflet-control{float:right}.leaflet-top .leaflet-control{margin-top:10px}.leaflet-bottom .leaflet-control{margin-bottom:10px}.leaflet-left .leaflet-control{margin-left:10px}.leaflet-right .leaflet-control{margin-right:10px}.leaflet-fade-anim .leaflet-popup{opacity:0;-webkit-transition:opacity .2s linear;-moz-transition:opacity .2s linear;transition:opacity .2s linear}.leaflet-fade-anim .leaflet-map-pane .leaflet-popup{opacity:1}.leaflet-zoom-animated{-webkit-transform-origin:0 0;-ms-transform-origin:0 0;transform-origin:0 0}svg.leaflet-zoom-animated{will-change:transform}.leaflet-zoom-anim .leaflet-zoom-animated{-webkit-transition:-webkit-transform .25s cubic-bezier(0,0,.25,1);-moz-transition:-moz-transform .25s cubic-bezier(0,0,.25,1);transition:transform .25s cubic-bezier(0,0,.25,1)}.leaflet-pan-anim .leaflet-tile,.leaflet-zoom-anim .leaflet-tile{-webkit-transition:none;-moz-transition:none;transition:none}.leaflet-zoom-anim .leaflet-zoom-hide{visibility:hidden}.leaflet-interactive{cursor:pointer}.leaflet-grab{cursor:-webkit-grab;cursor:-moz-grab;cursor:grab}.leaflet-crosshair,.leaflet-crosshair .leaflet-interactive{cursor:crosshair}.leaflet-control,.leaflet-popup-pane{cursor:auto}.leaflet-dragging .leaflet-grab,.leaflet-dragging .leaflet-grab .leaflet-interactive,.leaflet-dragging .leaflet-marker-draggable{cursor:move;cursor:-webkit-grabbing;cursor:-moz-grabbing;cursor:grabbing}.leaflet-image-layer,.leaflet-marker-icon,.leaflet-marker-shadow,.leaflet-pane>svg path,.leaflet-tile-container{pointer-events:none}.leaflet-image-layer.leaflet-interactive,.leaflet-marker-icon.leaflet-interactive,.leaflet-pane>svg path.leaflet-interactive,svg.leaflet-image-layer.leaflet-interactive path{pointer-events:visiblePainted;pointer-events:auto}.leaflet-container{background:#ddd;outline-offset:1px}.leaflet-container a{color:#0078a8}.leaflet-zoom-box{border:2px dotted #38f;background:rgba(255,255,255,.5)}.leaflet-container{font-family:"Helvetica Neue",Arial,Helvetica,sans-serif;font-size:12px;font-size:.75rem;line-height:1.5}.leaflet-bar{box-shadow:0 1px 5px rgba(0,0,0,.65);border-radius:4px}.leaflet-bar a{background-color:#fff;border-bottom:1px solid #ccc;width:26px;height:26px;line-height:26px;display:block;text-align:center;text-decoration:none;color:#000}.leaflet-bar a,.leaflet-control-layers-toggle{background-position:50% 50%;background-repeat:no-repeat;display:block}.leaflet-bar a:focus,.leaflet-bar a:hover{background-color:#f4f4f4}.leaflet-bar a:first-child{border-top-left-radius:4px;border-top-right-radius:4px}.leaflet-bar a:last-child{border-bottom-left-radius:4px;border-bottom-right-radius:4px;border-bottom:none}.leaflet-bar a.leaflet-disabled{cursor:default;background-color:#f4f4f4;color:#bbb}.leaflet-touch .leaflet-bar a{width:30px;height:30px;line-height:30px}.leaflet-touch .leaflet-bar a:first-child{border-top-left-radius:2px;border-top-right-radius:2px}.leaflet-touch .leaflet-bar a:last-child{border-bottom-left-radius:2px;border-bottom-right-radius:2px}.leaflet-control-zoom-in,.leaflet-control-zoom-out{font:bold 18px 'Lucida Console',Monaco,monospace;text-indent:1px}.leaflet-touch .leaflet-control-zoom-in,.leaflet-touch .leaflet-control-zoom-out{font-size:22px}.leaflet-control-layers{box-shadow:0 1px 5px rgba(0,0,0,.4);background:#fff;border-radius:5px}.leaflet-control-layers-toggle{background-image:none;width:36px;height:36px}.leaflet-retina .leaflet-control-layers-toggle{background-image:none;background-size:26px 26px}.leaflet-touch .leaflet-control-layers-toggle{width:44px;height:44px}.leaflet-control-layers .leaflet-control-layers-list,.leaflet-control-layers-expanded .leaflet-control-layers-toggle{display:none}.leaflet-control-layers-expanded .leaflet-control-layers-list{display:block;position:relative}.leaflet-control-layers-expanded{padding:6px 10px 6px 6px;color:#333;background:#fff}.leaflet-control-layers-scrollbar{overflow-y:scroll;overflow-x:hidden;padding-right:5px}.leaflet-control-layers-selector{margin-top:2px;position:relative;top:1px}.leaflet-control-layers label{display:block;font-size:13px;font-size:1.08333em}.leaflet-control-layers-separator{height:0;border-top:1px solid #ddd;margin:5px -10px 5px -6px}.leaflet-default-icon-path{background-image:none}.leaflet-container .leaflet-control-attribution{background:#fff;background:rgba(255,255,255,.8);margin:0}.leaflet-control-attribution,.leaflet-control-scale-line{padding:0 5px;color:#333;line-height:1.4}.leaflet-control-attribution a{text-decoration:none}.leaflet-control-attribution a:focus,.leaflet-control-attribution a:hover{text-decoration:underline}.leaflet-attribution-flag{display:inline!important;vertical-align:baseline!important;width:1em;height:.6669em}.leaflet-left .leaflet-control-scale{margin-left:5px}.leaflet-bottom .leaflet-control-scale{margin-bottom:5px}.leaflet-control-scale-line{border:2px solid #777;border-top:none;line-height:1.1;padding:2px 5px 1px;white-space:nowrap;-moz-box-sizing:border-box;box-sizing:border-box;background:rgba(255,255,255,.8);text-shadow:1px 1px #fff}.leaflet-control-scale-line:not(:first-child){border-top:2px solid #777;border-bottom:none;margin-top:-2px}.leaflet-control-scale-line:not(:first-child):not(:last-child){border-bottom:2px solid #777}.leaflet-touch .leaflet-bar,.leaflet-touch .leaflet-control-attribution,.leaflet-touch .leaflet-control-layers{box-shadow:none}.leaflet-touch .leaflet-bar,.leaflet-touch .leaflet-control-layers{border:2px solid rgba(0,0,0,.2);background-clip:padding-box}.leaflet-popup{position:absolute;text-align:center;margin-bottom:20px}.leaflet-popup-content-wrapper{padding:1px;text-align:left;border-radius:12px}.leaflet-popup-content{margin:13px 24px 13px 20px;line-height:1.3;font-size:13px;font-size:1.08333em;min-height:1px}.leaflet-popup-content p{margin:17px 0;margin:1.3em 0}.leaflet-popup-tip-container{width:40px;height:20px;position:absolute;left:50%;margin-top:-1px;margin-left:-20px;overflow:hidden;pointer-events:none}.leaflet-popup-tip{width:17px;height:17px;padding:1px;margin:-10px auto 0;pointer-events:auto;-webkit-transform:rotate(45deg);-moz-transform:rotate(45deg);-ms-transform:rotate(45deg);transform:rotate(45deg)}.leaflet-popup-content-wrapper,.leaflet-popup-tip{background:#fff;color:#333;box-shadow:0 3px 14px rgba(0,0,0,.4)}.leaflet-container a.leaflet-popup-close-button{position:absolute;top:0;right:0;border:none;text-align:center;width:24px;height:24px;font:16px/24px Tahoma,Verdana,sans-serif;color:#757575;text-decoration:none;background:0 0}.leaflet-container a.leaflet-popup-close-button:focus,.leaflet-container a.leaflet-popup-close-button:hover{color:#585858}.leaflet-popup-scrolled{overflow:auto}.leaflet-oldie .leaflet-popup-content-wrapper{-ms-zoom:1}.leaflet-oldie .leaflet-popup-tip{width:24px;margin:0 auto}.leaflet-oldie .leaflet-control-layers,.leaflet-oldie .leaflet-control-zoom,.leaflet-oldie .leaflet-popup-content-wrapper,.leaflet-oldie .leaflet-popup-tip{border:1px solid #999}.leaflet-div-icon{background:#fff;border:1px solid #666}.leaflet-tooltip{position:absolute;padding:6px;background-color:#fff;border:1px solid #fff;border-radius:3px;color:#222;white-space:nowrap;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;pointer-events:none;box-shadow:0 1px 3px rgba(0,0,0,.4)}.leaflet-tooltip.leaflet-interactive{cursor:pointer;pointer-events:auto}.leaflet-tooltip-bottom:before,.leaflet-tooltip-left:before,.leaflet-tooltip-right:before,.leaflet-tooltip-top:before{position:absolute;pointer-events:none;border:6px solid transparent;background:0 0;content:""}.leaflet-tooltip-bottom{margin-top:6px}.leaflet-tooltip-top{margin-top:-6px}.leaflet-tooltip-bottom:before,.leaflet-tooltip-top:before{left:50%;margin-left:-6px}.leaflet-tooltip-top:before{bottom:0;margin-bottom:-12px;border-top-color:#fff}.leaflet-tooltip-bottom:before{top:0;margin-top:-12px;margin-left:-6px;border-bottom-color:#fff}.leaflet-tooltip-left{margin-left:-6px}.leaflet-tooltip-right{margin-left:6px}.leaflet-tooltip-left:before,.leaflet-tooltip-right:before{top:50%;margin-top:-6px}.leaflet-tooltip-left:before{right:0;margin-right:-12px;border-left-color:#fff}.leaflet-tooltip-right:before{left:0;margin-left:-12px;border-right-color:#fff}@media print{.leaflet-control{-webkit-print-color-adjust:exact;print-color-adjust:exact}}.jump{margin:12px 0 0;font-weight:600}.jump a{color:var(--moss)}
+</style>
+<style>
+/* Layout: una columna; cabecera con reglas y conclusiones, pestañas Campo/Ciudad/Alquiler, filtros, lista o mapa, y descartadas al final */
+:root{
+  --bg:#f3f5f1; --surface:#ffffff; --fg:#1d2621; --muted:#5b6860; --line:#d9dfd8;
+  --moss:#3d6b4f; --moss-soft:#e3ede5; --sea:#2f5d7c; --sea-soft:#e2ebf2; --warn:#8a5a12; --warn-soft:#f6ecd9; --bad:#9b3326; --bad-soft:#f6e1dd; --heart:#c2334d; --heart-soft:#fbe4e8;
+  --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body:"Inter", "Segoe UI", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#121815; --surface:#1a221e; --fg:#e4ebe6; --muted:#9aa8a0; --line:#2c3832;
+  --moss:#7fb894; --moss-soft:#203328; --sea:#86b4d6; --sea-soft:#1c2b37; --warn:#e0b468; --warn-soft:#33281a; --bad:#ec9a8c; --bad-soft:#3a2420; --heart:#f2879a; --heart-soft:#3d2128; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#121815; --surface:#1a221e; --fg:#e4ebe6; --muted:#9aa8a0; --line:#2c3832;
+  --moss:#7fb894; --moss-soft:#203328; --sea:#86b4d6; --sea-soft:#1c2b37; --warn:#e0b468; --warn-soft:#33281a; --bad:#ec9a8c; --bad-soft:#3a2420; --heart:#f2879a; --heart-soft:#3d2128; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.55}
+.wrap{max-width:980px;margin:0 auto;padding-block:28px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0}
+h1{font-size:clamp(28px,5vw,40px);line-height:1.1;letter-spacing:-.01em}
+.lede{color:var(--muted);max-width:70ch;margin:10px 0 0}
+.rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin:20px 0 0}
+.rule{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:14px}
+.rule b{display:block;font-family:var(--display);font-size:16px;margin-bottom:2px}
+.findings{margin:16px 0 0;padding:16px 18px;background:var(--surface);border:1px solid var(--line);border-radius:10px;display:grid;gap:8px}
+.findings p{margin:0;max-width:78ch}
+.tabs{display:flex;gap:6px;margin:30px 0 14px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.tab{font:600 15px var(--body);color:var(--muted);background:none;border:0;border-bottom:3px solid transparent;padding:10px 14px;cursor:pointer;margin-bottom:-1px}
+.tab[aria-selected="true"]{color:var(--fg);border-color:var(--moss)}
+.tab small{font-weight:500;color:var(--muted)}
+.tab:focus-visible,.chip:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid var(--sea);outline-offset:2px}
+.tabnote{margin:0 0 14px;padding:10px 14px;background:var(--sea-soft);border-radius:8px;max-width:80ch;font-size:14px}
+.controls{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:16px}
+.chip{font:500 13px var(--body);color:var(--fg);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:6px 12px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--moss);border-color:var(--moss);color:var(--bg)}
+.chip.fav[aria-pressed="true"]{background:var(--sea);border-color:var(--sea)}
+.count{color:var(--muted);font-size:13px;margin-left:auto}
+.modes{display:flex;gap:4px}
+.list{display:grid;gap:10px}
+.zone-h{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-family:var(--body);font-weight:600;margin:18px 0 2px}
+.item{display:grid;grid-template-columns:200px 1fr;gap:16px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px;align-items:start}
+.item.is-fav{border-color:var(--sea);box-shadow:inset 3px 0 0 var(--sea)}
+.ph{display:block;aspect-ratio:4/3;max-width:100%;border-radius:7px;overflow:hidden;background:var(--moss-soft);text-decoration:none}
+.ph img{width:100%;height:100%;object-fit:cover;display:block}
+.ph-empty{display:flex;height:100%;align-items:center;justify-content:center;text-align:center;padding:10px;color:var(--moss);font-size:13px;font-weight:600}
+.body{display:grid;grid-template-columns:1fr auto;gap:4px 18px;min-width:0}
+.item h3{font-size:17px;line-height:1.3;min-width:0}
+.price{font-family:var(--display);font-size:20px;font-weight:700;white-space:nowrap;text-align:right;font-variant-numeric:tabular-nums}
+.price small{font:400 12px var(--body);color:var(--muted);display:block}
+.specs{display:flex;flex-wrap:wrap;gap:6px;grid-column:1/-1;font-size:13px;font-variant-numeric:tabular-nums}
+.specs span{background:var(--moss-soft);border-radius:6px;padding:2px 8px}
+.svc{grid-column:1/-1;font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.note{grid-column:1/-1;margin:2px 0 0;color:var(--muted);max-width:80ch}
+.flags{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:6px;align-items:center;justify-content:space-between}
+.pills{display:flex;gap:6px;flex-wrap:wrap}
+.pill{font-size:12px;font-weight:600;border-radius:999px;padding:2px 9px}
+.pill.f{background:var(--sea-soft);color:var(--sea)}
+.pill.w{background:var(--warn-soft);color:var(--warn)}
+.pill.u{background:var(--moss-soft);color:var(--moss)}
+.pill.s{background:var(--line);color:var(--fg)}
+.item a.go{background:var(--sea);color:var(--surface);padding:6px 12px;border-radius:7px;font-size:13px;font-weight:600;text-decoration:none}
+.item a.go:hover{opacity:.9}
+.mapwrap{display:grid;gap:8px}
+#map{height:min(70vh,560px);min-height:360px;border-radius:10px;border:1px solid var(--line);background:var(--moss-soft);z-index:0}
+.maplegend{margin:0;color:var(--muted);font-size:13px;display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.dot{display:inline-block;width:12px;height:12px;border-radius:50%;background:var(--moss);border:2px solid var(--surface);box-shadow:0 0 0 1px var(--line)}
+.dot.fav{background:var(--sea)}
+.pop{display:grid;gap:4px;font-family:var(--body);width:230px}
+.pop img{width:100%;border-radius:6px;display:block}
+.pop strong{font-family:var(--display);font-size:15px;line-height:1.25}
+.pop-price{font-weight:700;font-size:15px}
+.pop-specs,.pop-note{font-size:12px;color:#4a5550}
+.pop a.go{background:#2f5d7c;color:#fff !important;padding:6px 10px;border-radius:6px;text-decoration:none;font-weight:600;font-size:12px;text-align:center;margin-top:4px}
+.leaflet-container{font-family:var(--body)}
+details.out{margin-top:28px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 16px}
+details.out summary{cursor:pointer;font-weight:600}
+.outlist{display:grid;gap:6px;margin-top:10px}
+.outrow{display:grid;grid-template-columns:1fr auto;gap:2px 12px;font-size:14px;border-top:1px solid var(--line);padding-top:6px}
+.outrow .why{grid-column:1/-1;color:var(--bad);font-size:13px}
+.outrow a{color:var(--sea);font-weight:600;text-decoration:none;font-size:13px}
+.foot{margin-top:28px;color:var(--muted);font-size:13px;display:grid;gap:6px;max-width:80ch}
+@media (max-width:600px){.item{grid-template-columns:1fr}.body{grid-template-columns:1fr}.price{text-align:left}.ph:has(.ph-empty){aspect-ratio:auto;padding:4px}}
+.me{margin:10px 0 0;font-size:14px;color:var(--muted)}
+.me b{color:var(--fg)}
+.linkbtn{font:inherit;font-weight:600;color:var(--sea);background:none;border:0;padding:0;cursor:pointer;text-decoration:underline;text-underline-offset:2px}
+.general{margin:16px 0 0;padding:14px 18px;background:var(--surface);border:1px solid var(--line);border-radius:10px;display:grid;gap:6px}
+.general h2{font-size:17px}
+.social{grid-column:1/-1;display:grid;gap:8px;border-top:1px solid var(--line);padding-top:10px;margin-top:4px}
+.social.compact{border-top:0;padding-top:4px;margin:0}
+.soc-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.soc-row button{font:600 13px var(--body);border-radius:999px;padding:6px 12px;cursor:pointer;border:1px solid var(--line);background:var(--surface);color:var(--fg)}
+.heart[aria-pressed="true"]{background:var(--heart-soft);border-color:var(--heart);color:var(--heart)}
+.who{font-size:13px;font-weight:600;color:var(--heart)}
+.clist{display:grid;gap:6px}
+.cm{display:flex;flex-wrap:wrap;gap:4px 8px;align-items:baseline;font-size:14px;background:var(--bg);border-radius:8px;padding:7px 10px}
+.cm .ctext{flex:1 1 200px;min-width:0;white-space:pre-wrap;overflow-wrap:anywhere}
+.cm small{color:var(--muted);font-size:12px}
+.cm .del{font:inherit;font-size:12px;color:var(--bad);background:none;border:0;cursor:pointer;padding:0}
+.cform{display:grid;gap:8px}
+.cform textarea{font:inherit;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px 10px;width:100%;resize:vertical}
+.cf-actions{display:flex;gap:8px;flex-wrap:wrap}
+.cf-actions button{font:600 13px var(--body);border-radius:8px;padding:7px 12px;cursor:pointer;border:1px solid var(--line);background:var(--surface);color:var(--fg)}
+.cf-actions .save{background:var(--sea);border-color:var(--sea);color:var(--surface)}
+.chip.heart[aria-pressed="true"]{background:var(--heart);border-color:var(--heart);color:var(--surface)}
+.pop .social{gap:6px}
+.pop .soc-row button{padding:4px 10px;font-size:12px}
+.dlg{position:fixed;inset:0;z-index:1000;background:rgba(10,15,12,.55);display:grid;place-items:center;padding:16px}
+.dlg-card{background:var(--surface);color:var(--fg);border-radius:12px;padding:22px;max-width:360px;width:100%;display:grid;gap:12px;border:1px solid var(--line)}
+.dlg-card h2{font-size:21px}
+.dlg-card p{margin:0;color:var(--muted);font-size:14px}
+.dlg-btns{display:flex;gap:8px;flex-wrap:wrap}
+.dlg-btns button,.dlg-card form button{font:600 15px var(--body);border-radius:8px;padding:9px 16px;cursor:pointer;border:1px solid var(--sea);background:var(--sea);color:var(--surface)}
+.dlg-card form{display:flex;gap:8px}
+.dlg-card input{font:inherit;flex:1;min-width:0;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px 10px}
+.dlg-card .later{justify-self:start}
+</style>
+
+<div class="wrap">
+  <header>
+    <h1>Casas en el norte</h1>
+    <p class="me" id="me"></p>
+    <p class="lede">Las casas que estamos mirando en Asturias y Cantabria, para comprar o alquilar. Dale al corazón a las que te gusten y deja comentarios en las fichas: lo vemos todo. Las marcadas «Preseleccionada» son las que ya habíamos apartado. Abajo del todo está la calculadora para comprar a medias.</p>
+    <p class="jump"><a href="#calculadora">Ir a la calculadora para comprar a medias</a></p>
+    <div class="rules">
+      <div class="rule"><b>Hasta 170.000 €</b>Puede ser segunda residencia: no hace falta colegio ni hospital cerca.</div>
+      <div class="rule"><b>Más de 170.000 €</b>Sería la vivienda principal: colegio a 6 km o menos y hospital con urgencias a 25 km o menos (en línea recta desde el pueblo).</div>
+      <div class="rule"><b>Nada de ruinas</b>He leído la descripción completa de cada anuncio. Fuera todo lo que dice «a reformar», «necesita reforma», «rehabilitar», «recreación virtual» o similar, aunque el portal lo marque como «buen estado».</div>
+    </div>
+    <div class="findings"><p><strong>Lo que habéis elegido de campo.</strong> En Asturias os quedáis con 6: La Mesnada y La Baragaña (Bimenes), San Román (Sariego), Caleao, San Juan de Nieva y Camín de Arnao. Cerca de Santander, con 14 de las 20 que os pasé: Llueva (Voto, 120.000 €), las dos de Prases (125.000 y 220.000 €), Hijas y el centro de Puente Viesgo, Villafufre, La Cárcoba (Miera), Riotuerto, Villabáñez (Castañeda), Mercadal (Cartes), Mazcuerras, Arenas de Iguña, Beranga y la cabaña pasiega de Quintana de Toranzo. Las otras 6 las descartasteis y ya no salen.</p>
+<p><strong>Pisos para comprar en ciudad:</strong> os quedáis con 2 en Santander, el de la calle Castilla (240.000 €) y el de El Alisal (265.000 €). Los de Oviedo y el resto de Santander los descartasteis.</p>
+<p><strong>Alquiler:</strong> siguen los 17 alquileres de larga duración en Oviedo y Santander, sin cambios.</p>
+<p><strong>Ojo con algunas de las elegidas:</strong> en La Cárcoba la casa figura como almacén en catastro; en Mazcuerras el anuncio dice que no admite cambio de uso; la cabaña de Quintana tiene solo 71 m²; Beranga necesita cierta actualización y la de 125.000 € de Prases es pareada. Conviene preguntarlo antes de visitarlas.</p>
+</div>
+    <section class="general" aria-labelledby="gen-h"><h2 id="gen-h">Comentarios generales</h2><p class="hint" style="margin:0;color:var(--muted);font-size:14px">Lo que quieras decir que no sea de una casa concreta: zonas, presupuesto, ideas…</p><div id="general"></div></section>
+  </header>
+
+  <div class="tabs" role="tablist" id="tabs"></div>
+  <p class="tabnote" id="tabnote" hidden></p>
+  <div class="controls" id="controls"></div>
+  <div class="mapwrap" id="mapwrap" hidden>
+    <div id="map" role="region" aria-label="Mapa de las viviendas"></div>
+    <p class="maplegend"><span class="dot fav"></span> Preseleccionada <span class="dot"></span> Resto · Toca un punto para ver la vivienda. El punto marca el pueblo o barrio, no la casa exacta.</p>
+  </div>
+  <div class="list" id="list"></div>
+  <details class="out" id="out"><summary id="outsum"></summary><div class="outlist" id="outlist"></div></details>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Manrope:wght@400;500;600;700&display=swap">
+<style>
+#calculadora{
+  --k-bg:#f3f5f2; --k-surface:#ffffff; --k-line:#d9dfd8; --k-fg:#1d2621; --k-muted:#5d6b62;
+  --k-accent:#2e6a4c; --k-accent-soft:#e1ede5;
+  --k-jorge:#2e6a4c; --k-sam:#a2582b; --k-sam-soft:#f6e7dc;
+  --k-warn:#8a5a00; --k-warn-soft:#fbf0d6;
+  --k-display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
+  --k-body:"Manrope",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) #calculadora{
+  --k-bg:#141a16; --k-surface:#1c241f; --k-line:#2f3b33; --k-fg:#e7ece8; --k-muted:#9daaa1;
+  --k-accent:#7cc39c; --k-accent-soft:#1f3329; --k-jorge:#7cc39c; --k-sam:#e6a273; --k-sam-soft:#3a2a1f;
+  --k-warn:#f0c46a; --k-warn-soft:#3a2f15; color-scheme:dark}}
+:root[data-theme="dark"] #calculadora{
+  --k-bg:#141a16; --k-surface:#1c241f; --k-line:#2f3b33; --k-fg:#e7ece8; --k-muted:#9daaa1;
+  --k-accent:#7cc39c; --k-accent-soft:#1f3329; --k-jorge:#7cc39c; --k-sam:#e6a273; --k-sam-soft:#3a2a1f;
+  --k-warn:#f0c46a; --k-warn-soft:#3a2f15; color-scheme:dark}
+#calculadora{max-width:1120px;margin:0 auto;display:grid;gap:28px}
+#calculadora h1,#calculadora h2,#calculadora h3{font-family:var(--k-display);text-wrap:balance;margin:0;letter-spacing:-.01em}
+#calculadora h1{font-size:clamp(28px,4vw,40px);font-weight:700}
+#calculadora h2{font-size:19px;font-weight:700}
+#calculadora .lede{color:var(--k-muted);max-width:68ch;margin:8px 0 0}
+#calculadora .grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,420px);gap:24px;align-items:start}
+@media (max-width:860px){#calculadora .grid{grid-template-columns:minmax(0,1fr)}
+#calculadora .res{order:-1}}
+#calculadora .panel{background:var(--k-surface);border:1px solid var(--k-line);border-radius:10px;padding:20px;display:grid;gap:16px;min-width:0}
+#calculadora .stack{display:grid;gap:20px;min-width:0}
+#calculadora .eyebrow{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--k-muted)}
+#calculadora .fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px}
+#calculadora label{display:grid;gap:5px;font-size:13px;font-weight:600;color:var(--k-muted)}
+#calculadora label small{font-weight:500}
+#calculadora input,#calculadora select{font:inherit;color:var(--k-fg);background:var(--k-bg);border:1px solid var(--k-line);border-radius:7px;padding:8px 10px;width:100%;min-width:0}
+#calculadora input:focus-visible,#calculadora select:focus-visible,#calculadora button:focus-visible{outline:2px solid var(--k-accent);outline-offset:2px}
+#calculadora input[type=range]{padding:0;accent-color:var(--k-accent);background:transparent;border:0}
+#calculadora .unit{position:relative}
+#calculadora .unit input{padding-right:34px}
+#calculadora .unit span{position:absolute;right:10px;top:50%;transform:translateY(-50%);color:var(--k-muted);font-size:13px;pointer-events:none}
+#calculadora .chips{display:flex;flex-wrap:wrap;gap:8px}
+#calculadora .chip{font:inherit;font-size:13px;font-weight:600;border:1px solid var(--k-line);background:var(--k-bg);color:var(--k-fg);border-radius:999px;padding:6px 12px;cursor:pointer}
+#calculadora .chip[aria-pressed="true"]{background:var(--k-accent-soft);border-color:var(--k-accent);color:var(--k-accent)}
+#calculadora .split{display:grid;gap:8px}
+#calculadora .splitbar{display:flex;height:10px;border-radius:5px;overflow:hidden;background:var(--k-line)}
+#calculadora .splitbar i{display:block;background:var(--k-jorge)}
+#calculadora .splitbar b{display:block;background:var(--k-sam);flex:1}
+#calculadora .names{display:flex;justify-content:space-between;font-weight:700;font-size:14px}
+#calculadora .names .j{color:var(--k-jorge)}
+#calculadora .names .s{color:var(--k-sam)}
+#calculadora .res{position:sticky;top:max(16px,env(safe-area-inset-top,0px))}
+@media (max-width:860px){#calculadora .res{position:static}}
+#calculadora .people{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+#calculadora .person{border-radius:8px;padding:14px;display:grid;gap:2px}
+#calculadora .person.j{background:var(--k-accent-soft)}
+#calculadora .person.s{background:var(--k-sam-soft)}
+#calculadora .person .who{font-weight:700;font-size:13px}
+#calculadora .person.j .who{color:var(--k-jorge)}
+#calculadora .person.s .who{color:var(--k-sam)}
+#calculadora .big{font-family:var(--k-display);font-size:clamp(26px,3.4vw,32px);font-weight:700;font-variant-numeric:tabular-nums;line-height:1.15}
+#calculadora .big small{font-size:14px;font-family:var(--k-body);font-weight:600;color:var(--k-muted)}
+#calculadora .rows{display:grid;gap:0;font-variant-numeric:tabular-nums}
+#calculadora .row{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:12px;padding:7px 0;border-top:1px solid var(--k-line);font-size:14px}
+#calculadora .row:first-child{border-top:0}
+#calculadora .row span:nth-child(2),#calculadora .row span:nth-child(3){text-align:right;min-width:68px}
+#calculadora .row.head{font-size:12px;font-weight:700;color:var(--k-muted);text-transform:uppercase;letter-spacing:.06em}
+#calculadora .row.total{font-weight:700;border-top:2px solid var(--k-fg)}
+#calculadora .hint{font-size:13px;color:var(--k-muted);margin:0}
+#calculadora .callout{background:var(--k-warn-soft);color:var(--k-fg);border-radius:8px;padding:12px 14px;font-size:14px}
+#calculadora .callout strong{color:var(--k-warn)}
+#calculadora .tablewrap{overflow-x:auto;border:1px solid var(--k-line);border-radius:10px;background:var(--k-surface)}
+#calculadora table{border-collapse:collapse;width:100%;min-width:680px;font-variant-numeric:tabular-nums;font-size:14px}
+#calculadora th,#calculadora td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--k-line);white-space:nowrap}
+#calculadora th{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--k-muted);font-weight:700;background:var(--k-bg)}
+#calculadora td.n,#calculadora th.n{text-align:right}
+#calculadora tbody tr{cursor:pointer}
+#calculadora tbody tr:hover{background:var(--k-bg)}
+#calculadora tbody tr.sel{background:var(--k-accent-soft)}
+#calculadora td.place{white-space:normal;min-width:220px}
+#calculadora .tag{display:inline-block;font-size:11px;font-weight:700;padding:1px 7px;border-radius:999px;background:var(--k-bg);border:1px solid var(--k-line);color:var(--k-muted);margin-left:6px;vertical-align:1px}
+#calculadora a{color:var(--k-accent)}
+#calculadora .notes{display:grid;gap:10px;max-width:75ch}
+#calculadora .notes p{margin:0}
+#calculadora .notes li{margin:4px 0}
+#calculadora .notes ul{margin:0;padding-left:20px}
+@media (prefers-reduced-motion:no-preference){#calculadora .splitbar i{transition:width .2s}}
+#calculadora{display:grid;gap:28px;margin-top:56px;padding-top:32px;border-top:2px solid var(--k-line);font-family:var(--k-body);line-height:1.5;color:var(--k-fg)}
+#calculadora .ttl{font-size:clamp(26px,4vw,36px);font-weight:700}
+</style>
+<section id="calculadora" aria-label="Calculadora para comprar a medias">
+
+
+  <header>
+    <h2 class="ttl">Comprar a medias</h2>
+    <p class="lede">Para ver cuánto pondría cada uno si compramos una de las casas a medias como segunda residencia. Elige una casa de la lista o escribe otro precio, y mueve el reparto si no vais al 50 %. Todas las cifras son estimaciones del 17/11/2026: lo que de verdad cuesta lo dirán el banco y el notario.</p>
+  </header>
+
+  <div class="grid">
+    <div class="stack">
+      <section class="panel" aria-labelledby="k-h-casa">
+        <h2 id="k-h-casa">La casa</h2>
+        <label>Casa
+          <select id="k-casa"></select>
+        </label>
+        <div class="fields">
+          <label>Precio
+            <div class="unit"><input id="k-precio" type="number" inputmode="numeric" min="0" step="1000"><span>€</span></div>
+          </label>
+          <label>Comunidad
+            <select id="k-region"><option value="cant">Cantabria</option><option value="ast">Asturias</option></select>
+          </label>
+          <label>Impuesto de compra (ITP)
+            <div class="unit"><input id="k-itp" type="number" step="0.5" min="0" max="15"><span>%</span></div>
+          </label>
+        </div>
+        <p class="hint">Casa usada como segunda residencia: ITP del 9 % en Cantabria y del 8 % en Asturias (hasta 300.000 €). Los tipos rebajados solo valen para vivienda habitual.</p>
+      </section>
+
+      <section class="panel" aria-labelledby="k-h-hip">
+        <h2 id="k-h-hip">La hipoteca</h2>
+        <div class="chips" role="group" aria-label="Tipo de interés">
+          <button class="chip" data-tin="3" type="button">Fija, 3 %</button>
+          <button class="chip" data-tin="2.6" type="button">Fija buena, 2,6 %</button>
+          <button class="chip" data-tin="4.2" type="button">Variable hoy, 4,2 %</button>
+        </div>
+        <div class="fields">
+          <label>Interés (TIN)
+            <div class="unit"><input id="k-tin" type="number" step="0.05" min="0" max="10"><span>%</span></div>
+          </label>
+          <label>Años
+            <div class="unit"><input id="k-anos" type="number" step="1" min="5" max="40"><span>años</span></div>
+          </label>
+          <label>Lo que presta el banco <small id="k-ltvOut"></small>
+            <input id="k-ltv" type="range" min="50" max="80" step="5">
+          </label>
+        </div>
+        <p class="hint">Para segunda residencia los bancos suelen prestar entre el 60 y el 70 % del precio (o de la tasación, si sale más baja). El resto, más impuestos y gastos, hay que ponerlo de ahorros. El variable de hoy es Euríbor (3,29 %) más 0,9.</p>
+      </section>
+
+      <section class="panel" aria-labelledby="k-h-rep">
+        <h2 id="k-h-rep">El reparto</h2>
+        <div class="fields">
+          <label>Nombre 1<input id="k-n1" type="text" maxlength="20"></label>
+          <label>Nombre 2<input id="k-n2" type="text" maxlength="20"></label>
+        </div>
+        <div class="split">
+          <label for="k-parte">Parte de cada uno en la casa</label>
+          <input id="k-parte" type="range" min="0" max="100" step="5">
+          <div class="splitbar" aria-hidden="true"><i id="k-barJ"></i><b></b></div>
+          <div class="names"><span class="j" id="k-lblJ"></span><span class="s" id="k-lblS"></span></div>
+        </div>
+        <p class="hint">El porcentaje se aplica a todo: entrada, gastos, cuota y gastos de la casa. Lo normal es que la escritura diga ese mismo porcentaje.</p>
+      </section>
+
+      <section class="panel" aria-labelledby="k-h-gas">
+        <h2 id="k-h-gas">Lo que cuesta tenerla</h2>
+        <div class="fields">
+          <label>Notaría, registro y gestoría
+            <div class="unit"><input id="k-g_not" type="number" step="100" min="0"><span>€</span></div>
+          </label>
+          <label>Tasación
+            <div class="unit"><input id="k-g_tas" type="number" step="50" min="0"><span>€</span></div>
+          </label>
+          <label>IBI y basura, al año
+            <div class="unit"><input id="k-g_ibi" type="number" step="50" min="0"><span>€</span></div>
+          </label>
+          <label>Seguro de hogar, al año
+            <div class="unit"><input id="k-g_seg" type="number" step="25" min="0"><span>€</span></div>
+          </label>
+          <label>Luz, agua e internet, al mes
+            <div class="unit"><input id="k-g_sum" type="number" step="10" min="0"><span>€</span></div>
+          </label>
+          <label>Hucha para arreglos, al año
+            <div class="unit"><input id="k-g_man" type="number" step="0.25" min="0"><span>% precio</span></div>
+          </label>
+          <label>Alquiler de Madrid, al mes <small>(opcional)</small>
+            <div class="unit"><input id="k-g_alq" type="number" step="50" min="0"><span>€</span></div>
+          </label>
+        </div>
+        <p class="hint">También se suma lo que pide Hacienda por tener una segunda vivienda (renta imputada en el IRPF). Se calcula suponiendo un valor catastral del 40 % del precio y un 30 % de tipo en la renta; sale entre 15 y 30 € al mes.</p>
+      </section>
+    </div>
+
+    <aside class="res panel" aria-live="polite">
+      <div class="eyebrow" id="k-resCasa"></div>
+      <div>
+        <h2>Cada mes</h2>
+        <p class="hint" id="k-resMesHint"></p>
+      </div>
+      <div class="people">
+        <div class="person j"><span class="who" id="k-pJ"></span><span class="big" id="k-mesJ"></span></div>
+        <div class="person s"><span class="who" id="k-pS"></span><span class="big" id="k-mesS"></span></div>
+      </div>
+      <div class="rows" id="k-tMes"></div>
+
+      <div>
+        <h2>Para firmar</h2>
+        <p class="hint">Dinero de ahorros el día de la compra: entrada, ITP y gastos.</p>
+      </div>
+      <div class="people">
+        <div class="person j"><span class="who" id="k-pJ2"></span><span class="big" id="k-firJ"></span></div>
+        <div class="person s"><span class="who" id="k-pS2"></span><span class="big" id="k-firS"></span></div>
+      </div>
+      <div class="rows" id="k-tFir"></div>
+      <div class="callout" id="k-check750"></div>
+    </aside>
+  </div>
+
+  <section class="stack" aria-labelledby="k-h-lista">
+    <div>
+      <h2 id="k-h-lista">Vuestras favoritas con estos números</h2>
+      <p class="lede">Con el interés, los años y el reparto que tengas arriba. Toca una fila para cargarla en la calculadora.</p>
+    </div>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Casa</th><th class="n">Precio</th><th class="n">Hipoteca al mes</th><th class="n" id="k-thJ">Cada uno al mes</th><th class="n" id="k-thF">Cada uno para firmar</th><th>Anuncio</th></tr></thead>
+        <tbody id="k-lista"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="panel notes" aria-labelledby="k-h-notas">
+    <h2 id="k-h-notas">Cosas a saber si compráis a medias</h2>
+    <ul>
+      <li><strong>Los dos firmáis la hipoteca entera.</strong> Aunque cada uno pague su mitad, el banco puede pedir la cuota completa a cualquiera de los dos si el otro deja de pagar.</li>
+      <li><strong>La escritura dice de quién es cada parte.</strong> Si uno pone más dinero de entrada, se puede reflejar con otro porcentaje (por ejemplo 60/40) en vez de 50/50.</li>
+      <li><strong>Conviene dejar por escrito qué pasa si uno quiere salir:</strong> quién puede quedarse con la parte del otro y a qué precio. Si no hay acuerdo, cualquiera de los dos puede pedir que se venda.</li>
+      <li><strong>Hacienda:</strong> cada uno declara en la renta su parte de la renta imputada de la casa (un 1,1 % o un 2 % del valor catastral, según el municipio).</li>
+      <li><strong>Antes de dar señal:</strong> pedid a dos o tres bancos su oferta para segunda residencia y la tasación. Si la tasación sale por debajo del precio, el banco presta sobre la tasación y la entrada sube.</li>
+    </ul>
+    <p class="hint">Fuentes, consultadas el 17/11/2026: ITP de <a href="https://guiafiscal.es/patrimonio/itp/cantabria/" target="_blank" rel="noopener">Cantabria</a> y <a href="https://guiafiscal.es/patrimonio/itp/asturias/" target="_blank" rel="noopener">Asturias</a>; Euríbor de noviembre en <a href="https://www.euribor.com.es/2026/11/17/el-euribor-escala-al-3286-y-supera-ya-los-niveles-de-septiembre/" target="_blank" rel="noopener">euribor.com.es</a>; hipotecas fijas en <a href="https://www.rastreator.com/hipotecas/guias/mejores-hipotecas-tipo-fijo" target="_blank" rel="noopener">Rastreator</a>; renta imputada en <a href="https://www.ocu.org/fincas-y-casas/gestion/fiscalidad/analisis/2025/04/declarar-rentas-imputadas-2024" target="_blank" rel="noopener">OCU</a>. No es asesoramiento financiero.</p>
+  </section>
+</section>
+
+  <div class="foot">
+    <p>Colegios y hospitales: datos de OpenStreetMap. Cuento como hospital los que tienen urgencias: HUCA, Monte Naranco, Cabueñes, Jove, Begoña, San Agustín, Valle del Nalón, Álvarez Buylla, Oriente (Arriondas), Valdecilla, Mompía, Sierrallana y Laredo. Las distancias son en línea recta desde el pueblo o barrio; por carretera, suma un 30-50 %.</p>
+    <p>Precios y estado según el anuncio el 15/11/2026; confirma siempre con el anunciante. Mapa © OpenStreetMap contributors.</p>
+  </div>
+</div>
+
+<div class="dlg" id="who-dlg" hidden role="dialog" aria-modal="true" aria-labelledby="who-h"><div class="dlg-card"><h2 id="who-h">¿Quién eres?</h2><p>Para saber de quién es cada corazón y cada comentario.</p><div class="dlg-btns"><button type="button" data-name="Sam">Sam</button><button type="button" data-name="Jorge">Jorge</button></div><form><input type="text" maxlength="30" placeholder="Otro nombre" aria-label="Otro nombre"><button type="submit">Vale</button></form><button type="button" class="linkbtn later">Ahora no</button></div></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+const DATA = [{"key":"i108471190","url":"https://www.idealista.com/inmueble/108471190/","site":"idealista","tab":"campo","zone":"sidra","place":"Puelles, junto a Valdediós (Villaviciosa)","price":130000,"hab":3,"m2":112,"parc":600,"note":"Casa de pueblo con garaje.","fav":true,"warn":"","ll":[43.4516876,-5.5650174],"out":null,"school_km":4.5,"hosp":"Cabueñes (Gijón)","hosp_km":8.8,"nuevo":false},{"key":"i111145800","url":"https://www.idealista.com/inmueble/111145800/","site":"idealista","tab":"campo","zone":"sidra","place":"Vallina-Breceña (Villaviciosa)","price":164900,"hab":3,"m2":96,"parc":350,"note":"A 10-15 minutos de Villaviciosa.","fav":true,"warn":"","ll":[43.4396266,-5.3885047],"out":null,"school_km":5.1,"hosp":"Oriente (Arriondas)","hosp_km":17.6,"nuevo":false},{"key":"i112936790","url":"https://www.idealista.com/inmueble/112936790/","site":"idealista","tab":"campo","zone":"gijon","place":"Pillarno (Castrillón)","price":215000,"hab":2,"m2":100,"parc":1659,"note":"Casa con hórreo y jardín, cerca de la costa.","fav":true,"warn":"","ll":[43.5199554,-5.9937255],"out":null,"school_km":3.4,"hosp":"San Agustín (Avilés)","hosp_km":5.9,"nuevo":false},{"key":"i99023833","url":"https://www.idealista.com/inmueble/99023833/","site":"idealista","tab":"campo","zone":"nalon","place":"Pozobal (Langreo)","price":210000,"hab":4,"m2":260,"parc":12916,"note":"Casa de 1940 junto a la ermita del Carbayu, con buen acceso a la autopista.","fav":true,"warn":"Sin calefacción","ll":[43.2805811,-5.6884265],"out":null,"school_km":1.6,"hosp":"Valle del Nalón (Langreo)","hosp_km":5.9,"nuevo":false},{"key":"i25801846","url":"https://www.idealista.com/inmueble/25801846/","site":"idealista","tab":"alquiler","zone":"costa","place":"Bones, a 3 km de Ribadesella","price":1200,"hab":3,"m2":172,"parc":500,"note":"Casa independiente amueblada, 3 baños y garaje. Junto a la salida 326 de la A-8.","fav":true,"warn":"Contrato de 11 meses","ll":[43.4619436,-5.1214808],"out":null,"school_km":4.4,"hosp":"Oriente (Arriondas)","hosp_km":10.3,"nuevo":false},{"key":"i110230984","url":"https://www.idealista.com/inmueble/110230984/","site":"idealista","tab":"alquiler","zone":"oviedo","place":"Careses (Siero)","price":900,"hab":2,"m2":100,"parc":550,"note":"Casa independiente amueblada, para larga estancia. Chimenea de pellets.","fav":true,"warn":"","ll":[43.4112307,-5.6212916],"out":null,"school_km":3.6,"hosp":"Valle del Nalón (Langreo)","hosp_km":12.3,"nuevo":false},{"key":"i112901861","url":"https://www.idealista.com/inmueble/112901861/","site":"idealista","tab":"alquiler","zone":"nalon","place":"La Molatera (San Martín del Rey Aurelio)","price":1200,"hab":2,"m2":80,"parc":"—","note":"Casa recién reformada; el precio incluye luz e internet.","fav":true,"warn":"","ll":[43.276016,-5.6048409],"out":null,"school_km":0.2,"hosp":"Valle del Nalón (Langreo)","hosp_km":11.1,"nuevo":false},{"key":"i112691163","url":"https://www.idealista.com/inmueble/112691163/","site":"idealista","tab":"alquiler","zone":"cant","place":"La Hayuela (Udías)","price":1500,"hab":3,"m2":216,"parc":160,"note":"Chalet independiente de 2004 con vistas abiertas, 4 baños y garaje. Cerca de Comillas.","fav":true,"warn":"","ll":[43.3365144,-4.2672032],"out":null,"school_km":2.1,"hosp":"Sierrallana (Torrelavega)","hosp_km":15.7,"nuevo":false},{"key":"i112746155","url":"https://www.idealista.com/inmueble/112746155/","site":"idealista","tab":"alquiler","zone":"cant","place":"Boo (Piélagos)","price":1600,"hab":3,"m2":217,"parc":"jardín","note":"Chalet independiente con 3 baños y jardín privado.","fav":true,"warn":"","ll":[43.43049,-3.94551],"out":null,"school_km":0.8,"hosp":"Mompía","hosp_km":2.3,"nuevo":false},{"key":"i112481364","url":"https://www.idealista.com/inmueble/112481364/","site":"idealista","tab":"ciudad","zone":"c_gijon","place":"Ático en calle Miguel Servet (Gijón)","price":238000,"hab":2,"m2":108,"parc":"—","note":"Séptima planta reformada, en esquina, edificio con dos ascensores.","fav":true,"warn":"","ll":[43.5403016,-5.6975679],"out":null,"school_km":0.2,"hosp":"Jove (Gijón)","hosp_km":1.1,"nuevo":false},{"key":"i110283833","url":"https://www.idealista.com/inmueble/110283833/","site":"idealista","tab":"ciudad","zone":"c_oviedo","place":"Junto al HUCA, Ventanielles (Oviedo)","price":289000,"hab":4,"m2":110,"parc":"—","note":"Quinta planta exterior con vistas a la naturaleza, garaje incluido.","fav":true,"warn":"","ll":[43.3712521,-5.8196734],"out":null,"school_km":0.2,"hosp":"HUCA (Oviedo)","hosp_km":0.9,"nuevo":false},{"key":"i112757267","url":"https://www.idealista.com/inmueble/112757267/","site":"idealista","tab":"ciudad","zone":"c_santander","place":"Calle Enrique Gran, General Dávila (Santander)","price":214000,"hab":2,"m2":65,"parc":"—","note":"Reformado a estrenar, con vistas al mar y aislamiento exterior.","fav":true,"warn":"Segunda planta sin ascensor","ll":[43.4660152,-3.8039092],"out":null,"school_km":0.0,"hosp":"Valdecilla (Santander)","hosp_km":2.3,"nuevo":false},{"key":"p61678202605","url":"https://www.pisos.com/comprar/casa-jove_verina33212-61678202605_109300/","site":"pisos.com","tab":"campo","zone":"gijon","place":"Camín de Arnao, El Muselín (Gijón)","price":212000,"hab":3,"m2":281,"parc":"—","note":"Casa de tres plantas con garaje y vistas al mar, estufa de pellets.","fav":true,"warn":"Anunciada como «tipo dúplex»: confirma si es independiente","ll":[43.5599113,-5.7048002],"out":null,"school_km":1.5,"hosp":"Jove (Gijón)","hosp_km":1.2,"nuevo":false},{"key":"p59227577069","url":"https://www.pisos.com/comprar/casa-puerto_faro_de_aviles-59227577069_100500/","site":"pisos.com","tab":"campo","zone":"gijon","place":"San Juan de Nieva (Gozón)","price":210000,"hab":4,"m2":140,"parc":"—","note":"Casa de 1880 rehabilitada entera en 2025: tejado, instalaciones, cocina y suelos nuevos.","fav":true,"warn":"Junto al puerto de Avilés","ll":[43.5955951,-5.9453306],"out":null,"school_km":1.9,"hosp":"San Agustín (Avilés)","hosp_km":4.9,"nuevo":false},{"key":"p59253840481","url":"https://www.pisos.com/comprar/casa-acebo_sariego-59253840481_106500/","site":"pisos.com","tab":"campo","zone":"oviedo","place":"San Román (Sariego)","price":160000,"hab":3,"m2":95,"parc":"—","note":"Casa lista para entrar a vivir, con vistas y un anexo del mismo tamaño.","fav":true,"warn":"","ll":[43.4093351,-5.5119759],"out":null,"school_km":3.8,"hosp":"Cabueñes (Gijón)","hosp_km":15.0,"nuevo":false},{"key":"p60029440479","url":"https://www.pisos.com/comprar/chalet-estacion_bimenes-60029440479_100500/","site":"pisos.com","tab":"campo","zone":"nalon","place":"La Mesnada (Bimenes)","price":139900,"hab":3,"m2":121,"parc":1993,"note":"Casa de piedra caliza reformada, lista para entrar a vivir, con vistas a Peñamayor.","fav":true,"warn":"","ll":[43.3254793,-5.5676797],"out":null,"school_km":0.7,"hosp":"Valle del Nalón (Langreo)","hosp_km":12.5,"nuevo":false},{"key":"p68398177747","url":"https://www.pisos.com/comprar/casa-bimenes-68398177747_100500/","site":"pisos.com","tab":"campo","zone":"nalon","place":"La Baragaña, Suares (Bimenes)","price":210000,"hab":6,"m2":181,"parc":"—","note":"Casa de 20-30 años con 3 baños, orientación sur y vistas por encima de las nieblas del valle.","fav":true,"warn":"","ll":[43.3388376,-5.5904617],"out":null,"school_km":0.2,"hosp":"Valle del Nalón (Langreo)","hosp_km":10.7,"nuevo":false},{"key":"p63432547189","url":"https://www.pisos.com/comprar/casa-pola_de_laviana-63432547189_109300/","site":"pisos.com","tab":"campo","zone":"nalon","place":"Caleao, Parque de Redes (Caso)","price":149900,"hab":5,"m2":177,"parc":"—","note":"Casa grande orientada al sur con chimenea, porche y garaje, en pleno parque natural.","fav":true,"warn":"","ll":[43.1232902,-5.4063341],"out":null,"school_km":6.8,"hosp":"Álvarez Buylla (Mieres)","hosp_km":32.5,"nuevo":false},{"key":"i112789817","url":"https://www.idealista.com/inmueble/112789817/","site":"idealista","tab":"ciudad","zone":"c_santander","place":"El Alisal (Santander)","price":265000,"hab":3,"m2":97,"parc":"—","note":"En perfecto estado, con garaje y todos los servicios cerca.","fav":true,"warn":"","ll":[43.4598139,-3.8549811],"out":null,"school_km":0.2,"hosp":"Valdecilla (Santander)","hosp_km":2.1,"nuevo":false},{"key":"i112955645","url":"https://www.idealista.com/inmueble/112955645/","site":"idealista","tab":"ciudad","zone":"c_santander","place":"Calle Castilla (Santander)","price":240000,"hab":3,"m2":78,"parc":"—","note":"Recién reformado. Garaje opcional por 39.000 €.","fav":true,"warn":"","ll":[43.4549131,-3.8189296],"out":null,"school_km":0.3,"hosp":"Valdecilla (Santander)","hosp_km":0.8,"nuevo":false},{"key":"i107379954","url":"https://www.idealista.com/inmueble/107379954/","site":"idealista","tab":"alquiler","zone":"c_oviedo","place":"Calle Valparaíso, La Tenderina (Oviedo)","price":900,"hab":3,"m2":116,"parc":"—","note":"Séptima planta en edificio de 2007, 2 baños y garaje. Parcialmente amueblado.","fav":false,"warn":"","ll":[43.3594917,-5.8316082],"out":null,"school_km":0.3,"hosp":"HUCA (Oviedo)","hosp_km":1.9,"nuevo":false},{"key":"i110028243","url":"https://www.idealista.com/inmueble/110028243/","site":"idealista","tab":"alquiler","zone":"c_oviedo","place":"Calle Pérez de la Sala, centro (Oviedo)","price":1495,"hab":5,"m2":146,"parc":"—","note":"Calle peatonal con vistas al Auditorio. Prefieren larga estancia.","fav":false,"warn":"","ll":[43.3576697,-5.8501718],"out":null,"school_km":0.1,"hosp":"Monte Naranco (Oviedo)","hosp_km":2.3,"nuevo":false},{"key":"i97165868","url":"https://www.idealista.com/inmueble/97165868/","site":"idealista","tab":"alquiler","zone":"c_oviedo","place":"Ático en plaza Primo de Rivera, centro (Oviedo)","price":1100,"hab":2,"m2":70,"parc":"—","note":"Ático vacío con una terraza fantástica y garaje.","fav":false,"warn":"","ll":[43.3676717,-5.8503946],"out":null,"school_km":0.2,"hosp":"Monte Naranco (Oviedo)","hosp_km":1.8,"nuevo":false},{"key":"i112998317","url":"https://www.idealista.com/inmueble/112998317/","site":"idealista","tab":"alquiler","zone":"c_oviedo","place":"Ático en plaza Ángel González, Vallobín (Oviedo)","price":1200,"hab":2,"m2":79,"parc":"—","note":"Ático moderno con garaje.","fav":false,"warn":"","ll":[43.3661109,-5.8659812],"out":null,"school_km":0.4,"hosp":"Monte Naranco (Oviedo)","hosp_km":0.7,"nuevo":false},{"key":"i112479484","url":"https://www.idealista.com/inmueble/112479484/","site":"idealista","tab":"alquiler","zone":"c_oviedo","place":"Ático en calle Tineo, Las Campas (Oviedo)","price":1200,"hab":4,"m2":140,"parc":"—","note":"2 baños, terraza de 40 m² y doble plaza de garaje.","fav":false,"warn":"","ll":[43.3632786,-5.8855888],"out":null,"school_km":0.3,"hosp":"Monte Naranco (Oviedo)","hosp_km":1.3,"nuevo":false},{"key":"i109200994","url":"https://www.idealista.com/inmueble/109200994/","site":"idealista","tab":"alquiler","zone":"c_oviedo","place":"La Ería (Oviedo)","price":1300,"hab":3,"m2":95,"parc":"—","note":"Sexta planta de 2006 con terraza, vistas y garaje. Sin honorarios de agencia.","fav":false,"warn":"","ll":[43.3613086,-5.8666248],"out":null,"school_km":0.1,"hosp":"Monte Naranco (Oviedo)","hosp_km":1.1,"nuevo":false},{"key":"i112772980","url":"https://www.idealista.com/inmueble/112772980/","site":"idealista","tab":"alquiler","zone":"c_oviedo","place":"Ático en calle Río San Pedro, centro (Oviedo)","price":1350,"hab":2,"m2":78,"parc":"—","note":"Terraza de 30 m², amueblado y con garaje.","fav":false,"warn":"","ll":[43.3668629,-5.8518375],"out":null,"school_km":0.3,"hosp":"Monte Naranco (Oviedo)","hosp_km":1.7,"nuevo":false},{"key":"i111946179","url":"https://www.idealista.com/inmueble/111946179/","site":"idealista","tab":"alquiler","zone":"c_oviedo","place":"Buenavista (Oviedo)","price":1400,"hab":3,"m2":130,"parc":"—","note":"Sexta planta con tres terrazas y vistas, impecable y amueblado.","fav":false,"warn":"","ll":[43.3579375,-5.8630667],"out":null,"school_km":0.1,"hosp":"Monte Naranco (Oviedo)","hosp_km":1.6,"nuevo":false},{"key":"i110513950","url":"https://www.idealista.com/inmueble/110513950/","site":"idealista","tab":"alquiler","zone":"c_oviedo","place":"Ático dúplex en Montecerrao (Oviedo)","price":1500,"hab":3,"m2":174,"parc":"—","note":"Moderno (2008), muy amplio y luminoso.","fav":false,"warn":"","ll":[43.3504687,-5.8630645],"out":null,"school_km":0.7,"hosp":"Monte Naranco (Oviedo)","hosp_km":2.3,"nuevo":false},{"key":"i109569496","url":"https://www.idealista.com/inmueble/109569496/","site":"idealista","tab":"alquiler","zone":"c_santander","place":"Alto Miranda, El Sardinero (Santander)","price":1300,"hab":2,"m2":85,"parc":"—","note":"Vistas impresionantes, entrada independiente, garaje y amueblado.","fav":false,"warn":"","ll":[43.46988,-3.7885938],"out":null,"school_km":0.1,"hosp":"Valdecilla (Santander)","hosp_km":3.6,"nuevo":false},{"key":"i98046351","url":"https://www.idealista.com/inmueble/98046351/","site":"idealista","tab":"alquiler","zone":"c_santander","place":"General Dávila, novena planta (Santander)","price":1195,"hab":4,"m2":130,"parc":"—","note":"Vistas despejadas, orientación suroeste, amueblado.","fav":false,"warn":"","ll":[43.4663944,-3.8164254],"out":null,"school_km":0.3,"hosp":"Valdecilla (Santander)","hosp_km":1.5,"nuevo":false},{"key":"i112631411","url":"https://www.idealista.com/inmueble/112631411/","site":"idealista","tab":"alquiler","zone":"c_santander","place":"Avenida de Cantabria, Valdenoja (Santander)","price":1300,"hab":2,"m2":72,"parc":"—","note":"Recién actualizado, con garaje, cerca de las playas.","fav":false,"warn":"","ll":[43.4770314,-3.7971795],"out":null,"school_km":0.4,"hosp":"Valdecilla (Santander)","hosp_km":3.5,"nuevo":false},{"key":"i112957562","url":"https://www.idealista.com/inmueble/112957562/","site":"idealista","tab":"alquiler","zone":"c_santander","place":"Centro, junto a la catedral (Santander)","price":1450,"hab":3,"m2":85,"parc":"—","note":"Octava planta, solo alquiler fijo y sin muebles.","fav":false,"warn":"Piden aval bancario de 12 meses","ll":[43.4610442,-3.8073704],"out":null,"school_km":0.3,"hosp":"Valdecilla (Santander)","hosp_km":1.8,"nuevo":false},{"key":"i112969288","url":"https://www.idealista.com/inmueble/112969288/","site":"idealista","tab":"alquiler","zone":"c_santander","place":"Ático junto a la catedral (Santander)","price":1450,"hab":3,"m2":100,"parc":"—","note":"Exterior, 2 baños, sin amueblar salvo la cocina.","fav":false,"warn":"","ll":[43.4610442,-3.8073704],"out":null,"school_km":0.3,"hosp":"Valdecilla (Santander)","hosp_km":1.8,"nuevo":false},{"key":"i112884608","url":"https://www.idealista.com/inmueble/112884608/","site":"idealista","tab":"alquiler","zone":"c_santander","place":"Jardines del Sardinero, Valdenoja (Santander)","price":1300,"hab":2,"m2":93,"parc":"—","note":"Urbanización de 2004, amueblado, en perfecto estado y con garaje.","fav":false,"warn":"","ll":[43.4755522,-3.8031264],"out":null,"school_km":0.5,"hosp":"Valdecilla (Santander)","hosp_km":3.0,"nuevo":false},{"key":"i113020567","url":"https://www.idealista.com/inmueble/113020567/","site":"idealista","tab":"alquiler","zone":"c_santander","place":"Frente al parque de Las Llamas (Santander)","price":1200,"hab":3,"m2":115,"parc":"—","note":"Amueblado, con garaje y trastero.","fav":false,"warn":"","ll":[43.4748997,-3.805574],"out":null,"school_km":0.6,"hosp":"Valdecilla (Santander)","hosp_km":2.8,"nuevo":false},{"key":"i112667312","url":"https://www.idealista.com/inmueble/112667312/","site":"idealista","tab":"alquiler","zone":"c_santander","place":"Puertochico (Santander)","price":1500,"hab":3,"m2":95,"parc":"—","note":"Salón y cocina con terraza, en una de las zonas más animadas.","fav":false,"warn":"","ll":[43.464858,-3.7964997],"out":null,"school_km":0.1,"hosp":"Valdecilla (Santander)","hosp_km":2.8,"nuevo":false},{"key":"p66760477783","url":"https://www.pisos.com/comprar/casa-la_carcoba-66760477783_109300/","site":"pisos.com","tab":"campo","zone":"cant","place":"La Cárcoba, Mirones (Miera)","price":179000,"hab":4,"m2":262,"parc":"998 m²","note":"Casa tradicional de piedra en buen estado, con choco para reuniones y finca de casi 1.000 m², en el valle del Miera.","fav":true,"warn":"La casa principal figura como almacén en catastro","ll":[43.2947373,-3.7026329],"out":null,"school_km":0.3,"hosp":"Valdecilla (Santander)","hosp_km":20.6,"nuevo":false},{"key":"p59242883273","url":"https://www.pisos.com/comprar/casa-beranga-59242883273_106000/","site":"pisos.com","tab":"campo","zone":"cant","place":"Beranga (Hazas de Cesto), cerca de Noja","price":220000,"hab":4,"m2":232,"parc":"2.600 m²","note":"Casa de piedra independiente con gran jardín y tejado renovado, a pocos minutos de Noja e Isla.","fav":true,"warn":"Necesita cierta actualización","ll":[43.413626,-3.5770717],"out":null,"school_km":2.3,"hosp":"Laredo","hosp_km":10.9,"nuevo":false},{"key":"p62595212269","url":"https://www.pisos.com/comprar/casa-villafufre-62595212269_106000/","site":"pisos.com","tab":"campo","zone":"cant","place":"San Martín de Villafufre (Valles Pasiegos)","price":189000,"hab":4,"m2":169,"parc":"5.300 m²","note":"Casa independiente en buen estado, orientada al sur con vistas abiertas al valle; 169 m² de vivienda más anexos.","fav":true,"warn":"","ll":[43.25925,-3.877583],"out":null,"school_km":3.6,"hosp":"Mompía","hosp_km":19.7,"nuevo":false},{"key":"p65092063166","url":"https://www.pisos.com/comprar/casa-prases-65092063166_109200/","site":"pisos.com","tab":"campo","zone":"cant","place":"Cillero, Prases (Corvera de Toranzo)","price":125000,"hab":3,"m2":223,"parc":"5 fincas","note":"Casa tradicional en buen estado, 2 baños, calefacción de gas y fibra; incluye 5 fincas.","fav":true,"warn":"Pareada (de esquina)","ll":[43.2464512,-3.9478989],"out":null,"school_km":2.3,"hosp":"Sierrallana (Torrelavega)","hosp_km":16.5,"nuevo":false},{"key":"p65905665116","url":"https://www.pisos.com/comprar/casa-prases-65905665116_109200/","site":"pisos.com","tab":"campo","zone":"cant","place":"Prases (Corvera de Toranzo)","price":220000,"hab":3,"m2":199,"parc":"3,2 ha","note":"Casa de 1960 en buen estado con terraza y vistas, sobre una finca de más de 3 hectáreas en el valle de Toranzo.","fav":true,"warn":"","ll":[43.2464512,-3.9478989],"out":null,"school_km":2.3,"hosp":"Sierrallana (Torrelavega)","hosp_km":16.5,"nuevo":false},{"key":"p68366702922","url":"https://www.pisos.com/comprar/casa-cartes_centro_urbano-68366702922_109300/","site":"pisos.com","tab":"campo","zone":"cant","place":"Barrio Mercadal (Cartes)","price":229000,"hab":3,"m2":347,"parc":"369 m²","note":"Casa reformada con chimenea, 2 baños y suelos de madera, más 98 m² diáfanos para garaje o taller.","fav":true,"warn":"","ll":[43.3235918,-4.1000206],"out":null,"school_km":2.6,"hosp":"Sierrallana (Torrelavega)","hosp_km":4.7,"nuevo":false},{"key":"p55860876594","url":"https://www.pisos.com/comprar/casa-mazcuerras_centro_urbano-55860876594_108900/","site":"pisos.com","tab":"campo","zone":"cant","place":"Mazcuerras (valle del Saja)","price":190000,"hab":4,"m2":140,"parc":"1,7 ha","note":"Cuadra de piedra reformada a estrenar, con chimenea y finca arbolada; acceso por pista, muy aislada.","fav":true,"warn":"El anuncio dice que no admite cambio de uso: confirmar que es vivienda","ll":[43.29764,-4.20947],"out":null,"school_km":2.1,"hosp":"Sierrallana (Torrelavega)","hosp_km":13.0,"nuevo":false},{"key":"p57598846358","url":"https://www.pisos.com/comprar/casa-arenas_de_iguna_centro_urbano-57598846358_100500/","site":"pisos.com","tab":"campo","zone":"cant","place":"Arenas de Iguña (valle del Besaya)","price":220000,"hab":3,"m2":142,"parc":"—","note":"Independiente y reformada hace poco (electricidad y tejado), 2 baños, garaje y balcón con vistas.","fav":true,"warn":"","ll":[43.1870286,-4.0496673],"out":null,"school_km":1.9,"hosp":"Sierrallana (Torrelavega)","hosp_km":19.6,"nuevo":false},{"key":"i106658134","url":"https://www.idealista.com/inmueble/106658134/","site":"idealista","tab":"campo","zone":"cant","place":"Llueva (Voto), a 15 km de Laredo","price":120000,"hab":3,"m2":310,"parc":"—","note":"Casa de piedra totalmente restaurada, todo nuevo: 3 baños, garaje, bodega y salón con chimenea.","fav":true,"warn":"","ll":[43.3346827,-3.5494794],"out":null,"school_km":4.0,"hosp":"Laredo","hosp_km":12.4,"nuevo":false},{"key":"i109677181","url":"https://www.idealista.com/inmueble/109677181/","site":"idealista","tab":"campo","zone":"cant","place":"Hijas (Puente Viesgo)","price":155000,"hab":3,"m2":135,"parc":"117 m²","note":"Casa independiente en buen estado en el valle del Pas, a 20 min de Santander y 10 de Torrelavega.","fav":true,"warn":"","ll":[43.28152,-3.98234],"out":null,"school_km":4.3,"hosp":"Sierrallana (Torrelavega)","hosp_km":11.7,"nuevo":false},{"key":"i111257702","url":"https://www.idealista.com/inmueble/111257702/","site":"idealista","tab":"campo","zone":"cant","place":"Quintana de Toranzo (Corvera de Toranzo)","price":218000,"hab":3,"m2":70,"parc":"8.075 m²","note":"Cabaña pasiega en perfecto estado, lista para entrar, con chimenea y vistas abiertas a los valles pasiegos.","fav":true,"warn":"Solo 71 m²","ll":[43.2340375,-3.9825057],"out":null,"school_km":5.2,"hosp":"Sierrallana (Torrelavega)","hosp_km":16.1,"nuevo":false},{"key":"i112406716","url":"https://www.idealista.com/inmueble/112406716/","site":"idealista","tab":"campo","zone":"cant","place":"Riotuerto (Trasmiera), a 20 min de Santander","price":205000,"hab":3,"m2":201,"parc":"1 ha","note":"Chalet independiente de 1966 bien cuidado, con garaje, almacén y finca de más de una hectárea; a 20 min de Somo.","fav":true,"warn":"","ll":[43.3519206,-3.7052565],"out":null,"school_km":0.5,"hosp":"Valdecilla (Santander)","hosp_km":15.3,"nuevo":false},{"key":"i112935311","url":"https://www.idealista.com/inmueble/112935311/","site":"idealista","tab":"campo","zone":"cant","place":"Villabáñez (Castañeda)","price":220000,"hab":3,"m2":107,"parc":"197 m²","note":"Chalet independiente con tejado nuevo, jardín al sur y garaje; colegio al lado y a 5 min de Torrelavega.","fav":true,"warn":"","ll":[43.31471,-3.95496],"out":null,"school_km":0.1,"hosp":"Sierrallana (Torrelavega)","hosp_km":11.1,"nuevo":false},{"key":"i112981635","url":"https://www.idealista.com/inmueble/112981635/","site":"idealista","tab":"campo","zone":"cant","place":"Centro de Puente Viesgo, junto al balneario","price":190000,"hab":2,"m2":94,"parc":"—","note":"Casa rústica de 2020 en piedra y madera maciza, en planta baja y orientada al sur.","fav":true,"warn":"","ll":[43.2989919,-3.9649215],"out":null,"school_km":1.9,"hosp":"Sierrallana (Torrelavega)","hosp_km":11.4,"nuevo":false}];
+const PHOTOS = new Set([]);
+const TABS = [["campo","Campo"],["ciudad","Ciudad"],["alquiler","Alquiler"]];
+const TABNOTE = {
+  campo: "Casas independientes o rurales para comprar, hasta 290.000 €. Cada ficha dice si serviría como vivienda principal o solo como segunda residencia.",
+  ciudad: "Pisos y áticos que destacan (vistas, terraza, última planta, zona top) en Oviedo, Gijón y Santander, hasta 290.000 €. En ciudad, colegio y hospital están siempre a mano.",
+  alquiler: "Casas con jardín para vivir todo el año. Como sería vuestra casa principal, aplico también el filtro de colegio y hospital."
+};
+const Z = {
+  costa:"Costa oriental (Ribadesella, Llanes, Peñamellera)", cant:"Cantabria, por la A-8", sidra:"Comarca de la Sidra (Villaviciosa, Cabranes, Nava)",
+  gijon:"Alrededores de Gijón y Avilés", oviedo:"Alrededores de Oviedo (Oviedo, Siero, Llanera)", oriente:"Oriente interior (Piloña, Parres, Cangas)",
+  nalon:"Valle del Nalón (El Entrego, Langreo, Laviana)", c_oviedo:"Oviedo", c_gijon:"Gijón", c_santander:"Santander"
+};
+const fmt = n => n.toLocaleString("es-ES");
+const km = n => n.toLocaleString("es-ES", {maximumFractionDigits: 1}) + " km";
+const $ = s => document.querySelector(s);
+let view = "campo", zone = "all", onlyFav = false, mode = "lista", map, layer;
+const ok = r => !r.out, inTab = r => r.tab === view;
+
+function renderTabs(){
+  const t = $("#tabs"); t.innerHTML = "";
+  TABS.forEach(([k,lab]) => { const b = document.createElement("button"); b.className = "tab"; b.setAttribute("role","tab");
+    b.setAttribute("aria-selected", String(view===k)); b.innerHTML = `${lab} <small>${DATA.filter(r=>r.tab===k && ok(r)).length}</small>`;
+    b.onclick = () => { history.replaceState(null,"","#"+k); setView(k); track("pestana", {value: k}); }; t.appendChild(b); });
+}
+function renderControls(){
+  const zs = [...new Set(DATA.filter(r=>inTab(r)&&ok(r)).map(r=>r.zone))];
+  const c = $("#controls"); c.innerHTML = "";
+  const mk = (label, val, cls) => { const b = document.createElement("button"); b.className = "chip" + (cls?" "+cls:""); b.textContent = label;
+    b.setAttribute("aria-pressed", cls==="fav" ? String(onlyFav) : cls==="heart" ? String(onlyHeart) : String(zone===val));
+    b.onclick = () => { if (cls==="fav") onlyFav = !onlyFav; else if (cls==="heart") onlyHeart = !onlyHeart; else zone = val; render();
+      track(cls ? "filtro" : "zona", {value: cls ? (cls==="fav" ? "preseleccionadas: " + (onlyFav ? "sí" : "no") : "con corazón: " + (onlyHeart ? "sí" : "no")) : (Z[val] || "todas")}); }; c.appendChild(b); };
+  if (DATA.some(r => r.fav)) mk("Preseleccionadas", null, "fav"); mk("♥ Con corazón", null, "heart"); mk("Todas las zonas", "all");
+  Object.keys(Z).filter(z => zs.includes(z)).forEach(z => mk(Z[z].replace(/ \(.*\)/,""), z));
+  const n = document.createElement("span"); n.className = "count"; n.id = "count"; c.appendChild(n);
+  const sw = document.createElement("div"); sw.className = "modes";
+  [["lista","Lista"],["mapa","Mapa"]].forEach(([m,lab]) => { const b = document.createElement("button"); b.className = "chip"; b.textContent = lab;
+    b.setAttribute("aria-pressed", String(mode===m)); b.onclick = () => { mode = m; render(); track("modo", {value: lab}); }; sw.appendChild(b); });
+  c.appendChild(sw);
+}
+function svcText(r){
+  if (r.school_km == null) return "";
+  return `Colegio a ${km(r.school_km)} · Hospital ${r.hosp} a ${km(r.hosp_km)}`;
+}
+function card(r){
+  const el = document.createElement("article"); el.className = "item" + (r.fav ? " is-fav" : "");
+  const ph = PHOTOS.has(r.key) ? `<img src="fotos/${r.key}.webp" alt="" loading="lazy">` : `<span class="ph-empty">Fotos en ${r.site}</span>`;
+  const parc = typeof r.parc === "number" ? fmt(r.parc) + " m² de parcela" : (r.parc && r.parc !== "—" ? r.parc : "");
+  const uso = r.tab === "campo" ? (r.price <= 170000 ? '<span class="pill s">Segunda residencia</span>' : '<span class="pill u">Vivienda habitual</span>') : "";
+  el.innerHTML = `<a class="ph" href="${r.url}" target="_blank" rel="noopener" aria-label="Ver fotos en ${r.site}">${ph}</a>
+    <div class="body"><h3></h3><div class="price">${fmt(r.price)} €${r.tab==="alquiler"?"<small>al mes</small>":""}</div>
+    <div class="specs"><span>${r.hab} hab.</span><span>${fmt(r.m2)} m²</span>${parc?"<span></span>":""}</div>
+    <div class="svc"></div><p class="note"></p>
+    <div class="flags"><div class="pills">${uso}${r.fav?'<span class="pill f">Preseleccionada</span>':""}${r.nuevo?'<span class="pill s">Nueva</span>':""}${r.warn?'<span class="pill w"></span>':""}</div>
+    <a class="go" href="${r.url}" target="_blank" rel="noopener">Ver anuncio y fotos en ${r.site} ↗</a></div></div>`;
+  el.querySelector("h3").textContent = r.place;
+  const sp = el.querySelectorAll(".specs span"); if (sp[2]) sp[2].textContent = parc;
+  el.querySelector(".svc").textContent = svcText(r);
+  el.querySelector(".note").textContent = r.note;
+  const w = el.querySelector(".pill.w"); if (w) w.textContent = r.warn;
+  el.dataset.key = r.key; el.querySelector(".body").appendChild(socialBox(r.key)); if (IO) IO.observe(el);
+  return el;
+}
+function popup(r){
+  const d = document.createElement("div"); d.className = "pop";
+  if (PHOTOS.has(r.key)) { const im = document.createElement("img"); im.src = "fotos/"+r.key+".webp"; im.alt = ""; d.appendChild(im); }
+  const add = (tag, cls, txt) => { const e = document.createElement(tag); if (cls) e.className = cls; e.textContent = txt; d.appendChild(e); };
+  add("strong", "", r.place);
+  add("div", "pop-price", fmt(r.price) + " €" + (r.tab==="alquiler" ? " al mes" : ""));
+  add("div", "pop-specs", `${r.hab} hab. · ${fmt(r.m2)} m²` + (typeof r.parc === "number" ? ` · ${fmt(r.parc)} m² de parcela` : ""));
+  if (r.school_km != null) add("div", "pop-specs", svcText(r));
+  add("div", "pop-note", r.note);
+  const a = document.createElement("a"); a.href = r.url; a.target = "_blank"; a.rel = "noopener"; a.className = "go"; a.textContent = "Ver anuncio y fotos en " + r.site + " ↗"; d.appendChild(a);
+  d.dataset.popkey = r.key; d.appendChild(socialBox(r.key, {compact: true})); track("mapa_punto", {key: r.key});
+  return d;
+}
+function renderMap(rows){
+  const css = getComputedStyle(document.documentElement);
+  if (!map) {
+    map = L.map("map", { minZoom: 8, maxZoom: 16, maxBounds: [[42.95,-6.5],[43.85,-3.3]] });
+    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", { minZoom: 8, maxZoom: 16, attribution: "© OpenStreetMap contributors" }).addTo(map);
+    layer = L.layerGroup().addTo(map);
+  }
+  layer.clearLayers();
+  const seen = {}, pts = [];
+  rows.forEach(r => { if (!r.ll) return;
+    const k = r.ll.join(","); const i = seen[k] = (seen[k] || 0) + 1;
+    const ll = i === 1 ? r.ll : [r.ll[0] + 0.004*Math.sqrt(i)*Math.cos(i*2.4), r.ll[1] + 0.0055*Math.sqrt(i)*Math.sin(i*2.4)];
+    L.circleMarker(ll, { radius: r.fav ? 9 : 7, color: "#ffffff", weight: 2, fillOpacity: .95,
+      fillColor: r.fav ? css.getPropertyValue("--sea").trim() : css.getPropertyValue("--moss").trim() })
+      .bindPopup(() => popup(r), { maxWidth: 260 }).addTo(layer);
+    pts.push(ll); });
+  map.invalidateSize();
+  if (pts.length) map.fitBounds(pts, { padding: [30,30], maxZoom: 12 });
+}
+function renderOut(){
+  const rows = DATA.filter(r => inTab(r) && r.out);
+  $("#out").hidden = !rows.length;
+  $("#outsum").textContent = `Descartadas en esta pestaña (${rows.length}) y por qué`;
+  const L2 = $("#outlist"); L2.innerHTML = "";
+  rows.sort((a,b)=>a.place.localeCompare(b.place)).forEach(r => {
+    const d = document.createElement("div"); d.className = "outrow";
+    const t = document.createElement("span"); t.textContent = `${r.place} · ${fmt(r.price)} €${r.tab==="alquiler"?"/mes":""}`;
+    const a = document.createElement("a"); a.href = r.url; a.target = "_blank"; a.rel = "noopener"; a.textContent = "Ver ↗";
+    const w = document.createElement("span"); w.className = "why"; w.textContent = r.out;
+    d.append(t, a, w); L2.appendChild(d); });
+}
+function render(){
+  renderTabs(); renderControls();
+  const rows = DATA.filter(r => inTab(r) && ok(r) && (zone==="all"||r.zone===zone) && (!onlyFav||r.fav) && (!onlyHeart||heartsOf(r.key).length));
+  $("#count").textContent = rows.length + (rows.length===1 ? " vivienda" : " viviendas");
+  const Lst = $("#list"); Lst.innerHTML = "";
+  $("#mapwrap").hidden = mode !== "mapa"; Lst.hidden = mode === "mapa";
+  renderOut();
+  if (mode === "mapa") { if (window.L) renderMap(rows); else $("#mapwrap").textContent = "No se pudo cargar el mapa."; return; }
+  const byZ = {}; rows.forEach(r => (byZ[r.zone] = byZ[r.zone] || []).push(r));
+  Object.keys(Z).filter(z => byZ[z]).forEach(z => {
+    const h = document.createElement("h2"); h.className = "zone-h"; h.textContent = Z[z]; Lst.appendChild(h);
+    byZ[z].sort((a,b)=>(b.fav?1:0)-(a.fav?1:0)||a.price-b.price).forEach(r => Lst.appendChild(card(r)));
+  });
+}
+function setView(v){
+  view = TABS.some(t=>t[0]===v) ? v : "campo"; zone = "all";
+  $("#tabnote").hidden = false; $("#tabnote").textContent = TABNOTE[view];
+  render();
+}
+// ---- Corazones, comentarios y registro de lo que se mira (web pública) ----
+const ENDPOINT = "".startsWith("http") ? "" : "";
+const LS = {
+  get(k, d){ try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } },
+  set(k, v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+};
+const rid = () => (crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(36) + Math.random().toString(36).slice(2)).slice(0, 18);
+const SESSION = rid();
+const DEVICE = matchMedia("(max-width:700px)").matches ? "móvil" : "ordenador";
+const ME = () => LS.get("casas-quien", "");
+const MINE = LS.get("casas-mis", {hearts:{}, comments:{}});
+let SRV = {hearts:{}, comments:[]};
+let Q = LS.get("casas-cola", []);
+let onlyHeart = false;
+
+const placeOf = key => { if (key === "_general") return "Comentario general"; const r = DATA.find(x => x.key === key); return r ? `${r.place} · ${fmt(r.price)} €${r.tab === "alquiler" ? "/mes" : ""}` : ""; };
+
+function track(type, o = {}){
+  Q.push({eid: rid(), type, key: o.key || "", place: o.place || placeOf(o.key || ""), value: o.value == null ? "" : (typeof o.value === "string" ? o.value : JSON.stringify(o.value)),
+    id: o.id || "", person: ME() || "(sin nombre)", session: SESSION, device: DEVICE, ts: new Date().toISOString()});
+  if (Q.length > 500) Q = Q.slice(-500);
+  LS.set("casas-cola", Q); clearTimeout(track.t); track.t = setTimeout(flush, 4000);
+}
+let sending = false;
+function flush(beacon){
+  if (!ENDPOINT || !Q.length) return;
+  const batch = Q.slice(0, 80), body = JSON.stringify({events: batch});
+  const drop = () => { Q = Q.filter(e => !batch.some(b => b.eid === e.eid)); LS.set("casas-cola", Q); };
+  if (beacon === true) { if (navigator.sendBeacon && navigator.sendBeacon(ENDPOINT, new Blob([body], {type: "text/plain;charset=utf-8"}))) drop(); return; }
+  if (sending) return; sending = true;
+  fetch(ENDPOINT, {method: "POST", body, headers: {"Content-Type": "text/plain;charset=utf-8"}})
+    .then(r => { if (r.ok) { drop(); if (Q.length) setTimeout(flush, 500); } })
+    .catch(() => {}).finally(() => { sending = false; });
+}
+
+// estado compartido: corazones y comentarios de todos
+function heartsOf(key){
+  const s = new Set(SRV.hearts[key] || []); const me = ME();
+  if (me && key in MINE.hearts) { if (MINE.hearts[key]) s.add(me); else s.delete(me); }
+  return [...s];
+}
+function commentsOf(key){
+  const seen = new Set(), out = [];
+  for (const c of SRV.comments) if (c.key === key && !(c.id in MINE.comments && MINE.comments[c.id] === null)) { out.push(c); seen.add(c.id); }
+  for (const [id, c] of Object.entries(MINE.comments)) if (c && c.key === key && !seen.has(id)) out.push({id, ...c});
+  return out.sort((a, b) => String(a.ts).localeCompare(String(b.ts)));
+}
+function loadShared(){
+  if (!ENDPOINT) return;
+  fetch(ENDPOINT + "?estado=1").then(r => r.json()).then(d => {
+    const h = {}; (d.hearts || []).forEach(x => (h[x.key] = h[x.key] || []).push(x.person));
+    SRV = {hearts: h, comments: d.comments || []};
+    document.querySelectorAll("[data-social]").forEach(el => fillSocial(el));
+    if (onlyHeart) render();
+  }).catch(() => {});
+}
+
+const when = ts => { const d = new Date(ts); return isNaN(d) ? "" : d.toLocaleDateString("es-ES", {day: "numeric", month: "short"}) + " " + d.toLocaleTimeString("es-ES", {hour: "2-digit", minute: "2-digit"}); };
+function socialBox(key, opts = {}){
+  const d = document.createElement("div"); d.className = "social" + (opts.compact ? " compact" : ""); d.dataset.social = key;
+  if (opts.noHeart) d.dataset.noheart = "1";
+  fillSocial(d); return d;
+}
+function fillSocial(d){
+  const key = d.dataset.social, hs = heartsOf(key), me = ME(), mine = !!me && hs.includes(me), cs = commentsOf(key);
+  const open = d.querySelector(".cform") && !d.querySelector(".cform").hidden, draft = open ? d.querySelector("textarea").value : "";
+  d.innerHTML = `<div class="soc-row">${d.dataset.noheart ? "" : `<button type="button" class="heart" aria-pressed="${mine}">${mine ? "♥" : "♡"} Me gusta</button><span class="who"></span>`}
+    <button type="button" class="cbtn">${d.dataset.noheart ? "Escribir un comentario" : "Comentar"}</button></div>
+    <div class="clist"></div>
+    <form class="cform" hidden><textarea rows="3" maxlength="1500" placeholder="¿Qué te parece?"></textarea>
+    <div class="cf-actions"><button type="submit" class="save">Guardar comentario</button><button type="button" class="cancel">Cancelar</button></div></form>`;
+  const who = d.querySelector(".who"); if (who) who.textContent = hs.length ? "♥ " + hs.join(", ") : "";
+  const list = d.querySelector(".clist");
+  cs.forEach(c => {
+    const row = document.createElement("div"); row.className = "cm";
+    const b = document.createElement("b"); b.textContent = c.person || "Alguien";
+    const t = document.createElement("span"); t.className = "ctext"; t.textContent = c.text;
+    const w = document.createElement("small"); w.textContent = when(c.ts);
+    row.append(b, t, w);
+    if (me && c.person === me) { const x = document.createElement("button"); x.type = "button"; x.className = "del"; x.textContent = "Borrar";
+      x.onclick = () => { MINE.comments[c.id] = null; LS.set("casas-mis", MINE); track("comentario_borrado", {key, id: c.id, value: c.text}); refresh(key); }; row.append(x); }
+    list.appendChild(row);
+  });
+  const form = d.querySelector(".cform"), ta = form.querySelector("textarea");
+  if (open) { form.hidden = false; ta.value = draft; }
+  d.querySelector(".cbtn").onclick = () => needName(() => { form.hidden = false; ta.focus(); });
+  form.querySelector(".cancel").onclick = () => { form.hidden = true; ta.value = ""; };
+  form.onsubmit = e => { e.preventDefault(); const text = ta.value.trim(); if (!text) return;
+    const id = rid(), ts = new Date().toISOString(); MINE.comments[id] = {key, person: ME(), text, ts}; LS.set("casas-mis", MINE);
+    track("comentario", {key, id, value: text}); form.hidden = true; ta.value = ""; refresh(key); flush(); };
+  const hb = d.querySelector(".heart");
+  if (hb) hb.onclick = () => needName(() => { const on = !heartsOf(key).includes(ME()); MINE.hearts[key] = on; LS.set("casas-mis", MINE);
+    track("corazon", {key, value: on ? "on" : "off"}); refresh(key); flush(); });
+}
+function refresh(key){ document.querySelectorAll(`[data-social="${CSS.escape(key)}"]`).forEach(fillSocial); }
+
+// quién eres
+function needName(then){ if (ME()) return then(); askName(then); }
+function askName(then){
+  const dlg = document.getElementById("who-dlg"); dlg.hidden = false;
+  const done = name => { name = (name || "").trim().slice(0, 30); if (!name) return; LS.set("casas-quien", name); dlg.hidden = true; paintMe();
+    track("quien", {value: name}); document.querySelectorAll("[data-social]").forEach(fillSocial); if (then) then(); };
+  dlg.querySelectorAll("[data-name]").forEach(b => b.onclick = () => done(b.dataset.name));
+  dlg.querySelector("form").onsubmit = e => { e.preventDefault(); done(dlg.querySelector("input").value); };
+  dlg.querySelector(".later").onclick = () => { dlg.hidden = true; };
+}
+function paintMe(){
+  const el = document.getElementById("me"); const me = ME();
+  el.innerHTML = me ? `Estás como <b></b>. <button type="button" class="linkbtn">Cambiar</button>` : `<button type="button" class="linkbtn">Dime quién eres</button> para guardar tus corazones y comentarios.`;
+  if (me) el.querySelector("b").textContent = me;
+  el.querySelector("button").onclick = () => askName();
+}
+
+// tiempo mirando cada ficha
+const DWELL = {}, OPEN = {};
+const IO = "IntersectionObserver" in window ? new IntersectionObserver(es => es.forEach(e => {
+  const k = e.target.dataset.key; if (!k) return;
+  if (e.isIntersecting) OPEN[k] = OPEN[k] || performance.now();
+  else if (OPEN[k]) { DWELL[k] = (DWELL[k] || 0) + (performance.now() - OPEN[k]); delete OPEN[k]; }
+}), {threshold: 0.6}) : null;
+function sendDwell(){
+  const now = performance.now();
+  for (const k in OPEN) { DWELL[k] = (DWELL[k] || 0) + (now - OPEN[k]); OPEN[k] = now; }
+  for (const k in DWELL) { const s = Math.round(DWELL[k] / 1000); if (s >= 3) track("tiempo_ficha", {key: k, value: String(s)}); delete DWELL[k]; }
+}
+setInterval(sendDwell, 60000);
+let visibleSince = performance.now(), totalVisible = 0;
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState === "hidden") {
+    sendDwell(); totalVisible += performance.now() - visibleSince;
+    track("salida", {value: String(Math.round(totalVisible / 1000))}); flush(true);
+  } else { visibleSince = performance.now(); for (const k in OPEN) OPEN[k] = performance.now(); loadShared(); }
+});
+
+// clics en anuncios, en cualquier sitio de la página
+document.addEventListener("click", e => {
+  const a = e.target.closest("a[href^='http']"); if (!a) return;
+  const host = e.target.closest("[data-key]") || e.target.closest(".pop") || e.target.closest("#k-lista tr");
+  let key = host && (host.dataset.key || host.dataset.popkey);
+  if (!key) { const r = DATA.find(x => x.url === a.href); key = r ? r.key : ""; }
+  if (/idealista|pisos\.com/.test(a.href)) track("anuncio", {key, value: a.href});
+}, true);
+
+// calculadora
+let calcSeen = false, calcT;
+function calcSnapshot(){
+  const v = id => { const el = document.getElementById("k-" + id); return el ? el.value : ""; };
+  const sel = document.getElementById("k-casa");
+  return {casa: sel && sel.selectedIndex >= 0 ? sel.options[sel.selectedIndex].text : "", precio: v("precio"), interes: v("tin"), anos: v("anos"),
+    financia: v("ltv") + " %", reparto: v("parte") + " % / " + (100 - (+v("parte") || 0)) + " %", cada_uno_mes: (document.getElementById("k-mesJ") || {}).textContent || "",
+    cada_uno_firmar: (document.getElementById("k-firJ") || {}).textContent || ""};
+}
+document.addEventListener("input", e => { if (!e.target.closest("#calculadora")) return; clearTimeout(calcT); calcT = setTimeout(() => track("calculadora", {value: calcSnapshot()}), 2500); });
+document.addEventListener("change", e => { if (e.target.id === "k-casa") { const k = e.target.value; setTimeout(() => track("calculadora_casa", {key: k, value: calcSnapshot()}), 50); } });
+document.addEventListener("click", e => {
+  const tr = e.target.closest("#k-lista tr"); if (tr && !e.target.closest("a")) setTimeout(() => track("calculadora_casa", {key: tr.dataset.key, value: calcSnapshot()}), 50);
+  const chip = e.target.closest("#calculadora .chip"); if (chip) setTimeout(() => track("calculadora", {value: calcSnapshot()}), 50);
+}, true);
+function watchCalc(){
+  const c = document.getElementById("calculadora"); if (!c || !("IntersectionObserver" in window)) return;
+  new IntersectionObserver((es, o) => { if (es.some(e => e.isIntersecting) && !calcSeen) { calcSeen = true; track("calculadora_vista", {value: calcSnapshot()}); o.disconnect(); } }, {threshold: 0.15}).observe(c);
+}
+
+window.addEventListener("hashchange", () => setView(location.hash.slice(1)));
+setView(location.hash.slice(1));
+document.getElementById("general").appendChild(socialBox("_general", {noHeart: true}));
+paintMe(); watchCalc(); loadShared(); setInterval(loadShared, 90000);
+track("visita", {value: {pantalla: innerWidth + "x" + innerHeight, idioma: navigator.language}}); flush();
+if (!ME()) setTimeout(() => askName(), 600);
+</script>
+<script>
+(() => {
+
+const CASAS = [{"key": "i108471190", "place": "Puelles, junto a Valdediós (Villaviciosa)", "price": 130000, "region": "ast", "grupo": "ast", "url": "https://www.idealista.com/inmueble/108471190/"}, {"key": "i111145800", "place": "Vallina-Breceña (Villaviciosa)", "price": 164900, "region": "ast", "grupo": "ast", "url": "https://www.idealista.com/inmueble/111145800/"}, {"key": "i112936790", "place": "Pillarno (Castrillón)", "price": 215000, "region": "ast", "grupo": "ast", "url": "https://www.idealista.com/inmueble/112936790/"}, {"key": "i99023833", "place": "Pozobal (Langreo)", "price": 210000, "region": "ast", "grupo": "ast", "url": "https://www.idealista.com/inmueble/99023833/"}, {"key": "i112481364", "place": "Ático en calle Miguel Servet (Gijón)", "price": 238000, "region": "ast", "grupo": "city", "url": "https://www.idealista.com/inmueble/112481364/"}, {"key": "i110283833", "place": "Junto al HUCA, Ventanielles (Oviedo)", "price": 289000, "region": "ast", "grupo": "city", "url": "https://www.idealista.com/inmueble/110283833/"}, {"key": "i112757267", "place": "Calle Enrique Gran, General Dávila (Santander)", "price": 214000, "region": "cant", "grupo": "city", "url": "https://www.idealista.com/inmueble/112757267/"}, {"key": "p61678202605", "place": "Camín de Arnao, El Muselín (Gijón)", "price": 212000, "region": "ast", "grupo": "ast", "url": "https://www.pisos.com/comprar/casa-jove_verina33212-61678202605_109300/"}, {"key": "p59227577069", "place": "San Juan de Nieva (Gozón)", "price": 210000, "region": "ast", "grupo": "ast", "url": "https://www.pisos.com/comprar/casa-puerto_faro_de_aviles-59227577069_100500/"}, {"key": "p59253840481", "place": "San Román (Sariego)", "price": 160000, "region": "ast", "grupo": "ast", "url": "https://www.pisos.com/comprar/casa-acebo_sariego-59253840481_106500/"}, {"key": "p60029440479", "place": "La Mesnada (Bimenes)", "price": 139900, "region": "ast", "grupo": "ast", "url": "https://www.pisos.com/comprar/chalet-estacion_bimenes-60029440479_100500/"}, {"key": "p68398177747", "place": "La Baragaña, Suares (Bimenes)", "price": 210000, "region": "ast", "grupo": "ast", "url": "https://www.pisos.com/comprar/casa-bimenes-68398177747_100500/"}, {"key": "p63432547189", "place": "Caleao, Parque de Redes (Caso)", "price": 149900, "region": "ast", "grupo": "ast", "url": "https://www.pisos.com/comprar/casa-pola_de_laviana-63432547189_109300/"}, {"key": "i112789817", "place": "El Alisal (Santander)", "price": 265000, "region": "cant", "grupo": "city", "url": "https://www.idealista.com/inmueble/112789817/"}, {"key": "i112955645", "place": "Calle Castilla (Santander)", "price": 240000, "region": "cant", "grupo": "city", "url": "https://www.idealista.com/inmueble/112955645/"}, {"key": "p66760477783", "place": "La Cárcoba, Mirones (Miera)", "price": 179000, "region": "cant", "grupo": "cant", "url": "https://www.pisos.com/comprar/casa-la_carcoba-66760477783_109300/"}, {"key": "p59242883273", "place": "Beranga (Hazas de Cesto), cerca de Noja", "price": 220000, "region": "cant", "grupo": "cant", "url": "https://www.pisos.com/comprar/casa-beranga-59242883273_106000/"}, {"key": "p62595212269", "place": "San Martín de Villafufre (Valles Pasiegos)", "price": 189000, "region": "cant", "grupo": "cant", "url": "https://www.pisos.com/comprar/casa-villafufre-62595212269_106000/"}, {"key": "p65092063166", "place": "Cillero, Prases (Corvera de Toranzo)", "price": 125000, "region": "cant", "grupo": "cant", "url": "https://www.pisos.com/comprar/casa-prases-65092063166_109200/"}, {"key": "p65905665116", "place": "Prases (Corvera de Toranzo)", "price": 220000, "region": "cant", "grupo": "cant", "url": "https://www.pisos.com/comprar/casa-prases-65905665116_109200/"}, {"key": "p68366702922", "place": "Barrio Mercadal (Cartes)", "price": 229000, "region": "cant", "grupo": "cant", "url": "https://www.pisos.com/comprar/casa-cartes_centro_urbano-68366702922_109300/"}, {"key": "p55860876594", "place": "Mazcuerras (valle del Saja)", "price": 190000, "region": "cant", "grupo": "cant", "url": "https://www.pisos.com/comprar/casa-mazcuerras_centro_urbano-55860876594_108900/"}, {"key": "p57598846358", "place": "Arenas de Iguña (valle del Besaya)", "price": 220000, "region": "cant", "grupo": "cant", "url": "https://www.pisos.com/comprar/casa-arenas_de_iguna_centro_urbano-57598846358_100500/"}, {"key": "i106658134", "place": "Llueva (Voto), a 15 km de Laredo", "price": 120000, "region": "cant", "grupo": "cant", "url": "https://www.idealista.com/inmueble/106658134/"}, {"key": "i109677181", "place": "Hijas (Puente Viesgo)", "price": 155000, "region": "cant", "grupo": "cant", "url": "https://www.idealista.com/inmueble/109677181/"}, {"key": "i111257702", "place": "Quintana de Toranzo (Corvera de Toranzo)", "price": 218000, "region": "cant", "grupo": "cant", "url": "https://www.idealista.com/inmueble/111257702/"}, {"key": "i112406716", "place": "Riotuerto (Trasmiera), a 20 min de Santander", "price": 205000, "region": "cant", "grupo": "cant", "url": "https://www.idealista.com/inmueble/112406716/"}, {"key": "i112935311", "place": "Villabáñez (Castañeda)", "price": 220000, "region": "cant", "grupo": "cant", "url": "https://www.idealista.com/inmueble/112935311/"}, {"key": "i112981635", "place": "Centro de Puente Viesgo, junto al balneario", "price": 190000, "region": "cant", "grupo": "cant", "url": "https://www.idealista.com/inmueble/112981635/"}];
+const DEF = {casa:"", precio:190000, region:"cant", itp:9, tin:3, anos:25, ltv:70, n1:"Jorge", n2:"Sam", parte:50,
+  g_not:2000, g_tas:400, g_ibi:400, g_seg:250, g_sum:90, g_man:0.75, g_alq:0};
+const KEY = "casa-a-medias-v1";
+let S = {...DEF};
+try { const s = JSON.parse(localStorage.getItem(KEY) || "null"); if (s) S = {...DEF, ...s}; } catch (e) {}
+const $ = id => document.getElementById("k-" + id);
+const eur = new Intl.NumberFormat("es-ES", {maximumFractionDigits:0, useGrouping:"always"});
+const E = v => eur.format(Math.round(v)) + " €";
+const ITP = {cant:9, ast:8};
+
+function cuota(L, tin, anos){ const i = tin/100/12, n = anos*12; if (L <= 0) return 0; return i ? L*i/(1-Math.pow(1+i,-n)) : L/n; }
+function prestamoPara(c, tin, anos){ const i = tin/100/12, n = anos*12; return i ? c*(1-Math.pow(1+i,-n))/i : c*n; }
+
+function calc(precio, region, itpPct){
+  const L = precio * S.ltv/100;
+  const c = cuota(L, S.tin, S.anos);
+  const entrada = precio - L;
+  const itp = precio * itpPct/100;
+  const firmar = entrada + itp + S.g_not + S.g_tas;
+  const ibi = S.g_ibi/12, seg = S.g_seg/12, sum = S.g_sum, man = precio*S.g_man/100/12;
+  const irpf = precio*0.40*0.011*0.30/12;
+  const gastos = ibi + seg + sum + man + irpf;
+  const intereses = c*S.anos*12 - L;
+  return {L, c, entrada, itp, firmar, ibi, seg, sum, man, irpf, gastos, mes: c + gastos, intereses};
+}
+
+function fillSelect(){
+  const sel = $("casa");
+  const groups = [["cant","Casas cerca de Santander"],["ast","Casas en Asturias"],["city","Pisos en ciudad"]];
+  let html = '<option value="">Otro precio (escríbelo abajo)</option>';
+  for (const [g, name] of groups){
+    const items = CASAS.filter(c => c.grupo === g).sort((a,b) => a.price - b.price);
+    if (!items.length) continue;
+    html += `<optgroup label="${name}">` + items.map(c => `<option value="${c.key}">${c.place} · ${E(c.price)}</option>`).join("") + "</optgroup>";
+  }
+  sel.innerHTML = html;
+}
+
+function sync(){
+  for (const k of ["precio","region","itp","tin","anos","ltv","n1","n2","parte","g_not","g_tas","g_ibi","g_seg","g_sum","g_man","g_alq"]) $(k).value = S[k];
+  $("casa").value = S.casa;
+  document.querySelectorAll("#calculadora .chip").forEach(b => b.setAttribute("aria-pressed", String(+b.dataset.tin === +S.tin)));
+}
+
+function rowsHTML(rows, a, b){
+  return `<div class="row head"><span></span><span>${a}</span><span>${b}</span></div>` +
+    rows.map(r => `<div class="row${r[3] ? " total" : ""}"><span>${r[0]}</span><span>${r[1]}</span><span>${r[2]}</span></div>`).join("");
+}
+
+function render(){
+  const pj = S.parte/100, ps = 1 - pj;
+  const nJ = S.n1 || "Persona 1", nS = S.n2 || "Persona 2";
+  const casa = CASAS.find(c => c.key === S.casa);
+  const r = calc(S.precio, S.region, S.itp);
+  $("ltvOut").textContent = `${S.ltv} % · ${E(r.L)}`;
+  $("barJ").style.width = S.parte + "%";
+  $("lblJ").textContent = `${nJ} ${S.parte} %`; $("lblS").textContent = `${nS} ${100 - S.parte} %`;
+  $("pJ").textContent = $("pJ2").textContent = nJ; $("pS").textContent = $("pS2").textContent = nS;
+  $("resCasa").textContent = casa ? `${casa.place} · ${E(casa.price)}` : `Casa de ${E(S.precio)}`;
+  const alq = S.g_alq > 0;
+  $("resMesHint").textContent = alq ? "Hipoteca y gastos de la casa, más vuestra parte del alquiler de Madrid." : "Hipoteca y gastos de la casa.";
+  $("mesJ").innerHTML = E((r.mes + S.g_alq)*pj) + " <small>/mes</small>";
+  $("mesS").innerHTML = E((r.mes + S.g_alq)*ps) + " <small>/mes</small>";
+  const rowsMes = [
+    ["Hipoteca", E(r.c*pj), E(r.c*ps)],
+    ["IBI, basura y seguro", E((r.ibi + r.seg)*pj), E((r.ibi + r.seg)*ps)],
+    ["Luz, agua e internet", E(r.sum*pj), E(r.sum*ps)],
+    ["Hucha para arreglos", E(r.man*pj), E(r.man*ps)],
+    ["Hacienda (renta imputada)", E(r.irpf*pj), E(r.irpf*ps)],
+  ];
+  if (alq) rowsMes.push(["Alquiler de Madrid", E(S.g_alq*pj), E(S.g_alq*ps)]);
+  rowsMes.push(["Total al mes", E((r.mes + S.g_alq)*pj), E((r.mes + S.g_alq)*ps), 1]);
+  $("tMes").innerHTML = rowsHTML(rowsMes, nJ, nS);
+  $("firJ").textContent = E(r.firmar*pj); $("firS").textContent = E(r.firmar*ps);
+  $("tFir").innerHTML = rowsHTML([
+    [`Entrada (${100 - S.ltv} %)`, E(r.entrada*pj), E(r.entrada*ps)],
+    [`ITP (${String(S.itp).replace(".", ",")} %)`, E(r.itp*pj), E(r.itp*ps)],
+    ["Notaría, registro, gestoría y tasación", E((S.g_not + S.g_tas)*pj), E((S.g_not + S.g_tas)*ps)],
+    ["Total para firmar", E(r.firmar*pj), E(r.firmar*ps), 1],
+  ], nJ, nS);
+  const L750 = prestamoPara(750, S.tin, S.anos), P750 = L750/(S.ltv/100);
+  $("check750").innerHTML = `<strong>Tu cuenta de 750 € al mes:</strong> esta casa sale a ${E(r.c)} de hipoteca entre los dos (${E(r.c*pj)} y ${E(r.c*ps)}). Con ${E(750)} al mes de cuota, el banco os prestaría unos ${E(L750)}, que con un ${S.ltv} % de financiación da para una casa de hasta ${E(P750)}. Pero a la cuota hay que sumarle unos ${E(r.gastos)} al mes de gastos de la casa. En total pagaríais ${E(r.intereses)} de intereses en ${S.anos} años.`;
+  $("thJ").textContent = `${nJ} al mes`; $("thF").textContent = `${nJ} para firmar`;
+  if (S.parte === 50){ $("thJ").textContent = "Cada uno al mes"; $("thF").textContent = "Cada uno para firmar"; }
+  const list = [...CASAS].sort((a,b) => a.price - b.price);
+  $("lista").innerHTML = list.map(c => {
+    const x = calc(c.price, c.region, ITP[c.region]);
+    const tag = {cant:"Cantabria", ast:"Asturias", city:"Ciudad"}[c.grupo];
+    return `<tr data-key="${c.key}" class="${c.key === S.casa ? "sel" : ""}" tabindex="0"><td class="place">${c.place}<span class="tag">${tag}</span></td><td class="n">${E(c.price)}</td><td class="n">${E(x.c)}</td><td class="n">${E(x.mes*pj)}</td><td class="n">${E(x.firmar*pj)}</td><td><a href="${c.url}" target="_blank" rel="noopener">Ver</a></td></tr>`;
+  }).join("");
+  try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {}
+}
+
+function pick(key){
+  const c = CASAS.find(x => x.key === key);
+  S.casa = key;
+  if (c){ S.precio = c.price; S.region = c.region; S.itp = ITP[c.region]; }
+  sync(); render();
+}
+
+fillSelect();
+if (!CASAS.some(c => c.key === S.casa) && !S.casa){ const first = CASAS.find(c => c.grupo === "cant"); if (first && S.precio === DEF.precio) { S.casa = first.key; S.precio = first.price; S.region = first.region; S.itp = ITP[first.region]; } }
+sync(); render();
+
+$("casa").addEventListener("change", e => pick(e.target.value));
+$("region").addEventListener("change", e => { S.region = e.target.value; S.itp = ITP[S.region]; sync(); render(); });
+for (const k of ["precio","itp","tin","anos","ltv","parte","g_not","g_tas","g_ibi","g_seg","g_sum","g_man","g_alq"]){
+  $(k).addEventListener("input", e => {
+    const v = parseFloat(e.target.value); S[k] = isNaN(v) ? 0 : v;
+    if (k === "precio") { S.casa = ""; $("casa").value = ""; }
+    if (k === "tin") document.querySelectorAll("#calculadora .chip").forEach(b => b.setAttribute("aria-pressed", String(+b.dataset.tin === +S.tin)));
+    render();
+  });
+}
+for (const k of ["n1","n2"]) $(k).addEventListener("input", e => { S[k] = e.target.value.trim(); render(); });
+document.querySelectorAll("#calculadora .chip").forEach(b => b.addEventListener("click", () => { S.tin = +b.dataset.tin; sync(); render(); }));
+$("lista").addEventListener("click", e => { if (e.target.closest("a")) return; const tr = e.target.closest("tr"); if (tr){ pick(tr.dataset.key); $("casa").scrollIntoView({behavior:"smooth", block:"center"}); } });
+$("lista").addEventListener("keydown", e => { if (e.key === "Enter"){ const tr = e.target.closest("tr"); if (tr) pick(tr.dataset.key); } });
+
+})();
+</script>
+
+</body>
+</html>
