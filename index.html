@@ -538,7 +538,7 @@ function render(){
 function setView(v){ view = TABS.some(t => t[0] === v) ? v : "campo"; zone = "all"; render(); }
 
 // ---- Corazones, comentarios y registro de lo que se mira (web pública) ----
-const ENDPOINT = "".startsWith("http") ? "" : "";
+const ENDPOINT = "https://script.google.com/macros/s/AKfycbytPwmbw-r9eaQzAvpaJLBuF5mxpIDP1yKbqnMDYt2bIut3fGL9c4vFXXWXjmdQk_zD/exec".startsWith("http") ? "https://script.google.com/macros/s/AKfycbytPwmbw-r9eaQzAvpaJLBuF5mxpIDP1yKbqnMDYt2bIut3fGL9c4vFXXWXjmdQk_zD/exec" : "";
 const LS = {
   get(k, d){ try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } },
   set(k, v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
