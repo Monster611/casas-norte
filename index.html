@@ -916,25 +916,43 @@ function paintMe(){
   el.querySelector("button").onclick = () => askName();
 }
 
-// tiempo mirando cada ficha
-const DWELL = {}, OPEN = {};
+// tiempo mirando cada ficha: solo cuenta con la pestaña a la vista y con foco, y mientras
+// alguien la usa (sin ratón, teclado, toques ni scroll durante 30 s deja de contar).
+// Así una pestaña olvidada abierta no llena el registro.
+const DWELL = {}, OPEN = {}, IDLE = 30000;
+let lastAct = performance.now(), active = document.visibilityState === "visible" && document.hasFocus();
+function credit(k, now){ // suma a DWELL el tiempo activo desde OPEN[k] y reinicia el contador
+  if (active) { const end = Math.min(now, lastAct + IDLE); if (end > OPEN[k]) DWELL[k] = (DWELL[k] || 0) + (end - OPEN[k]); }
+  OPEN[k] = now;
+}
+const creditAll = now => { for (const k in OPEN) credit(k, now); };
 const IO = "IntersectionObserver" in window ? new IntersectionObserver(es => es.forEach(e => {
-  const k = e.target.dataset.key; if (!k) return;
-  if (e.isIntersecting) OPEN[k] = OPEN[k] || performance.now();
-  else if (OPEN[k]) { DWELL[k] = (DWELL[k] || 0) + (performance.now() - OPEN[k]); delete OPEN[k]; }
+  const k = e.target.dataset.key; if (!k) return; const now = performance.now();
+  if (e.isIntersecting) OPEN[k] = OPEN[k] || now;
+  else if (OPEN[k]) { credit(k, now); delete OPEN[k]; }
 }), {threshold: 0.6}) : null;
 function sendDwell(){
-  const now = performance.now();
-  for (const k in OPEN) { DWELL[k] = (DWELL[k] || 0) + (now - OPEN[k]); OPEN[k] = now; }
+  creditAll(performance.now());
   for (const k in DWELL) { const s = Math.round(DWELL[k] / 1000); if (s >= 3) track("tiempo_ficha", {key: k, value: String(s)}); delete DWELL[k]; }
 }
 setInterval(sendDwell, 60000);
+function wake(){ // vuelve a contar desde ahora, sin sumar el rato parado
+  const now = performance.now(); creditAll(now); active = true; lastAct = now;
+}
+function onActivity(){
+  if (!active) { if (document.visibilityState === "visible" && document.hasFocus()) wake(); return; }
+  const now = performance.now(); if (now - lastAct > IDLE) creditAll(now); lastAct = now;
+}
+["pointermove", "pointerdown", "keydown", "wheel", "touchstart"].forEach(t => document.addEventListener(t, onActivity, {passive: true, capture: true}));
+document.addEventListener("scroll", onActivity, {passive: true, capture: true});
+addEventListener("blur", () => { creditAll(performance.now()); active = false; });
+addEventListener("focus", () => { if (document.visibilityState === "visible") wake(); });
 let visibleSince = performance.now(), totalVisible = 0;
 document.addEventListener("visibilitychange", () => {
   if (document.visibilityState === "hidden") {
-    sendDwell(); totalVisible += performance.now() - visibleSince;
+    sendDwell(); active = false; totalVisible += performance.now() - visibleSince;
     track("salida", {value: String(Math.round(totalVisible / 1000))}); flush(true);
-  } else { visibleSince = performance.now(); for (const k in OPEN) OPEN[k] = performance.now(); loadShared(); }
+  } else { visibleSince = performance.now(); creditAll(visibleSince); if (document.hasFocus()) wake(); loadShared(); }
 });
 
 // clics en anuncios, en cualquier sitio de la página
