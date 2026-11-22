@@ -129,6 +129,9 @@ select.pillbtn{appearance:none;-webkit-appearance:none;padding-right:13px;font-f
 .uso.ambas{background:rgba(52,199,89,.18);color:#1f8f3a}.uso.primera{background:rgba(0,122,255,.14);color:#0a63c9}.uso.segunda{background:rgba(255,149,0,.18);color:#b25e00}
 :root[data-theme="dark"] .uso.ambas{color:#5fe07f}:root[data-theme="dark"] .uso.primera{color:#64a8ff}:root[data-theme="dark"] .uso.segunda{color:#ffb340}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .uso.ambas{color:#5fe07f}:root:not([data-theme="light"]) .uso.primera{color:#64a8ff}:root:not([data-theme="light"]) .uso.segunda{color:#ffb340}}
+.mapctl{display:grid;gap:8px}.mrow{display:grid;gap:4px}.mlab{font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.mrow .segm button{font-size:13px;padding:7px 4px}.mrow b{font-weight:600;opacity:.6;margin-left:3px}
+#mapCount{margin:12px 2px 8px}
 .tabnote{font-size:13px;color:var(--muted);margin:2px 2px 0;line-height:1.45}
 .tabnote:empty{display:none}
 .badge-pre{position:absolute;left:10px;top:10px;font-size:12px;font-weight:600;background:rgba(255,255,255,.9);color:#1c1c1e;border-radius:999px;padding:4px 10px;backdrop-filter:blur(8px)}
@@ -297,8 +300,10 @@ input[type=range]{width:100%;accent-color:var(--accent)}
 
   <section class="view" id="v-mapa" hidden aria-labelledby="h-mapa">
     <div class="vhead"><h1 id="h-mapa">Mapa</h1><div class="hello legend"><span><i style="background:#007aff"></i>Resto</span><span><i style="background:#ff2d55"></i>Con ♥</span><span><i style="background:#ff2d55;box-shadow:0 0 0 3px #ffcc00"></i>♥ de los dos</span><span><i style="background:#ffcc00"></i>Destacada</span><span><i style="background:#34c759"></i>En contacto</span></div></div>
-    <div class="tools"><div class="tabs2" id="tabsMap" role="group" aria-label="Tipo de vivienda"></div><div class="near" id="nearMap" role="group" aria-label="Cerca de"></div><div class="near" id="mapOpts" role="group" aria-label="Qué enseñar"></div><div class="active" id="activeTagsMap"></div></div>
+    <div class="tools mapctl" id="mapCtl"></div>
     <div id="map" role="region" aria-label="Mapa de las viviendas"></div>
+    <p class="count" id="mapCount"></p>
+    <div class="grid" id="mapList"></div>
   </section>
 
   <section class="view" id="v-favoritas" hidden aria-labelledby="h-fav">
@@ -606,7 +611,7 @@ const ICON = {
 };
 
 // estado de navegación
-const F = {tab: "campo", near: null, uso: null, onlyStar: false, mapAll: false, mapFav: false, q: "", sort: "rec", zones: new Set(), maxPrice: null, minHab: 0, onlyPre: false, onlyHeart: false};
+const F = {tab: "campo", near: null, uso: null, onlyStar: false, q: "", sort: "rec", zones: new Set(), maxPrice: null, minHab: 0, onlyPre: false, onlyHeart: false};
 let currentView = "casas", map, layer, shownList = [];
 
 function tileXY(lat, lon, z){ const n = 2 ** z; return [(lon + 180) / 360 * n, (1 - Math.asinh(Math.tan(lat * Math.PI / 180)) / Math.PI) / 2 * n]; }
@@ -646,7 +651,7 @@ function activeTags(){
 }
 function paintActive(){
   const tags = activeTags();
-  for (const id of ["#activeTags", "#activeTagsMap"]) {
+  for (const id of ["#activeTags"]) {
     const el = $(id); el.innerHTML = "";
     tags.forEach(([lab, off]) => { const b = document.createElement("button"); b.className = "atag"; b.type = "button"; b.innerHTML = esc(lab) + ' <span aria-hidden="true">✕</span>';
       b.setAttribute("aria-label", "Quitar filtro " + lab); b.onclick = () => { off(); update(); track("filtro", {value: "quita " + lab}); }; el.appendChild(b); });
@@ -660,13 +665,12 @@ function paintTabs(){
   const op = opOf(F.tab), kind = kindOf(F.tab);
   const seg = (items, cur, on, cls) => { const d = document.createElement("div"); d.className = "segm" + (cls ? " " + cls : "");
     items.forEach(([k, lab]) => { const b = document.createElement("button"); b.type = "button"; b.textContent = lab; b.setAttribute("aria-pressed", String(cur === k)); b.onclick = () => on(k); d.appendChild(b); }); return d; };
-  for (const id of ["#tabs", "#tabsMap"]) {
+  for (const id of ["#tabs"]) {
     const el = $(id); el.innerHTML = "";
-    const all = id === "#tabsMap" && F.mapAll && op !== "madrid";
-    el.appendChild(seg(OPS, all ? null : op, o => setTab(tabFor(o, kind))));
-    if (op !== "madrid") el.appendChild(seg([["campo", "Casa de campo"], ["ciudad", "Piso de ciudad"]], all ? null : kind, k => setTab(tabFor(op, k)), "kind"));
+    el.appendChild(seg(OPS, op, o => setTab(tabFor(o, kind))));
+    if (op !== "madrid") el.appendChild(seg([["campo", "Casa de campo"], ["ciudad", "Piso de ciudad"]], kind, k => setTab(tabFor(op, k)), "kind"));
   }
-  for (const id of ["#near", "#nearMap"]) {
+  for (const id of ["#near"]) {
     const el = $(id); el.innerHTML = "";
     const ns = DATA.filter(r => inTab(r) && isStar(r.key)).length;
     if (ns || F.onlyStar) { const b = document.createElement("button"); b.type = "button"; b.innerHTML = `⭐ Destacadas<b>${ns}</b>`; b.setAttribute("aria-pressed", String(F.onlyStar));
@@ -675,12 +679,12 @@ function paintTabs(){
     if (op === "comprar") [["primera", "Para primera vivienda"], ["segunda", "Para segunda vivienda"]].forEach(([k, lab]) => {
       const n = DATA.filter(r => inTab(r) && (r.uso === k || r.uso === "ambas")).length; const b = document.createElement("button"); b.type = "button"; b.innerHTML = esc(lab) + `<b>${n}</b>`;
       b.setAttribute("aria-pressed", String(F.uso === k)); b.onclick = () => { F.uso = F.uso === k ? null : k; update(); track("filtro", {value: lab}); }; el.appendChild(b); });
-    const inT = id === "#nearMap" && F.mapAll ? DATA.filter(r => r.vt !== "madrid" && !isGone(r.key)) : DATA.filter(inTab), opts = [[null, id === "#nearMap" && F.mapAll ? "Todas (todo el norte)" : "Todas", inT.length]].concat(CITY.map(c => [c[0], "Cerca de " + c[1], inT.filter(r => r.near === c[0]).length]), [["lejos", "Más lejos", inT.filter(r => r.near === "lejos").length]]);
+    const inT = DATA.filter(inTab), opts = [[null, "Todas", inT.length]].concat(CITY.map(c => [c[0], "Cerca de " + c[1], inT.filter(r => r.near === c[0]).length]), [["lejos", "Más lejos", inT.filter(r => r.near === "lejos").length]]);
     opts.filter(o => o[0] === null || o[2]).forEach(([k, lab, n]) => { const b = document.createElement("button"); b.type = "button"; b.innerHTML = esc(lab) + `<b>${n}</b>`;
-      b.setAttribute("aria-pressed", String(F.near === k)); b.onclick = () => { F.near = k; if (k === null && id === "#nearMap" && op !== "madrid") F.mapAll = true; update(); track("filtro", {value: lab}); }; el.appendChild(b); });
+      b.setAttribute("aria-pressed", String(F.near === k)); b.onclick = () => { F.near = k; update(); track("filtro", {value: lab}); }; el.appendChild(b); });
   }
 }
-function setTab(k){ F.mapAll = false; if (F.tab === k) { update(); return; } F.tab = k; if (F.near && !DATA.some(r => r.vt === k && r.near === F.near)) F.near = null; F.zones.clear(); F.maxPrice = null; update(); track("pestana", {value: k}); }
+function setTab(k){ if (F.tab === k) return; F.tab = k; if (F.near && !DATA.some(r => r.vt === k && r.near === F.near)) F.near = null; F.zones.clear(); F.maxPrice = null; update(); track("pestana", {value: k}); }
 function paintShortcuts(){
   const el = $("#shortcuts"); el.innerHTML = "";
   TABS.forEach(([k, lab, long]) => { const b = document.createElement("button"); b.type = "button"; b.className = "shortcut" + (F.tab === k ? " on" : "");
@@ -718,29 +722,45 @@ function mapKind(r){ const st = statusOf(r.key);
   if (st && st.v !== "Descartado") return ["#34c759", 11]; if (heartsOf(r.key).length > 1) return ["#ff2d55", 13, true];
   if (isStar(r.key)) return ["#ffcc00", 11]; if (heartsOf(r.key).length) return ["#ff2d55", 10]; return ["#007aff", 7]; }
 const isFavR = r => heartsOf(r.key).length || isStar(r.key) || statusOf(r.key);
-function paintMapOpts(){
-  const el = $("#mapOpts"); if (!el) return; el.innerHTML = "";
-  const opts = [];
-  opts.push(["mapFav", "Solo favoritas"]);
-  opts.forEach(([k, lab]) => { const b = document.createElement("button"); b.type = "button"; b.textContent = lab; b.setAttribute("aria-pressed", String(!!F[k]));
-    b.onclick = () => { F[k] = !F[k]; paintMapOpts(); paintMap(); track("mapa_opcion", {value: lab + (F[k] ? " on" : " off")}); }; el.appendChild(b); });
+// mapa: controles propios, independientes de las pestañas de la lista
+const M = {zona: "norte", op: "todo", kind: "todo", near: null, fav: false};
+function mapRows(){ return DATA.filter(r => !isGone(r.key)
+  && (M.zona === "todo" || (M.zona === "madrid") === (r.vt === "madrid"))
+  && (M.op === "todo" || (M.op === "comprar") === (r.tab === "campo" || r.tab === "ciudad"))
+  && (M.kind === "todo" || r.vt === "madrid" || kindOf(r.vt) === M.kind)
+  && (!M.near || r.near === M.near)
+  && (!M.fav || isFavR(r))); }
+function paintMapCtl(){
+  const el = $("#mapCtl"); el.innerHTML = "";
+  const group = (g, title, items, chips) => {
+    const w = document.createElement("div"); w.className = "mrow"; w.innerHTML = `<span class="mlab">${title}</span>`;
+    const d = document.createElement("div"); d.className = chips ? "near" : "segm";
+    items.forEach(([v, lab]) => { const save = M[g]; M[g] = v; const n = mapRows().length; M[g] = save;
+      const bt = document.createElement("button"); bt.type = "button"; bt.innerHTML = esc(lab) + `<b>${n}</b>`; bt.setAttribute("aria-pressed", String(M[g] === v));
+      bt.onclick = () => { M[g] = v; if (g === "zona" && v === "madrid") { M.near = null; M.kind = "todo"; } paintMap(); track("mapa_filtro", {value: title + ": " + lab}); };
+      d.appendChild(bt); });
+    w.appendChild(d); el.appendChild(w); };
+  group("zona", "Zona", [["todo", "Todo"], ["norte", "Norte"], ["madrid", "Madrid"]]);
+  group("op", "Qué", [["todo", "Todo"], ["comprar", "Comprar"], ["alquilar", "Alquilar"]]);
+  if (M.zona !== "madrid") {
+    group("kind", "Tipo", [["todo", "Todo"], ["campo", "Casa de campo"], ["ciudad", "Piso de ciudad"]]);
+    group("near", "Cerca de", [[null, "Cualquier sitio"], ["gijon", "Gijón"], ["oviedo", "Oviedo"], ["santander", "Santander"], ["lejos", "Más lejos"]], true);
+  }
+  group("fav", "Mostrar", [[false, "Todas"], [true, "Solo favoritas"]]);
 }
 function paintMap(){
   if (!window.L || currentView !== "mapa") return;
-  paintMapOpts();
-  let rows;
-  if (F.mapAll && F.tab !== "madrid") { const save = F.tab; rows = [];
-    for (const t of ["campo", "ciudad", "alq_campo", "alq_ciudad"]) { F.tab = t; rows.push(...filtered()); } F.tab = save; }
-  else rows = filtered();
-  if (F.mapFav) rows = rows.filter(isFavR);
+  paintMapCtl();
+  const rows = mapRows();
   if (!map) {
-    map = L.map("map", {minZoom: 6, maxZoom: 16, zoomControl: false});
+    map = L.map("map", {minZoom: 5, maxZoom: 16, zoomControl: false});
     L.control.zoom({position: "topright"}).addTo(map);
-    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {minZoom: 6, maxZoom: 16, attribution: "© OpenStreetMap"}).addTo(map);
+    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {minZoom: 5, maxZoom: 16, attribution: "© OpenStreetMap"}).addTo(map);
     layer = L.layerGroup().addTo(map);
   }
   layer.clearLayers();
   const seen = {}, pts = [];
+  const order = rows.slice().sort((a, b) => (isFavR(b) ? 1 : 0) - (isFavR(a) ? 1 : 0) || a.price - b.price);
   rows.slice().sort((a, b) => mapKind(a)[1] - mapKind(b)[1]).forEach(r => { if (!r.ll) return;
     const k = r.ll.join(","), i = seen[k] = (seen[k] || 0) + 1;
     const ll = i === 1 ? r.ll : [r.ll[0] + 0.004 * Math.sqrt(i) * Math.cos(i * 2.4), r.ll[1] + 0.0055 * Math.sqrt(i) * Math.sin(i * 2.4)];
@@ -748,11 +768,14 @@ function paintMap(){
     const m = L.circleMarker(ll, {radius: rad, color: both ? "#ffcc00" : "#fff", weight: both ? 4 : 2.5, fillOpacity: 1, fillColor: col}).addTo(layer);
     m.bindPopup(() => { const d = document.createElement("div"); d.className = "mpop"; const st = statusOf(r.key), hs = heartsOf(r.key);
       const tipo = (TABS.find(t => t[0] === r.vt) || [, , ""])[2];
-      d.innerHTML = `<b></b><span>${euros(r)} · ${r.hab} hab. · ${fmt(r.m2)} m²</span><span>${esc(tipo)}${hs.length ? " · ♥ " + esc(hs.join(", ")) : ""}${isStar(r.key) ? " · ⭐" : ""}${st ? " · " + esc(st.v) : ""}</span><button type="button">Ver ficha</button>`;
-      d.querySelector("b").textContent = r.place; d.querySelector("button").onclick = () => { map.closePopup(); openDetail(r.key, rows.map(x => x.key)); };
+      d.innerHTML = `<b></b><span>${euros(r)} · ${r.hab} hab. · ${fmt(r.m2)} m²</span><span>${esc(tipo)}${r.uso ? " · " + esc(USO[r.uso]) : ""}</span><span>${hs.length ? "♥ " + esc(hs.join(", ")) : ""}${isStar(r.key) ? " · ⭐ Destacada" : ""}${st ? " · " + esc(st.v) : ""}</span><button type="button">Ver ficha</button>`;
+      d.querySelector("b").textContent = r.place; d.querySelector("button").onclick = () => { map.closePopup(); openDetail(r.key, order.map(x => x.key)); };
       track("mapa_punto", {key: r.key}); return d; }, {maxWidth: 260});
     pts.push(ll); });
   setTimeout(() => { map.invalidateSize(); if (pts.length) map.fitBounds(pts, {padding: [30, 30], maxZoom: 12}); }, 30);
+  // lista de lo que se ve en el mapa
+  $("#mapCount").textContent = rows.length ? `${rows.length} casa${rows.length === 1 ? "" : "s"} en el mapa. Las favoritas, primero:` : "No hay casas con estos filtros.";
+  const el = $("#mapList"); el.innerHTML = ""; order.forEach(r => el.appendChild(cardEl(r)));
 }
 function paintFavs(){
   const el = $("#favList"); el.innerHTML = "";
@@ -796,7 +819,6 @@ function go(v){ location.hash = v; }
 function showView(v){
   if (!["casas", "mapa", "favoritas", "calculadora", "comentarios"].includes(v)) v = "casas";
   currentView = v;
-  if (v === "mapa" && F.tab !== "madrid") F.mapAll = true;
   document.querySelectorAll(".view").forEach(s => s.hidden = s.id !== "v-" + v);
   document.querySelectorAll(".tabbar a").forEach(a => { if (a.dataset.view === v) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
   update(); scrollTo(0, 0); track("vista", {value: v});
@@ -1176,7 +1198,7 @@ function watchCalc(){
 
 
 // si hay una versión más nueva publicada (la caché del móvil o de GitHub puede servir la vieja), recarga una vez
-const BUILD = "20261122105157";
+const BUILD = "20261122105557";
 fetch(location.pathname + "?nc=" + Date.now(), {cache: "no-store"}).then(r => r.text()).then(t => {
   const m = t.match(/const BUILD = "(\d+)"/); if (!m || m[1] === BUILD) return;
   let ya = false; try { ya = sessionStorage.getItem("casas-upd-" + m[1]); sessionStorage.setItem("casas-upd-" + m[1], "1"); } catch (e) {}
