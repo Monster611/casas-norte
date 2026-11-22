@@ -123,6 +123,7 @@ select.pillbtn{appearance:none;-webkit-appearance:none;padding-right:13px;font-f
 .near button{border:1px solid var(--line,rgba(118,118,128,.25));background:var(--surface);color:var(--fg);border-radius:999px;padding:6px 12px;font-size:13px;cursor:pointer}
 .near button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
 .near b{font-weight:600;opacity:.7;margin-left:4px}
+.gone{margin-top:24px}.gone summary{cursor:pointer;color:var(--muted);font-size:14px;padding:8px 0}.gone .grid{margin-top:10px}
 .tabnote{font-size:13px;color:var(--muted);margin:2px 2px 0;line-height:1.45}
 .tabnote:empty{display:none}
 .badge-pre{position:absolute;left:10px;top:10px;font-size:12px;font-weight:600;background:rgba(255,255,255,.9);color:#1c1c1e;border-radius:999px;padding:4px 10px;backdrop-filter:blur(8px)}
@@ -741,7 +742,10 @@ function paintFavs(){
   if (people.length > 1) sec("Os gustan a los dos", take(rest.filter(r => heartsOf(r.key).length > 1)));
   people.forEach(p => sec(people.length > 1 ? "Solo a " + p : "Le gustan a " + p, take(rest.filter(r => heartsOf(r.key).includes(p)))));
   sec("Descartadas", take(loved.filter(r => (statusOf(r.key) || {}).v === "Descartado")));
-  if (canRemove()) sec("Quitadas de la lista (solo las ves tú)", DATA.filter(r => isGone(r.key)));
+  const gone = canRemove() ? DATA.filter(r => isGone(r.key)) : [];
+  if (gone.length) { const dt = document.createElement("details"); dt.className = "gone"; dt.style.gridColumn = "1 / -1";
+    dt.innerHTML = `<summary>Quitadas (${gone.length}) · solo las ves tú</summary><div class="grid"></div>`;
+    const g = dt.querySelector(".grid"); gone.sort((a, b) => a.price - b.price).forEach(r => g.appendChild(cardEl(r))); el.appendChild(dt); }
   shownList = [...el.querySelectorAll(".card")].map(c => c.dataset.key);
 }
 function paintFeed(){
