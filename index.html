@@ -919,13 +919,14 @@ function contexto(r){
   return base + " " + precio;
 }
 function waText(r, motivo){
+  // sin emojis: WhatsApp en el ordenador los rompe cuando el texto llega por enlace. *x* = negrita en WhatsApp
   const who = ALIAS[ME()] || ME() || "Alguien";
-  const L = [`⭐ ${who} ha destacado esto como una OPORTUNIDAD ÚNICA, de las que no duran nada:`, "",
-    `🏠 ${r.place}`, `💶 ${fmt(r.price)} €${RENT(r.tab) ? "/mes" : ""} · ${r.hab} hab. · ${fmt(r.m2)} m²`];
-  if (r.upd) L.push(`🕒 Anuncio actualizado ${hace(r.upd)} en ${r.site}`);
-  L.push(`📊 ${contexto(r)}`);
-  if (motivo) L.push(`💬 Por qué: «${motivo}»`);
-  L.push("", `👉 Anuncio: ${r.url}`, `👉 En nuestra web: ${WEB}#ficha=${r.key}`);
+  const L = [`*OPORTUNIDAD ÚNICA* · ${who} ha destacado esta casa, de las que no duran nada:`, "",
+    `*${r.place}*`, `${fmt(r.price)} €${RENT(r.tab) ? "/mes" : ""} · ${r.hab} hab. · ${fmt(r.m2)} m²`];
+  if (r.upd) L.push(`Anuncio actualizado ${hace(r.upd)} en ${r.site}.`);
+  L.push(contexto(r));
+  if (motivo) L.push("", `*Por qué:* ${motivo}`);
+  L.push("", `Anuncio: ${r.url}`, `En nuestra web: ${WEB}#ficha=${r.key}`);
   return L.join("\n");
 }
 const SENT = {};
