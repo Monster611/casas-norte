@@ -115,6 +115,7 @@ select.pillbtn{appearance:none;-webkit-appearance:none;padding-right:13px;font-f
 .badge-star{position:absolute;left:10px;bottom:10px;font-size:12px;font-weight:700;background:#ffcc00;color:#1c1c1e;border-radius:999px;padding:4px 10px}
 .social .star{border:0;background:none;color:var(--fg);font:inherit;cursor:pointer;padding:6px 0}
 .social .star[aria-pressed="true"]{color:#c99700;font-weight:600}
+.badge-both{position:absolute;right:10px;bottom:10px;font-size:12px;font-weight:700;background:var(--heart);color:#fff;border-radius:999px;padding:4px 10px}
 .badge-new{position:absolute;right:52px;top:10px;font-size:12px;font-weight:700;background:var(--accent);color:#fff;border-radius:999px;padding:4px 10px}
 .tabs2{display:grid;gap:8px}
 .tabs2 .segm.kind button{font-size:13px}
@@ -620,7 +621,8 @@ function filtered(){
   const q = F.q.trim().toLowerCase();
   let rows = DATA.filter(r => inTab(r) && (!F.onlyStar || isStar(r.key)) && (!F.near || F.tab === "madrid" || r.near === F.near) && (!F.zones.size || F.zones.has(r.zone)) && (!F.maxPrice || r.price <= F.maxPrice) && (!F.minHab || r.hab >= F.minHab)
     && (!F.onlyPre || r.fav) && (!F.onlyHeart || heartsOf(r.key).length) && (!q || (r.place + " " + (Z[r.zone] || "") + " " + r.note).toLowerCase().includes(q)));
-  const by = {rec: (a, b) => (isStar(b.key) - isStar(a.key)) || (b.fav - a.fav) || a.price - b.price, pasc: (a, b) => a.price - b.price, pdesc: (a, b) => b.price - a.price,
+  const both = k => heartsOf(k).length > 1;
+  const by = {rec: (a, b) => (isStar(b.key) - isStar(a.key)) || (both(b.key) - both(a.key)) || (b.fav - a.fav) || a.price - b.price, pasc: (a, b) => a.price - b.price, pdesc: (a, b) => b.price - a.price,
     m2: (a, b) => b.m2 - a.m2, love: (a, b) => heartsOf(b.key).length - heartsOf(a.key).length || (b.fav - a.fav) || a.price - b.price}[F.sort];
   return rows.sort(by);
 }
@@ -677,7 +679,7 @@ function paintShortcuts(){
 function cardEl(r){
   const b = document.createElement("article"); b.className = "card"; b.dataset.key = r.key; b.tabIndex = 0; b.setAttribute("role", "button");
   const hs = heartsOf(r.key), mine = !!ME() && hs.includes(ME()), nc = commentsOf(r.key).length;
-  b.innerHTML = `<div class="thumb"><div class="mosaic"></div><span class="pin"></span>${r.fav ? '<span class="badge-pre">Preseleccionada</span>' : ""}${r.nuevo ? '<span class="badge-new">Nueva</span>' : ""}${isStar(r.key) ? '<span class="badge-star">⭐ Destacada</span>' : ""}
+  b.innerHTML = `<div class="thumb"><div class="mosaic"></div><span class="pin"></span>${r.fav ? '<span class="badge-pre">Preseleccionada</span>' : ""}${r.nuevo ? '<span class="badge-new">Nueva</span>' : ""}${isStar(r.key) ? '<span class="badge-star">⭐ Destacada</span>' : ""}${heartsOf(r.key).length > 1 ? '<span class="badge-both">💞 A los dos</span>' : ""}
       <button class="hbtn" type="button" aria-pressed="${mine}" aria-label="Me gusta">${ICON.heart}</button></div>
     <div class="c-line"><div class="c-title"></div><div class="c-price">${euros(r)}</div></div>
     <div class="c-sub"><span>${esc(Z[r.zone] || "")}</span>${r.nearKm >= 5 ? `<span>a ${r.nearKm} km de ${esc(r.nearName)}</span>` : ""}<span>${r.hab} hab.</span><span>${fmt(r.m2)} m²</span>${parcOf(r) ? `<span>${esc(parcOf(r))} parcela</span>` : ""}</div>
