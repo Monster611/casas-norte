@@ -202,6 +202,7 @@ select.pillbtn{appearance:none;-webkit-appearance:none;padding-right:13px;font-f
 .c-estado{display:inline-block;font-size:13px;font-weight:600;border-radius:999px;padding:2px 10px;background:rgba(52,199,89,.16);color:#1f8f3a}
 .c-estado.descartado{background:rgba(142,142,147,.18);color:var(--muted)}
 .card .estado{margin:6px 0 2px}
+.social .quitar{border:0;background:none;color:#d70015;font:inherit;font-size:14px;cursor:pointer;padding:8px 0 0;text-align:left}
 .social .sent{margin:4px 0 0;font-size:14px;color:#c99700;font-weight:600}
 .sform label{display:grid;gap:6px;font-size:14px;color:var(--muted)}
 .sform textarea{font:inherit;font-size:16px;color:var(--fg);background:var(--surface);border:0;border-radius:12px;padding:12px 14px;width:100%;resize:vertical;outline:2px solid #ffcc00}
@@ -613,7 +614,7 @@ function mosaic(el, lat, lon, z, cols, rows){
 const parcOf = r => typeof r.parc === "number" ? fmt(r.parc) + " m²" : (r.parc && r.parc !== "—" ? r.parc : "");
 
 // filtros
-const inTab = r => r.vt === F.tab;
+const inTab = r => r.vt === F.tab && !isGone(r.key);
 function priceBounds(){ const ps = DATA.filter(inTab).map(r => r.price); return [Math.min(...ps), Math.max(...ps)]; }
 function filtered(){
   const q = F.q.trim().toLowerCase();
@@ -669,7 +670,7 @@ function setTab(k){ if (F.tab === k) return; F.tab = k; if (F.near && !DATA.some
 function paintShortcuts(){
   const el = $("#shortcuts"); el.innerHTML = "";
   TABS.forEach(([k, lab, long]) => { const b = document.createElement("button"); b.type = "button"; b.className = "shortcut" + (F.tab === k ? " on" : "");
-    b.innerHTML = `<b>${DATA.filter(r => r.vt === k).length}</b><span>${long}</span>`; b.onclick = () => setTab(k); el.appendChild(b); });
+    b.innerHTML = `<b>${DATA.filter(r => r.vt === k && !isGone(r.key)).length}</b><span>${long}</span>`; b.onclick = () => setTab(k); el.appendChild(b); });
   const n = DATA.filter(r => heartsOf(r.key).length).length;
   const h = document.createElement("button"); h.type = "button"; h.className = "shortcut hearts"; h.innerHTML = `<b>${n}</b><span>con ♥</span>`; h.onclick = () => go("favoritas"); el.appendChild(h);
 }
@@ -723,10 +724,10 @@ function paintMap(){
 }
 function paintFavs(){
   const el = $("#favList"); el.innerHTML = "";
-  const loved = DATA.filter(r => heartsOf(r.key).length || isStar(r.key) || statusOf(r.key));
+  const loved = DATA.filter(r => !isGone(r.key) && (heartsOf(r.key).length || isStar(r.key) || statusOf(r.key)));
   $("#favBadge").textContent = loved.length || "";
   if (currentView !== "favoritas") return;
-  if (!loved.length) { el.innerHTML = `<div class="empty">${ICON.heart}<p>Aún no hay favoritas.<br>Toca el ♥ en las casas que te gusten.</p><a class="btn small" href="#casas">Ver casas</a></div>`; return; }
+  if (!loved.length && !(canRemove() && DATA.some(r => isGone(r.key)))) { el.innerHTML = `<div class="empty">${ICON.heart}<p>Aún no hay favoritas.<br>Toca el ♥ en las casas que te gusten.</p><a class="btn small" href="#casas">Ver casas</a></div>`; return; }
   const sec = (title, rows, sort = (a, b) => a.price - b.price) => { if (!rows.length) return; const h = document.createElement("h2"); h.className = "sec-h"; h.textContent = title; el.appendChild(h);
     rows.sort(sort).forEach(r => { const c = cardEl(r); c.appendChild(statusSelect(r.key)); el.appendChild(c); }); };
   const done = new Set(), take = rows => rows.filter(r => !done.has(r.key) && done.add(r.key));
@@ -738,6 +739,7 @@ function paintFavs(){
   if (people.length > 1) sec("Os gustan a los dos", take(rest.filter(r => heartsOf(r.key).length > 1)));
   people.forEach(p => sec(people.length > 1 ? "Solo a " + p : "Le gustan a " + p, take(rest.filter(r => heartsOf(r.key).includes(p)))));
   sec("Descartadas", take(loved.filter(r => (statusOf(r.key) || {}).v === "Descartado")));
+  if (canRemove()) sec("Quitadas de la lista (solo las ves tú)", DATA.filter(r => isGone(r.key)));
   shownList = [...el.querySelectorAll(".card")].map(c => c.dataset.key);
 }
 function paintFeed(){
@@ -960,6 +962,17 @@ function statusSelect(key){
   l.onclick = e => e.stopPropagation();
   return l;
 }
+// quitar una casa de la lista (para los dos). Solo Koke (nombre «Jorge» en la web) ve el botón.
+const QUITA = "🗑 Quitada de la lista", VUELVE = "↩ Vuelve a la lista";
+const canRemove = () => ME() === "Jorge";
+function isGone(key){ const cs = commentsOf(key).filter(c => String(c.text).startsWith(QUITA) || String(c.text).startsWith(VUELVE));
+  return cs.length > 0 && cs[cs.length - 1].text.startsWith(QUITA); }
+function setGone(key, gone){
+  needName(() => { if (!canRemove()) return; const id = rid(), ts = new Date().toISOString(), text = gone ? QUITA : VUELVE;
+    MINE.comments[id] = {key, person: ME(), text, ts}; LS.set("casas-mis", MINE);
+    track("comentario", {key, id, value: text}); track(gone ? "quitada" : "recuperada", {key}); refresh(key); flush();
+    if (gone && typeof closeDetail === "function" && dOpen === key) closeDetail(); });
+}
 const SENT = {};
 function starNow(key, motivo){
   needName(() => {
@@ -999,6 +1012,7 @@ function fillSocial(d){
   d.innerHTML = `<div class="soc-row">${d.dataset.noheart ? "" : `<button type="button" class="heart" aria-pressed="${mine}">${mine ? "♥" : "♡"} Me gusta</button><span class="who"></span>`}
     <button type="button" class="cbtn">${d.dataset.noheart ? "Escribir un comentario" : "Comentar"}</button>${d.dataset.noheart ? "" : `<button type="button" class="star" aria-pressed="${starsOf(key).some(c => c.person === me)}">${isStar(key) ? "★ Destacada" : "☆ Destacar"}</button>`}</div>
     <div class="estado-row"></div>
+    ${!d.dataset.noheart && canRemove() ? `<button type="button" class="quitar">${isGone(key) ? "↩ Volver a ponerla en la lista" : "🗑 Quitar de la lista"}</button>` : ""}
     ${SENT[key] ? '<p class="sent">⭐ Destacada. Se ha abierto WhatsApp con el mensaje: elige «Oportunidades Únicas» y envíalo.</p>' : ""}
     <div class="clist"></div>
     <form class="sform" hidden><label>¿Por qué es una oportunidad? Se leerá en el grupo de WhatsApp.<textarea rows="3" maxlength="500" placeholder="Ej.: conozco la zona, me he paseado por ahí y me encanta"></textarea></label><div class="cf-actions"><button type="submit" class="save">⭐ Destacar y abrir WhatsApp</button><button type="button" class="cancel">Cancelar</button></div></form>
@@ -1025,6 +1039,7 @@ function fillSocial(d){
     const id = rid(), ts = new Date().toISOString(); MINE.comments[id] = {key, person: ME(), text, ts}; LS.set("casas-mis", MINE);
     track("comentario", {key, id, value: text}); form.hidden = true; ta.value = ""; refresh(key); flush(); };
   const er = d.querySelector(".estado-row"); if (er) { if (d.dataset.noheart) er.remove(); else { er.appendChild(statusSelect(key)); const st = statusOf(key); if (st) { const s2 = document.createElement("small"); s2.textContent = `${st.person}, ${when(st.ts)}`; er.appendChild(s2); } } }
+  const qb = d.querySelector(".quitar"); if (qb) qb.onclick = () => setGone(key, !isGone(key));
   const sb = d.querySelector(".star"), sf = d.querySelector(".sform");
   if (sb) sb.onclick = () => needName(() => { if (starsOf(key).some(c => c.person === ME())) return unstar(key); sf.hidden = false; sf.querySelector("textarea").focus(); });
   sf.querySelector(".cancel").onclick = () => { sf.hidden = true; };
