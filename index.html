@@ -124,6 +124,7 @@ select.pillbtn{appearance:none;-webkit-appearance:none;padding-right:13px;font-f
 .near button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
 .near b{font-weight:600;opacity:.7;margin-left:4px}
 .gone{margin-top:24px}.gone summary{cursor:pointer;color:var(--muted);font-size:14px;padding:8px 0}.gone .grid{margin-top:10px}
+.legend{display:flex;flex-wrap:wrap;gap:4px 14px}.legend span{display:inline-flex;align-items:center;gap:6px}.legend i{width:12px;height:12px;border-radius:50%;border:2px solid #fff;display:inline-block}
 .tabnote{font-size:13px;color:var(--muted);margin:2px 2px 0;line-height:1.45}
 .tabnote:empty{display:none}
 .badge-pre{position:absolute;left:10px;top:10px;font-size:12px;font-weight:600;background:rgba(255,255,255,.9);color:#1c1c1e;border-radius:999px;padding:4px 10px;backdrop-filter:blur(8px)}
@@ -291,8 +292,8 @@ input[type=range]{width:100%;accent-color:var(--accent)}
   </section>
 
   <section class="view" id="v-mapa" hidden aria-labelledby="h-mapa">
-    <div class="vhead"><h1 id="h-mapa">Mapa</h1><div class="hello">Toca un punto para ver la casa. Rojo: con ♥.</div></div>
-    <div class="tools"><div class="tabs2" id="tabsMap" role="group" aria-label="Tipo de vivienda"></div><div class="near" id="nearMap" role="group" aria-label="Cerca de"></div><div class="active" id="activeTagsMap"></div></div>
+    <div class="vhead"><h1 id="h-mapa">Mapa</h1><div class="hello legend"><span><i style="background:#007aff"></i>Resto</span><span><i style="background:#ff2d55"></i>Con ♥</span><span><i style="background:#ff2d55;box-shadow:0 0 0 3px #ffcc00"></i>♥ de los dos</span><span><i style="background:#ffcc00"></i>Destacada</span><span><i style="background:#34c759"></i>En contacto</span></div></div>
+    <div class="tools"><div class="tabs2" id="tabsMap" role="group" aria-label="Tipo de vivienda"></div><div class="near" id="nearMap" role="group" aria-label="Cerca de"></div><div class="near" id="mapOpts" role="group" aria-label="Qué enseñar"></div><div class="active" id="activeTagsMap"></div></div>
     <div id="map" role="region" aria-label="Mapa de las viviendas"></div>
   </section>
 
@@ -599,7 +600,7 @@ const ICON = {
 };
 
 // estado de navegación
-const F = {tab: "campo", near: null, onlyStar: false, q: "", sort: "rec", zones: new Set(), maxPrice: null, minHab: 0, onlyPre: false, onlyHeart: false};
+const F = {tab: "campo", near: null, onlyStar: false, mapAll: false, mapFav: false, q: "", sort: "rec", zones: new Set(), maxPrice: null, minHab: 0, onlyPre: false, onlyHeart: false};
 let currentView = "casas", map, layer, shownList = [];
 
 function tileXY(lat, lon, z){ const n = 2 ** z; return [(lon + 180) / 360 * n, (1 - Math.asinh(Math.tan(lat * Math.PI / 180)) / Math.PI) / 2 * n]; }
@@ -669,7 +670,7 @@ function paintTabs(){
       b.setAttribute("aria-pressed", String(F.near === k)); b.onclick = () => { F.near = k; update(); track("filtro", {value: lab}); }; el.appendChild(b); });
   }
 }
-function setTab(k){ if (F.tab === k) return; F.tab = k; if (F.near && !DATA.some(r => r.vt === k && r.near === F.near)) F.near = null; F.zones.clear(); F.maxPrice = null; update(); track("pestana", {value: k}); }
+function setTab(k){ F.mapAll = false; if (F.tab === k) { update(); return; } F.tab = k; if (F.near && !DATA.some(r => r.vt === k && r.near === F.near)) F.near = null; F.zones.clear(); F.maxPrice = null; update(); track("pestana", {value: k}); }
 function paintShortcuts(){
   const el = $("#shortcuts"); el.innerHTML = "";
   TABS.forEach(([k, lab, long]) => { const b = document.createElement("button"); b.type = "button"; b.className = "shortcut" + (F.tab === k ? " on" : "");
@@ -702,26 +703,45 @@ function paintList(){
   rows.forEach(r => el.appendChild(cardEl(r)));
 }
 function clearFilters(){ F.near = null; F.onlyStar = false; F.zones.clear(); F.maxPrice = null; F.minHab = 0; F.onlyPre = false; F.onlyHeart = false; F.q = ""; $("#q").value = ""; }
+function mapKind(r){ const st = statusOf(r.key);
+  if (st && st.v !== "Descartado") return ["#34c759", 11]; if (heartsOf(r.key).length > 1) return ["#ff2d55", 13, true];
+  if (isStar(r.key)) return ["#ffcc00", 11]; if (heartsOf(r.key).length) return ["#ff2d55", 10]; return ["#007aff", 7]; }
+const isFavR = r => heartsOf(r.key).length || isStar(r.key) || statusOf(r.key);
+function paintMapOpts(){
+  const el = $("#mapOpts"); if (!el) return; el.innerHTML = "";
+  const opts = [];
+  if (F.tab !== "madrid") opts.push(["mapAll", "Todo el norte junto (comprar y alquilar)"]);
+  opts.push(["mapFav", "Solo favoritas"]);
+  opts.forEach(([k, lab]) => { const b = document.createElement("button"); b.type = "button"; b.textContent = lab; b.setAttribute("aria-pressed", String(!!F[k]));
+    b.onclick = () => { F[k] = !F[k]; paintMapOpts(); paintMap(); track("mapa_opcion", {value: lab + (F[k] ? " on" : " off")}); }; el.appendChild(b); });
+}
 function paintMap(){
   if (!window.L || currentView !== "mapa") return;
-  const rows = filtered();
+  paintMapOpts();
+  $("#tabsMap").style.opacity = F.mapAll && F.tab !== "madrid" ? ".45" : "";
+  let rows;
+  if (F.mapAll && F.tab !== "madrid") { const save = F.tab; rows = [];
+    for (const t of ["campo", "ciudad", "alq_campo", "alq_ciudad"]) { F.tab = t; rows.push(...filtered()); } F.tab = save; }
+  else rows = filtered();
+  if (F.mapFav) rows = rows.filter(isFavR);
   if (!map) {
-    map = L.map("map", {minZoom: 7, maxZoom: 16, zoomControl: false});
+    map = L.map("map", {minZoom: 6, maxZoom: 16, zoomControl: false});
     L.control.zoom({position: "topright"}).addTo(map);
-    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {minZoom: 7, maxZoom: 16, attribution: "© OpenStreetMap"}).addTo(map);
+    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {minZoom: 6, maxZoom: 16, attribution: "© OpenStreetMap"}).addTo(map);
     layer = L.layerGroup().addTo(map);
   }
   layer.clearLayers();
-  const cs = getComputedStyle(document.documentElement), seen = {}, pts = [];
-  rows.forEach(r => { if (!r.ll) return;
+  const seen = {}, pts = [];
+  rows.slice().sort((a, b) => mapKind(a)[1] - mapKind(b)[1]).forEach(r => { if (!r.ll) return;
     const k = r.ll.join(","), i = seen[k] = (seen[k] || 0) + 1;
     const ll = i === 1 ? r.ll : [r.ll[0] + 0.004 * Math.sqrt(i) * Math.cos(i * 2.4), r.ll[1] + 0.0055 * Math.sqrt(i) * Math.sin(i * 2.4)];
-    const loved = heartsOf(r.key).length > 0;
-    const m = L.circleMarker(ll, {radius: loved ? 11 : 8, color: "#fff", weight: 2.5, fillOpacity: 1, fillColor: cs.getPropertyValue(loved ? "--heart" : "--accent").trim()}).addTo(layer);
-    m.bindPopup(() => { const d = document.createElement("div"); d.className = "mpop";
-      d.innerHTML = `<b></b><span>${euros(r)} · ${r.hab} hab. · ${fmt(r.m2)} m²</span><button type="button">Ver ficha</button>`;
+    const [col, rad, both] = mapKind(r);
+    const m = L.circleMarker(ll, {radius: rad, color: both ? "#ffcc00" : "#fff", weight: both ? 4 : 2.5, fillOpacity: 1, fillColor: col}).addTo(layer);
+    m.bindPopup(() => { const d = document.createElement("div"); d.className = "mpop"; const st = statusOf(r.key), hs = heartsOf(r.key);
+      const tipo = (TABS.find(t => t[0] === r.vt) || [, , ""])[2];
+      d.innerHTML = `<b></b><span>${euros(r)} · ${r.hab} hab. · ${fmt(r.m2)} m²</span><span>${esc(tipo)}${hs.length ? " · ♥ " + esc(hs.join(", ")) : ""}${isStar(r.key) ? " · ⭐" : ""}${st ? " · " + esc(st.v) : ""}</span><button type="button">Ver ficha</button>`;
       d.querySelector("b").textContent = r.place; d.querySelector("button").onclick = () => { map.closePopup(); openDetail(r.key, rows.map(x => x.key)); };
-      track("mapa_punto", {key: r.key}); return d; }, {maxWidth: 240});
+      track("mapa_punto", {key: r.key}); return d; }, {maxWidth: 260});
     pts.push(ll); });
   setTimeout(() => { map.invalidateSize(); if (pts.length) map.fitBounds(pts, {padding: [30, 30], maxZoom: 12}); }, 30);
 }
