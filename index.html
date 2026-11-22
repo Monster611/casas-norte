@@ -869,12 +869,16 @@ function openDetail(key, list){
   const c = sh.querySelector("#dCalc"); if (c) c.onclick = () => { const sel = document.getElementById("k-casa"); sel.value = key; sel.dispatchEvent(new Event("change", {bubbles: true})); closeDetail(); go("calculadora"); };
   $("#detail").hidden = false; sh.scrollTop = 0; document.body.style.overflow = "hidden";
   track("ficha_abierta", {key});
+  try { sessionStorage.setItem("casas-ficha", key); } catch (e) {}
 }
 function closeTiming(){ const s = Math.round((performance.now() - dT0) / 1000); if (dOpen && s >= 2) track("tiempo_ficha", {key: dOpen, value: String(s)}); }
-function closeDetail(){ closeTiming(); dOpen = null; $("#detail").hidden = true; document.body.style.overflow = ""; }
-$("#detail").addEventListener("click", e => { if (e.target.id === "detail") closeDetail(); });
+function closeDetail(){ closeTiming(); dOpen = null; $("#detail").hidden = true; document.body.style.overflow = ""; try { sessionStorage.removeItem("casas-ficha"); } catch (e) {} }
+// con algo a medio escribir, un clic fuera (p. ej. al volver de la ventana de idealista) no cierra la ficha: hay que usar la X
+const writing = () => [...$("#detailSheet").querySelectorAll("form:not([hidden]) textarea")].some(t => t.value.trim());
+$("#detail").addEventListener("click", e => { if (e.target.id === "detail" && !writing()) closeDetail(); });
 document.addEventListener("keydown", e => {
   if ($("#detail").hidden) return;
+  const t = e.target; if (t && (/^(TEXTAREA|INPUT|SELECT)$/.test(t.tagName) || t.isContentEditable)) return; // escribiendo: las flechas mueven el cursor, no cambian de ficha
   if (e.key === "Escape") closeDetail();
   const i = dList.indexOf(dOpen);
   if (e.key === "ArrowRight" && i < dList.length - 1) openDetail(dList[i + 1], dList);
@@ -1071,7 +1075,11 @@ function socialBox(key, opts = {}){
 }
 function fillSocial(d){
   const key = d.dataset.social, hs = heartsOf(key), me = ME(), mine = !!me && hs.includes(me), cs = commentsOf(key);
-  const open = d.querySelector(".cform") && !d.querySelector(".cform").hidden, draft = open ? d.querySelector(".cform textarea").value : "";
+  // lo que se está escribiendo no se pierde al repintar: se guarda en el navegador (borradores) y se recupera el foco y el cursor
+  const B = LS.get("casas-borradores", {}), bd = B[key] || {};
+  const ae = document.activeElement, foc = ae && ae.tagName === "TEXTAREA" && d.contains(ae) ? {f: ae.closest("form").className, s: ae.selectionStart, e: ae.selectionEnd, t: ae.scrollTop} : null;
+  const live = sel => { const f = d.querySelector(sel); return f && !f.hidden ? f.querySelector("textarea").value : null; };
+  const cDraft = live(".cform") ?? bd.c ?? null, sDraft = live(".sform") ?? bd.s ?? null;
   d.innerHTML = `<div class="soc-row">${d.dataset.noheart ? "" : `<button type="button" class="heart" aria-pressed="${mine}">${mine ? "♥" : "♡"} Me gusta</button><span class="who"></span>`}
     <button type="button" class="cbtn">${d.dataset.noheart ? "Escribir un comentario" : "Comentar"}</button>${d.dataset.noheart ? "" : `<button type="button" class="star" aria-pressed="${starsOf(key).some(c => c.person === me)}">${isStar(key) ? "★ Destacada" : "☆ Destacar"}</button>`}</div>
     <div class="estado-row"></div>
@@ -1095,18 +1103,24 @@ function fillSocial(d){
     list.appendChild(row);
   });
   const form = d.querySelector(".cform"), ta = form.querySelector("textarea");
-  if (open) { form.hidden = false; ta.value = draft; }
-  d.querySelector(".cbtn").onclick = () => needName(() => { form.hidden = false; ta.focus(); });
-  form.querySelector(".cancel").onclick = () => { form.hidden = true; ta.value = ""; };
+  const keep = (k, v) => { const b = LS.get("casas-borradores", {}); b[key] = b[key] || {}; if (v == null) delete b[key][k]; else b[key][k] = v; if (!Object.keys(b[key]).length) delete b[key]; LS.set("casas-borradores", b); };
+  if (cDraft != null) { form.hidden = false; ta.value = cDraft; }
+  ta.oninput = () => keep("c", ta.value);
+  d.querySelector(".cbtn").onclick = () => needName(() => { form.hidden = false; keep("c", ta.value); ta.focus(); });
+  form.querySelector(".cancel").onclick = () => { form.hidden = true; ta.value = ""; keep("c", null); };
   form.onsubmit = e => { e.preventDefault(); const text = ta.value.trim(); if (!text) return;
     const id = rid(), ts = new Date().toISOString(); MINE.comments[id] = {key, person: ME(), text, ts}; LS.set("casas-mis", MINE);
-    track("comentario", {key, id, value: text}); form.hidden = true; ta.value = ""; refresh(key); flush(); };
+    track("comentario", {key, id, value: text}); form.hidden = true; ta.value = ""; keep("c", null); refresh(key); flush(); };
   const er = d.querySelector(".estado-row"); if (er) { if (d.dataset.noheart) er.remove(); else { er.appendChild(statusSelect(key)); const st = statusOf(key); if (st) { const s2 = document.createElement("small"); s2.textContent = `${st.person}, ${when(st.ts)}`; er.appendChild(s2); } } }
   const qb = d.querySelector(".quitar"); if (qb) qb.onclick = () => setGone(key, !isGone(key));
   const sb = d.querySelector(".star"), sf = d.querySelector(".sform");
-  if (sb) sb.onclick = () => needName(() => { if (starsOf(key).some(c => c.person === ME())) return unstar(key); sf.hidden = false; sf.querySelector("textarea").focus(); });
-  sf.querySelector(".cancel").onclick = () => { sf.hidden = true; };
-  sf.onsubmit = e => { e.preventDefault(); const m = sf.querySelector("textarea").value.trim(); sf.hidden = true; starNow(key, m); };
+  const sta = sf.querySelector("textarea");
+  if (sDraft != null) { sf.hidden = false; sta.value = sDraft; }
+  sta.oninput = () => keep("s", sta.value);
+  if (sb) sb.onclick = () => needName(() => { if (starsOf(key).some(c => c.person === ME())) return unstar(key); sf.hidden = false; keep("s", sta.value); sta.focus(); });
+  sf.querySelector(".cancel").onclick = () => { sf.hidden = true; sta.value = ""; keep("s", null); };
+  sf.onsubmit = e => { e.preventDefault(); const m = sta.value.trim(); sf.hidden = true; sta.value = ""; keep("s", null); starNow(key, m); };
+  if (foc) { const t = d.querySelector(`form[class="${foc.f}"] textarea`); if (t && !t.closest("form").hidden) { t.focus({preventScroll: true}); try { t.setSelectionRange(foc.s, foc.e); } catch (e) {} t.scrollTop = foc.t; } }
   const hb = d.querySelector(".heart");
   if (hb) hb.onclick = () => toggleHeart(key);
 }
@@ -1203,7 +1217,7 @@ function watchCalc(){
 
 
 // si hay una versión más nueva publicada (la caché del móvil o de GitHub puede servir la vieja), recarga una vez
-const BUILD = "20261122110334";
+const BUILD = "20261122200350";
 fetch(location.pathname + "?nc=" + Date.now(), {cache: "no-store"}).then(r => r.text()).then(t => {
   const m = t.match(/const BUILD = "(\d+)"/); if (!m || m[1] === BUILD) return;
   let ya = false; try { ya = sessionStorage.getItem("casas-upd-" + m[1]); sessionStorage.setItem("casas-upd-" + m[1], "1"); } catch (e) {}
@@ -1211,6 +1225,8 @@ fetch(location.pathname + "?nc=" + Date.now(), {cache: "no-store"}).then(r => r.
 }).catch(() => {});
 window.addEventListener("hashchange", route);
 route();
+// si la página se ha recargado (versión nueva o el navegador la descargó de memoria), vuelve a abrir la ficha que estaba abierta
+try { const k = sessionStorage.getItem("casas-ficha"); if (k && $("#detail").hidden && DATA.some(x => x.key === k)) openDetail(k); } catch (e) {}
 document.getElementById("general").appendChild(socialBox("_general", {noHeart: true}));
 paintMe(); watchCalc(); loadShared(); setInterval(loadShared, 60000);
 track("visita", {value: {pantalla: innerWidth + "x" + innerHeight, idioma: navigator.language}}); flush();
