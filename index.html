@@ -662,8 +662,9 @@ function paintTabs(){
     items.forEach(([k, lab]) => { const b = document.createElement("button"); b.type = "button"; b.textContent = lab; b.setAttribute("aria-pressed", String(cur === k)); b.onclick = () => on(k); d.appendChild(b); }); return d; };
   for (const id of ["#tabs", "#tabsMap"]) {
     const el = $(id); el.innerHTML = "";
-    el.appendChild(seg(OPS, op, o => setTab(tabFor(o, kind))));
-    if (op !== "madrid") el.appendChild(seg([["campo", "Casa de campo"], ["ciudad", "Piso de ciudad"]], kind, k => setTab(tabFor(op, k)), "kind"));
+    const all = id === "#tabsMap" && F.mapAll && op !== "madrid";
+    el.appendChild(seg(OPS, all ? null : op, o => setTab(tabFor(o, kind))));
+    if (op !== "madrid") el.appendChild(seg([["campo", "Casa de campo"], ["ciudad", "Piso de ciudad"]], all ? null : kind, k => setTab(tabFor(op, k)), "kind"));
   }
   for (const id of ["#near", "#nearMap"]) {
     const el = $(id); el.innerHTML = "";
@@ -674,9 +675,9 @@ function paintTabs(){
     if (op === "comprar") [["primera", "Para primera vivienda"], ["segunda", "Para segunda vivienda"]].forEach(([k, lab]) => {
       const n = DATA.filter(r => inTab(r) && (r.uso === k || r.uso === "ambas")).length; const b = document.createElement("button"); b.type = "button"; b.innerHTML = esc(lab) + `<b>${n}</b>`;
       b.setAttribute("aria-pressed", String(F.uso === k)); b.onclick = () => { F.uso = F.uso === k ? null : k; update(); track("filtro", {value: lab}); }; el.appendChild(b); });
-    const inT = DATA.filter(inTab), opts = [[null, "Todas", inT.length]].concat(CITY.map(c => [c[0], "Cerca de " + c[1], inT.filter(r => r.near === c[0]).length]), [["lejos", "Más lejos", inT.filter(r => r.near === "lejos").length]]);
+    const inT = id === "#nearMap" && F.mapAll ? DATA.filter(r => r.vt !== "madrid" && !isGone(r.key)) : DATA.filter(inTab), opts = [[null, id === "#nearMap" && F.mapAll ? "Todas (todo el norte)" : "Todas", inT.length]].concat(CITY.map(c => [c[0], "Cerca de " + c[1], inT.filter(r => r.near === c[0]).length]), [["lejos", "Más lejos", inT.filter(r => r.near === "lejos").length]]);
     opts.filter(o => o[0] === null || o[2]).forEach(([k, lab, n]) => { const b = document.createElement("button"); b.type = "button"; b.innerHTML = esc(lab) + `<b>${n}</b>`;
-      b.setAttribute("aria-pressed", String(F.near === k)); b.onclick = () => { F.near = k; update(); track("filtro", {value: lab}); }; el.appendChild(b); });
+      b.setAttribute("aria-pressed", String(F.near === k)); b.onclick = () => { F.near = k; if (k === null && id === "#nearMap" && op !== "madrid") F.mapAll = true; update(); track("filtro", {value: lab}); }; el.appendChild(b); });
   }
 }
 function setTab(k){ F.mapAll = false; if (F.tab === k) { update(); return; } F.tab = k; if (F.near && !DATA.some(r => r.vt === k && r.near === F.near)) F.near = null; F.zones.clear(); F.maxPrice = null; update(); track("pestana", {value: k}); }
@@ -720,7 +721,6 @@ const isFavR = r => heartsOf(r.key).length || isStar(r.key) || statusOf(r.key);
 function paintMapOpts(){
   const el = $("#mapOpts"); if (!el) return; el.innerHTML = "";
   const opts = [];
-  if (F.tab !== "madrid") opts.push(["mapAll", "Todo el norte junto (comprar y alquilar)"]);
   opts.push(["mapFav", "Solo favoritas"]);
   opts.forEach(([k, lab]) => { const b = document.createElement("button"); b.type = "button"; b.textContent = lab; b.setAttribute("aria-pressed", String(!!F[k]));
     b.onclick = () => { F[k] = !F[k]; paintMapOpts(); paintMap(); track("mapa_opcion", {value: lab + (F[k] ? " on" : " off")}); }; el.appendChild(b); });
@@ -728,7 +728,6 @@ function paintMapOpts(){
 function paintMap(){
   if (!window.L || currentView !== "mapa") return;
   paintMapOpts();
-  $("#tabsMap").style.opacity = F.mapAll && F.tab !== "madrid" ? ".45" : "";
   let rows;
   if (F.mapAll && F.tab !== "madrid") { const save = F.tab; rows = [];
     for (const t of ["campo", "ciudad", "alq_campo", "alq_ciudad"]) { F.tab = t; rows.push(...filtered()); } F.tab = save; }
@@ -797,6 +796,7 @@ function go(v){ location.hash = v; }
 function showView(v){
   if (!["casas", "mapa", "favoritas", "calculadora", "comentarios"].includes(v)) v = "casas";
   currentView = v;
+  if (v === "mapa" && F.tab !== "madrid") F.mapAll = true;
   document.querySelectorAll(".view").forEach(s => s.hidden = s.id !== "v-" + v);
   document.querySelectorAll(".tabbar a").forEach(a => { if (a.dataset.view === v) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
   update(); scrollTo(0, 0); track("vista", {value: v});
@@ -1176,7 +1176,7 @@ function watchCalc(){
 
 
 // si hay una versión más nueva publicada (la caché del móvil o de GitHub puede servir la vieja), recarga una vez
-const BUILD = "20261122104839";
+const BUILD = "20261122105157";
 fetch(location.pathname + "?nc=" + Date.now(), {cache: "no-store"}).then(r => r.text()).then(t => {
   const m = t.match(/const BUILD = "(\d+)"/); if (!m || m[1] === BUILD) return;
   let ya = false; try { ya = sessionStorage.getItem("casas-upd-" + m[1]); sessionStorage.setItem("casas-upd-" + m[1], "1"); } catch (e) {}
