@@ -912,21 +912,21 @@ function hace(iso){ if (!iso) return ""; const t = new Date(); t.setHours(0, 0, 
 function contexto(r){
   const same = DATA.filter(x => x.vt === r.vt), n = same.length;
   const eur = x => x.price / Math.max(1, x.m2), pos = same.slice().sort((a, b) => eur(a) - eur(b)).findIndex(x => x.key === r.key) + 1;
-  const m2 = `${eur(r).toFixed(RENT(r.tab) ? 1 : 0).replace(".", ",")} €/m²`;
-  const precio = pos <= Math.ceil(n / 3) ? `Sale a ${m2}: de las más baratas por metro (la ${pos}.ª de ${n}).` : `Sale a ${m2}.`;
-  const base = r.tab === "madrid" ? `En todo el noroeste de Madrid solo hay ${n} pisos que cumplen lo que buscamos (3 hab., hasta 1.800 €, aire y sin amueblar).`
-    : `Es una de las ${n} que tenemos elegidas en «${(TABS.find(t => t[0] === r.vt) || [, , ""])[2]}».`;
+  const m2 = `${eur(r).toFixed(RENT(r.tab) ? 1 : 0).replace(".", ",")} euros el metro`;
+  const precio = pos <= Math.ceil(n / 3) ? `Sale a ${m2}: de las más baratas por metro (puesto ${pos} de ${n}).` : `Sale a ${m2}.`;
+  const base = r.tab === "madrid" ? `En todo el noroeste de Madrid solo hay ${n} pisos que cumplen lo que buscamos (3 habitaciones, hasta 1.800 euros, aire y sin amueblar).`
+    : `Es una de las ${n} que tenemos elegidas en "${(TABS.find(t => t[0] === r.vt) || [, , ""])[2]}".`;
   return base + " " + precio;
 }
 function waText(r, motivo){
-  // sin emojis: WhatsApp en el ordenador los rompe cuando el texto llega por enlace. *x* = negrita en WhatsApp
+  // texto plano a propósito: WhatsApp de escritorio rompe emojis y descoloca negritas y enlaces con símbolos raros
   const who = ALIAS[ME()] || ME() || "Alguien";
-  const L = [`*OPORTUNIDAD ÚNICA* · ${who} ha destacado esta casa, de las que no duran nada:`, "",
-    `*${r.place}*`, `${fmt(r.price)} €${RENT(r.tab) ? "/mes" : ""} · ${r.hab} hab. · ${fmt(r.m2)} m²`];
+  const L = [`OPORTUNIDAD ÚNICA - ${who} ha destacado esta casa, de las que no duran nada:`, "",
+    r.place, `${fmt(r.price)} euros${RENT(r.tab) ? " al mes" : ""}, ${r.hab} habitaciones, ${fmt(r.m2)} metros`];
   if (r.upd) L.push(`Anuncio actualizado ${hace(r.upd)} en ${r.site}.`);
   L.push(contexto(r));
-  if (motivo) L.push("", `*Por qué:* ${motivo}`);
-  L.push("", `Anuncio: ${r.url}`, `En nuestra web: ${WEB}#ficha=${r.key}`);
+  if (motivo) L.push("", `Por qué: ${motivo}`);
+  L.push("", "Anuncio:", r.url, "", "En nuestra web:", `${WEB}#ficha=${r.key}`);
   return L.join("\n");
 }
 const SENT = {};
