@@ -196,6 +196,12 @@ select.pillbtn{appearance:none;-webkit-appearance:none;padding-right:13px;font-f
 .cm small{color:var(--muted);font-size:12px}
 .cm .del{margin-left:auto;font:inherit;font-size:13px;color:var(--heart);background:none;border:0;cursor:pointer;padding:0}
 .cform,.sform{display:grid;gap:8px}
+.estado-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:4px}.estado-row small{color:var(--muted);font-size:12px}
+.estado{display:inline-flex;align-items:center;gap:8px;font-size:14px;color:var(--muted)}
+.estado select{font:inherit;font-size:14px;color:var(--fg);background:var(--surface);border:1px solid rgba(118,118,128,.3);border-radius:10px;padding:6px 8px}
+.c-estado{display:inline-block;font-size:13px;font-weight:600;border-radius:999px;padding:2px 10px;background:rgba(52,199,89,.16);color:#1f8f3a}
+.c-estado.descartado{background:rgba(142,142,147,.18);color:var(--muted)}
+.card .estado{margin:6px 0 2px}
 .social .sent{margin:4px 0 0;font-size:14px;color:#c99700;font-weight:600}
 .sform label{display:grid;gap:6px;font-size:14px;color:var(--muted)}
 .sform textarea{font:inherit;font-size:16px;color:var(--fg);background:var(--surface);border:0;border-radius:12px;padding:12px 14px;width:100%;resize:vertical;outline:2px solid #ffcc00}
@@ -288,7 +294,7 @@ input[type=range]{width:100%;accent-color:var(--accent)}
   </section>
 
   <section class="view" id="v-favoritas" hidden aria-labelledby="h-fav">
-    <div class="vhead"><h1 id="h-fav">Favoritas</h1><div class="hello">Las que tienen ♥, de cada uno.</div></div>
+    <div class="vhead"><h1 id="h-fav">Favoritas</h1><div class="hello">Las que tienen ♥, las destacadas y las que ya estáis contactando.</div></div>
     <div class="grid" id="favList"></div>
   </section>
 
@@ -674,7 +680,7 @@ function cardEl(r){
       <button class="hbtn" type="button" aria-pressed="${mine}" aria-label="Me gusta">${ICON.heart}</button></div>
     <div class="c-line"><div class="c-title"></div><div class="c-price">${euros(r)}</div></div>
     <div class="c-sub"><span>${esc(Z[r.zone] || "")}</span>${r.nearKm >= 5 ? `<span>a ${r.nearKm} km de ${esc(r.nearName)}</span>` : ""}<span>${r.hab} hab.</span><span>${fmt(r.m2)} m²</span>${parcOf(r) ? `<span>${esc(parcOf(r))} parcela</span>` : ""}</div>
-    <div class="c-social">${hs.length ? `<span class="h">♥ ${esc(hs.join(", "))}</span>` : ""}${nc ? `<span>${nc} comentario${nc > 1 ? "s" : ""}</span>` : ""}</div>`;
+    <div class="c-social">${(st => st ? `<span class="c-estado${st.v === "Descartado" ? " descartado" : ""}">${STATE_ICON[st.v] || ""} ${esc(st.v)}</span>` : "")(statusOf(r.key))}${hs.length ? `<span class="h">♥ ${esc(hs.join(", "))}</span>` : ""}${nc ? `<span>${nc} comentario${nc > 1 ? "s" : ""}</span>` : ""}</div>`;
   b.querySelector(".c-title").textContent = r.place;
   if (r.ll) mosaic(b.querySelector(".mosaic"), r.ll[0], r.ll[1], 11, 3, 3);
   b.querySelector(".hbtn").onclick = e => { e.stopPropagation(); toggleHeart(r.key); };
@@ -717,16 +723,21 @@ function paintMap(){
 }
 function paintFavs(){
   const el = $("#favList"); el.innerHTML = "";
-  const loved = DATA.filter(r => heartsOf(r.key).length || isStar(r.key));
+  const loved = DATA.filter(r => heartsOf(r.key).length || isStar(r.key) || statusOf(r.key));
   $("#favBadge").textContent = loved.length || "";
   if (currentView !== "favoritas") return;
   if (!loved.length) { el.innerHTML = `<div class="empty">${ICON.heart}<p>Aún no hay favoritas.<br>Toca el ♥ en las casas que te gusten.</p><a class="btn small" href="#casas">Ver casas</a></div>`; return; }
-  const people = [...new Set(loved.flatMap(r => heartsOf(r.key)))];
-  const both = loved.filter(r => heartsOf(r.key).length > 1);
-  const sec = (title, rows) => { if (!rows.length) return; const h = document.createElement("h2"); h.className = "sec-h"; h.textContent = title; el.appendChild(h);
-    rows.sort((a, b) => a.price - b.price).forEach(r => el.appendChild(cardEl(r))); };
-  if (people.length > 1) sec("Os gustan a los dos", both);
-  people.forEach(p => sec(people.length > 1 ? "Solo a " + p : "Le gustan a " + p, loved.filter(r => { const h = heartsOf(r.key); return h.includes(p) && (people.length === 1 || h.length === 1); })));
+  const sec = (title, rows, sort = (a, b) => a.price - b.price) => { if (!rows.length) return; const h = document.createElement("h2"); h.className = "sec-h"; h.textContent = title; el.appendChild(h);
+    rows.sort(sort).forEach(r => { const c = cardEl(r); c.appendChild(statusSelect(r.key)); el.appendChild(c); }); };
+  const done = new Set(), take = rows => rows.filter(r => !done.has(r.key) && done.add(r.key));
+  const order = r => STATES.indexOf((statusOf(r.key) || {}).v);
+  sec("En contacto", take(loved.filter(r => { const st = statusOf(r.key); return st && st.v !== "Descartado"; })), (a, b) => order(b) - order(a) || a.price - b.price);
+  sec("Destacadas", take(loved.filter(r => isStar(r.key))));
+  const rest = loved.filter(r => !done.has(r.key) && !statusOf(r.key));
+  const people = [...new Set(rest.flatMap(r => heartsOf(r.key)))];
+  if (people.length > 1) sec("Os gustan a los dos", take(rest.filter(r => heartsOf(r.key).length > 1)));
+  people.forEach(p => sec(people.length > 1 ? "Solo a " + p : "Le gustan a " + p, take(rest.filter(r => heartsOf(r.key).includes(p)))));
+  sec("Descartadas", take(loved.filter(r => (statusOf(r.key) || {}).v === "Descartado")));
   shownList = [...el.querySelectorAll(".card")].map(c => c.dataset.key);
 }
 function paintFeed(){
@@ -929,6 +940,26 @@ function waText(r, motivo){
   L.push("", "Anuncio:", r.url, "", "En nuestra web:", `${WEB}#ficha=${r.key}`);
   return L.join("\n");
 }
+// estado del contacto con el anunciante: se guarda como comentario «📋 Estado: …»; vale el último de cualquiera de los dos
+const ESTADO = "📋 Estado: ";
+const STATES = ["Sin contactar", "Contactado", "Esperando respuesta", "Visita concertada", "Visitado", "Descartado"];
+const STATE_ICON = {"Contactado": "📞", "Esperando respuesta": "⏳", "Visita concertada": "📅", "Visitado": "👀", "Descartado": "✖"};
+function statusOf(key){ const cs = commentsOf(key).filter(c => String(c.text).startsWith(ESTADO)); if (!cs.length) return null;
+  const v = cs[cs.length - 1].text.slice(ESTADO.length).split(" · ")[0].trim(); return v === "Sin contactar" ? null : {v, person: cs[cs.length - 1].person, ts: cs[cs.length - 1].ts}; }
+function setStatus(key, v){
+  needName(() => { const id = rid(), ts = new Date().toISOString(), text = ESTADO + v;
+    MINE.comments[id] = {key, person: ME(), text, ts}; LS.set("casas-mis", MINE);
+    track("comentario", {key, id, value: text}); track("estado", {key, value: v}); refresh(key); flush(); });
+}
+function statusSelect(key){
+  const st = statusOf(key), l = document.createElement("label"); l.className = "estado";
+  l.innerHTML = `<span>Contacto</span><select aria-label="Estado del contacto">${STATES.map(x => `<option${(st ? st.v : "Sin contactar") === x ? " selected" : ""}>${x}</option>`).join("")}</select>`;
+  const sel = l.querySelector("select");
+  sel.onclick = e => e.stopPropagation();
+  sel.onchange = e => { e.stopPropagation(); setStatus(key, sel.value); };
+  l.onclick = e => e.stopPropagation();
+  return l;
+}
 const SENT = {};
 function starNow(key, motivo){
   needName(() => {
@@ -967,6 +998,7 @@ function fillSocial(d){
   const open = d.querySelector(".cform") && !d.querySelector(".cform").hidden, draft = open ? d.querySelector(".cform textarea").value : "";
   d.innerHTML = `<div class="soc-row">${d.dataset.noheart ? "" : `<button type="button" class="heart" aria-pressed="${mine}">${mine ? "♥" : "♡"} Me gusta</button><span class="who"></span>`}
     <button type="button" class="cbtn">${d.dataset.noheart ? "Escribir un comentario" : "Comentar"}</button>${d.dataset.noheart ? "" : `<button type="button" class="star" aria-pressed="${starsOf(key).some(c => c.person === me)}">${isStar(key) ? "★ Destacada" : "☆ Destacar"}</button>`}</div>
+    <div class="estado-row"></div>
     ${SENT[key] ? '<p class="sent">⭐ Destacada. Se ha abierto WhatsApp con el mensaje: elige «Oportunidades Únicas» y envíalo.</p>' : ""}
     <div class="clist"></div>
     <form class="sform" hidden><label>¿Por qué es una oportunidad? Se leerá en el grupo de WhatsApp.<textarea rows="3" maxlength="500" placeholder="Ej.: conozco la zona, me he paseado por ahí y me encanta"></textarea></label><div class="cf-actions"><button type="submit" class="save">⭐ Destacar y abrir WhatsApp</button><button type="button" class="cancel">Cancelar</button></div></form>
@@ -992,6 +1024,7 @@ function fillSocial(d){
   form.onsubmit = e => { e.preventDefault(); const text = ta.value.trim(); if (!text) return;
     const id = rid(), ts = new Date().toISOString(); MINE.comments[id] = {key, person: ME(), text, ts}; LS.set("casas-mis", MINE);
     track("comentario", {key, id, value: text}); form.hidden = true; ta.value = ""; refresh(key); flush(); };
+  const er = d.querySelector(".estado-row"); if (er) { if (d.dataset.noheart) er.remove(); else { er.appendChild(statusSelect(key)); const st = statusOf(key); if (st) { const s2 = document.createElement("small"); s2.textContent = `${st.person}, ${when(st.ts)}`; er.appendChild(s2); } } }
   const sb = d.querySelector(".star"), sf = d.querySelector(".sform");
   if (sb) sb.onclick = () => needName(() => { if (starsOf(key).some(c => c.person === ME())) return unstar(key); sf.hidden = false; sf.querySelector("textarea").focus(); });
   sf.querySelector(".cancel").onclick = () => { sf.hidden = true; };
