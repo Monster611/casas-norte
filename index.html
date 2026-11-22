@@ -981,23 +981,28 @@ function hace(iso){ if (!iso) return ""; const t = new Date(); t.setHours(0, 0, 
   const n = Math.max(0, Math.round((t - new Date(iso + "T00:00:00")) / DIA));
   return n === 0 ? "hoy" : n === 1 ? "ayer" : n < 30 ? `hace ${n} días` : n < 60 ? "hace más de un mes" : `hace ${Math.floor(n / 30)} meses`; }
 function contexto(r){
-  const same = DATA.filter(x => x.vt === r.vt), n = same.length;
+  const same = DATA.filter(x => x.vt === r.vt && !isGone(x.key)), n = same.length;
   const eur = x => x.price / Math.max(1, x.m2), pos = same.slice().sort((a, b) => eur(a) - eur(b)).findIndex(x => x.key === r.key) + 1;
-  const m2 = `${eur(r).toFixed(RENT(r.tab) ? 1 : 0).replace(".", ",")} euros el metro`;
-  const precio = pos <= Math.ceil(n / 3) ? `Sale a ${m2}: de las más baratas por metro (puesto ${pos} de ${n}).` : `Sale a ${m2}.`;
-  const base = r.tab === "madrid" ? `En todo el noroeste de Madrid solo hay ${n} pisos que cumplen lo que buscamos (3 habitaciones, hasta 1.800 euros, aire y sin amueblar).`
-    : `Es una de las ${n} que tenemos elegidas en "${(TABS.find(t => t[0] === r.vt) || [, , ""])[2]}".`;
-  return base + " " + precio;
+  const m2 = `${RENT(r.tab) ? eur(r).toFixed(1).replace(".", ",") : fmt(Math.round(eur(r)))} euros/m2`;
+  const label = (TABS.find(t => t[0] === r.vt) || [, , "casas"])[2], masc = r.tab === "madrid" || label.startsWith("pisos");
+  const lineas = [r.tab === "madrid" ? `Solo ${n} pisos cumplen lo que buscamos en el noroeste de Madrid` : `${masc ? "Uno de los" : "Una de las"} ${n} ${label} que tenemos`];
+  lineas.push(pos <= Math.ceil(n / 3) ? `${masc ? "De los más baratos" : "De las más baratas"} por metro: puesto ${pos} de ${n} (${m2})` : `Sale a ${m2}`);
+  return lineas;
 }
 function waText(r, motivo){
   // texto plano a propósito: WhatsApp de escritorio rompe emojis y descoloca negritas y enlaces con símbolos raros
   const who = ALIAS[ME()] || ME() || "Alguien";
-  const L = [`OPORTUNIDAD ÚNICA - ${who} ha destacado esta casa, de las que no duran nada:`, "",
-    r.place, `${fmt(r.price)} euros${RENT(r.tab) ? " al mes" : ""}, ${r.hab} habitaciones, ${fmt(r.m2)} metros`];
-  if (r.upd) L.push(`Anuncio actualizado ${hace(r.upd)} en ${r.site}.`);
-  L.push(contexto(r));
-  if (motivo) L.push("", `Por qué: ${motivo}`);
-  L.push("", "Anuncio:", r.url, "", "En nuestra web:", `${WEB}#ficha=${r.key}`);
+  const donde = r.tab === "madrid" ? "MADRID" : r.zone.startsWith("c_") ? (Z[r.zone] || "").toUpperCase() : (r.zone === "cant" ? "CANTABRIA" : "ASTURIAS");
+  const que = RENT(r.tab) ? "ALQUILER" : "COMPRA";
+  const uso = {ambas: "Vale para primera y segunda vivienda", primera: "Para primera vivienda", segunda: "Solo para segunda vivienda"}[r.uso] || "";
+  const L = [`${donde} - ${que} - OPORTUNIDAD ÚNICA`];
+  if (uso) L.push(uso);
+  L.push("", r.place, `${fmt(r.price)} euros${RENT(r.tab) ? " al mes" : ""} - ${r.hab} hab - ${fmt(r.m2)} m2`);
+  if (r.nearKm >= 5) L.push(`A ${r.nearKm} km de ${r.nearName}`);
+  L.push("", motivo ? `${who} la destaca: "${motivo}"` : `${who} la ha destacado.`, "");
+  if (r.upd) L.push(`- Anuncio actualizado ${hace(r.upd)}`);
+  contexto(r).forEach(x => L.push("- " + x));
+  L.push("", "Anuncio:", r.url, "", "Nuestra web:", `${WEB}#ficha=${r.key}`);
   return L.join("\n");
 }
 // estado del contacto con el anunciante: se guarda como comentario «📋 Estado: …»; vale el último de cualquiera de los dos
@@ -1198,7 +1203,7 @@ function watchCalc(){
 
 
 // si hay una versión más nueva publicada (la caché del móvil o de GitHub puede servir la vieja), recarga una vez
-const BUILD = "20261122105557";
+const BUILD = "20261122110334";
 fetch(location.pathname + "?nc=" + Date.now(), {cache: "no-store"}).then(r => r.text()).then(t => {
   const m = t.match(/const BUILD = "(\d+)"/); if (!m || m[1] === BUILD) return;
   let ya = false; try { ya = sessionStorage.getItem("casas-upd-" + m[1]); sessionStorage.setItem("casas-upd-" + m[1], "1"); } catch (e) {}
