@@ -112,6 +112,9 @@ select.pillbtn{appearance:none;-webkit-appearance:none;padding-right:13px;font-f
 .mosaic{position:absolute;left:50%;top:50%;display:grid;pointer-events:none}
 .mosaic img{width:256px;height:256px;display:block;filter:var(--tiles)}
 .pin{position:absolute;left:50%;top:50%;width:18px;height:18px;margin:-9px 0 0 -9px;border-radius:50%;background:var(--accent);border:3px solid #fff;box-shadow:0 0 0 7px color-mix(in srgb,var(--accent) 22%,transparent),0 2px 6px rgba(0,0,0,.25)}
+.badge-star{position:absolute;left:10px;bottom:10px;font-size:12px;font-weight:700;background:#ffcc00;color:#1c1c1e;border-radius:999px;padding:4px 10px}
+.social .star{border:0;background:none;color:var(--fg);font:inherit;cursor:pointer;padding:6px 0}
+.social .star[aria-pressed="true"]{color:#c99700;font-weight:600}
 .badge-new{position:absolute;right:52px;top:10px;font-size:12px;font-weight:700;background:var(--accent);color:#fff;border-radius:999px;padding:4px 10px}
 .tabs2{display:grid;gap:8px}
 .tabs2 .segm.kind button{font-size:13px}
@@ -584,7 +587,7 @@ const ICON = {
 };
 
 // estado de navegación
-const F = {tab: "campo", near: null, q: "", sort: "rec", zones: new Set(), maxPrice: null, minHab: 0, onlyPre: false, onlyHeart: false};
+const F = {tab: "campo", near: null, onlyStar: false, q: "", sort: "rec", zones: new Set(), maxPrice: null, minHab: 0, onlyPre: false, onlyHeart: false};
 let currentView = "casas", map, layer, shownList = [];
 
 function tileXY(lat, lon, z){ const n = 2 ** z; return [(lon + 180) / 360 * n, (1 - Math.asinh(Math.tan(lat * Math.PI / 180)) / Math.PI) / 2 * n]; }
@@ -605,9 +608,9 @@ const inTab = r => r.vt === F.tab;
 function priceBounds(){ const ps = DATA.filter(inTab).map(r => r.price); return [Math.min(...ps), Math.max(...ps)]; }
 function filtered(){
   const q = F.q.trim().toLowerCase();
-  let rows = DATA.filter(r => inTab(r) && (!F.near || F.tab === "madrid" || r.near === F.near) && (!F.zones.size || F.zones.has(r.zone)) && (!F.maxPrice || r.price <= F.maxPrice) && (!F.minHab || r.hab >= F.minHab)
+  let rows = DATA.filter(r => inTab(r) && (!F.onlyStar || isStar(r.key)) && (!F.near || F.tab === "madrid" || r.near === F.near) && (!F.zones.size || F.zones.has(r.zone)) && (!F.maxPrice || r.price <= F.maxPrice) && (!F.minHab || r.hab >= F.minHab)
     && (!F.onlyPre || r.fav) && (!F.onlyHeart || heartsOf(r.key).length) && (!q || (r.place + " " + (Z[r.zone] || "") + " " + r.note).toLowerCase().includes(q)));
-  const by = {rec: (a, b) => (b.fav - a.fav) || a.price - b.price, pasc: (a, b) => a.price - b.price, pdesc: (a, b) => b.price - a.price,
+  const by = {rec: (a, b) => (isStar(b.key) - isStar(a.key)) || (b.fav - a.fav) || a.price - b.price, pasc: (a, b) => a.price - b.price, pdesc: (a, b) => b.price - a.price,
     m2: (a, b) => b.m2 - a.m2, love: (a, b) => heartsOf(b.key).length - heartsOf(a.key).length || (b.fav - a.fav) || a.price - b.price}[F.sort];
   return rows.sort(by);
 }
@@ -643,7 +646,11 @@ function paintTabs(){
     if (op !== "madrid") el.appendChild(seg([["campo", "Casa de campo"], ["ciudad", "Piso de ciudad"]], kind, k => setTab(tabFor(op, k)), "kind"));
   }
   for (const id of ["#near", "#nearMap"]) {
-    const el = $(id); el.innerHTML = ""; if (op === "madrid") continue;
+    const el = $(id); el.innerHTML = "";
+    const ns = DATA.filter(r => inTab(r) && isStar(r.key)).length;
+    if (ns || F.onlyStar) { const b = document.createElement("button"); b.type = "button"; b.innerHTML = `⭐ Destacadas<b>${ns}</b>`; b.setAttribute("aria-pressed", String(F.onlyStar));
+      b.onclick = () => { F.onlyStar = !F.onlyStar; update(); track("filtro", {value: "destacadas"}); }; el.appendChild(b); }
+    if (op === "madrid") continue;
     const inT = DATA.filter(inTab), opts = [[null, "Todas", inT.length]].concat(CITY.map(c => [c[0], "Cerca de " + c[1], inT.filter(r => r.near === c[0]).length]), [["lejos", "Más lejos", inT.filter(r => r.near === "lejos").length]]);
     opts.filter(o => o[0] === null || o[2]).forEach(([k, lab, n]) => { const b = document.createElement("button"); b.type = "button"; b.innerHTML = esc(lab) + `<b>${n}</b>`;
       b.setAttribute("aria-pressed", String(F.near === k)); b.onclick = () => { F.near = k; update(); track("filtro", {value: lab}); }; el.appendChild(b); });
@@ -660,7 +667,7 @@ function paintShortcuts(){
 function cardEl(r){
   const b = document.createElement("article"); b.className = "card"; b.dataset.key = r.key; b.tabIndex = 0; b.setAttribute("role", "button");
   const hs = heartsOf(r.key), mine = !!ME() && hs.includes(ME()), nc = commentsOf(r.key).length;
-  b.innerHTML = `<div class="thumb"><div class="mosaic"></div><span class="pin"></span>${r.fav ? '<span class="badge-pre">Preseleccionada</span>' : ""}${r.nuevo ? '<span class="badge-new">Nueva</span>' : ""}
+  b.innerHTML = `<div class="thumb"><div class="mosaic"></div><span class="pin"></span>${r.fav ? '<span class="badge-pre">Preseleccionada</span>' : ""}${r.nuevo ? '<span class="badge-new">Nueva</span>' : ""}${isStar(r.key) ? '<span class="badge-star">⭐ Destacada</span>' : ""}
       <button class="hbtn" type="button" aria-pressed="${mine}" aria-label="Me gusta">${ICON.heart}</button></div>
     <div class="c-line"><div class="c-title"></div><div class="c-price">${euros(r)}</div></div>
     <div class="c-sub"><span>${esc(Z[r.zone] || "")}</span>${r.nearKm >= 5 ? `<span>a ${r.nearKm} km de ${esc(r.nearName)}</span>` : ""}<span>${r.hab} hab.</span><span>${fmt(r.m2)} m²</span>${parcOf(r) ? `<span>${esc(parcOf(r))} parcela</span>` : ""}</div>
@@ -681,7 +688,7 @@ function paintList(){
     $("#clearF").onclick = () => { clearFilters(); update(); }; return; }
   rows.forEach(r => el.appendChild(cardEl(r)));
 }
-function clearFilters(){ F.near = null; F.zones.clear(); F.maxPrice = null; F.minHab = 0; F.onlyPre = false; F.onlyHeart = false; F.q = ""; $("#q").value = ""; }
+function clearFilters(){ F.near = null; F.onlyStar = false; F.zones.clear(); F.maxPrice = null; F.minHab = 0; F.onlyPre = false; F.onlyHeart = false; F.q = ""; $("#q").value = ""; }
 function paintMap(){
   if (!window.L || currentView !== "mapa") return;
   const rows = filtered();
@@ -707,7 +714,7 @@ function paintMap(){
 }
 function paintFavs(){
   const el = $("#favList"); el.innerHTML = "";
-  const loved = DATA.filter(r => heartsOf(r.key).length);
+  const loved = DATA.filter(r => heartsOf(r.key).length || isStar(r.key));
   $("#favBadge").textContent = loved.length || "";
   if (currentView !== "favoritas") return;
   if (!loved.length) { el.innerHTML = `<div class="empty">${ICON.heart}<p>Aún no hay favoritas.<br>Toca el ♥ en las casas que te gusten.</p><a class="btn small" href="#casas">Ver casas</a></div>`; return; }
@@ -730,7 +737,7 @@ function paintFeed(){
     b.onclick = () => openDetail(c.r.key, all.map(x => x.r.key)); el.appendChild(b); });
 }
 function update(){ paintTabs(); paintShortcuts(); paintActive(); paintList(); paintMap(); paintFavs(); paintFeed(); }
-window.onShared = () => { paintShortcuts(); paintFavs(); paintFeed(); if (currentView === "casas") paintList(); if (currentView === "mapa") paintMap();
+window.onShared = () => { paintTabs(); paintShortcuts(); paintFavs(); paintFeed(); if (currentView === "casas") paintList(); if (currentView === "mapa") paintMap();
   document.querySelectorAll(".card").forEach(c => { const h = c.querySelector(".hbtn"); if (h) h.setAttribute("aria-pressed", String(!!ME() && heartsOf(c.dataset.key).includes(ME()))); }); };
 
 // vistas
@@ -744,6 +751,8 @@ function showView(v){
 }
 function route(){
   const h = location.hash.slice(1);
+  if (h.startsWith("ficha=")) { const r = DATA.find(x => x.key === h.slice(6)); history.replaceState(null, "", "#casas");
+    if (r) { F.tab = r.vt; showView("casas"); track("enlace_ficha", {key: r.key}); return openDetail(r.key); } }
   if (["campo", "ciudad", "alquiler", "alq_campo", "alq_ciudad", "madrid"].includes(h)) { F.tab = h === "alquiler" ? "alq_campo" : h; history.replaceState(null, "", "#casas"); return showView("casas"); }
   showView(h || "casas");
 }
@@ -888,6 +897,29 @@ function commentsOf(key){
   for (const [id, c] of Object.entries(MINE.comments)) if (c && c.key === key && !seen.has(id)) out.push({id, ...c});
   return out.sort((a, b) => String(a.ts).localeCompare(String(b.ts)));
 }
+const STAR = "⭐ Oportunidad destacada";
+const ALIAS = {Jorge: "Koke"};
+const WEB = "https://monster611.github.io/casas-norte/";
+const starsOf = key => commentsOf(key).filter(c => String(c.text).startsWith(STAR));
+const isStar = key => starsOf(key).length > 0;
+function waText(r){
+  const who = ALIAS[ME()] || ME() || "Alguien";
+  return `⭐ ${who} ha marcado como oportunidad destacada:
+${r.place}
+${fmt(r.price)} €${RENT(r.tab) ? "/mes" : ""} · ${r.hab} hab. · ${fmt(r.m2)} m²
+
+Anuncio: ${r.url}
+En nuestra web: ${WEB}#ficha=${r.key}`;
+}
+function toggleStar(key){
+  needName(() => {
+    const mine = starsOf(key).filter(c => c.person === ME());
+    if (mine.length) { mine.forEach(c => { MINE.comments[c.id] = null; track("comentario_borrado", {key, id: c.id, value: c.text}); }); LS.set("casas-mis", MINE); track("destacada", {key, value: "off"}); refresh(key); flush(); return; }
+    const id = rid(), ts = new Date().toISOString(); MINE.comments[id] = {key, person: ME(), text: STAR, ts}; LS.set("casas-mis", MINE);
+    track("comentario", {key, id, value: STAR}); track("destacada", {key, value: "on"}); refresh(key); flush();
+    const r = DATA.find(x => x.key === key); if (r) window.open("https://wa.me/?text=" + encodeURIComponent(waText(r)), "_blank");
+  });
+}
 function loadShared(){
   if (!ENDPOINT) return;
   fetch(ENDPOINT + "?estado=1").then(r => r.json()).then(d => {
@@ -909,7 +941,7 @@ function fillSocial(d){
   const key = d.dataset.social, hs = heartsOf(key), me = ME(), mine = !!me && hs.includes(me), cs = commentsOf(key);
   const open = d.querySelector(".cform") && !d.querySelector(".cform").hidden, draft = open ? d.querySelector("textarea").value : "";
   d.innerHTML = `<div class="soc-row">${d.dataset.noheart ? "" : `<button type="button" class="heart" aria-pressed="${mine}">${mine ? "♥" : "♡"} Me gusta</button><span class="who"></span>`}
-    <button type="button" class="cbtn">${d.dataset.noheart ? "Escribir un comentario" : "Comentar"}</button></div>
+    <button type="button" class="cbtn">${d.dataset.noheart ? "Escribir un comentario" : "Comentar"}</button>${d.dataset.noheart ? "" : `<button type="button" class="star" aria-pressed="${starsOf(key).some(c => c.person === me)}">${isStar(key) ? "★ Destacada" : "☆ Destacar"}</button>`}</div>
     <div class="clist"></div>
     <form class="cform" hidden><textarea rows="3" maxlength="1500" placeholder="¿Qué te parece?"></textarea>
     <div class="cf-actions"><button type="submit" class="save">Guardar comentario</button><button type="button" class="cancel">Cancelar</button></div></form>`;
@@ -933,6 +965,7 @@ function fillSocial(d){
   form.onsubmit = e => { e.preventDefault(); const text = ta.value.trim(); if (!text) return;
     const id = rid(), ts = new Date().toISOString(); MINE.comments[id] = {key, person: ME(), text, ts}; LS.set("casas-mis", MINE);
     track("comentario", {key, id, value: text}); form.hidden = true; ta.value = ""; refresh(key); flush(); };
+  const sb = d.querySelector(".star"); if (sb) sb.onclick = () => toggleStar(key);
   const hb = d.querySelector(".heart");
   if (hb) hb.onclick = () => toggleHeart(key);
 }
