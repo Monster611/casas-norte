@@ -1175,6 +1175,13 @@ function watchCalc(){
 }
 
 
+// si hay una versión más nueva publicada (la caché del móvil o de GitHub puede servir la vieja), recarga una vez
+const BUILD = "20261122104839";
+fetch(location.pathname + "?nc=" + Date.now(), {cache: "no-store"}).then(r => r.text()).then(t => {
+  const m = t.match(/const BUILD = "(\d+)"/); if (!m || m[1] === BUILD) return;
+  let ya = false; try { ya = sessionStorage.getItem("casas-upd-" + m[1]); sessionStorage.setItem("casas-upd-" + m[1], "1"); } catch (e) {}
+  if (!ya) location.replace(location.pathname + "?v=" + m[1] + location.hash);
+}).catch(() => {});
 window.addEventListener("hashchange", route);
 route();
 document.getElementById("general").appendChild(socialBox("_general", {noHeart: true}));
