@@ -934,8 +934,9 @@ function starNow(key, motivo){
     const id = rid(), ts = new Date().toISOString(), text = STAR + (motivo ? ": " + motivo : "");
     MINE.comments[id] = {key, person: ME(), text, ts}; LS.set("casas-mis", MINE);
     const r = DATA.find(x => x.key === key);
-    // el texto completo va al registro; el vigilante lo recoge y se manda solo al grupo «Oportunidades Únicas»
-    track("comentario", {key, id, value: text}); track("destacada", {key, value: r ? waText(r, motivo) : "on"}); SENT[key] = true; refresh(key); flush();
+    // se abre WhatsApp al momento con el mensaje listo; quien destaca elige el grupo «Oportunidades Únicas» y lo envía
+    track("comentario", {key, id, value: text}); track("destacada", {key, value: "on"}); SENT[key] = true; refresh(key); flush();
+    if (r) window.open("https://wa.me/?text=" + encodeURIComponent(waText(r, motivo)), "_blank");
   });
 }
 function unstar(key){
@@ -965,9 +966,9 @@ function fillSocial(d){
   const open = d.querySelector(".cform") && !d.querySelector(".cform").hidden, draft = open ? d.querySelector(".cform textarea").value : "";
   d.innerHTML = `<div class="soc-row">${d.dataset.noheart ? "" : `<button type="button" class="heart" aria-pressed="${mine}">${mine ? "♥" : "♡"} Me gusta</button><span class="who"></span>`}
     <button type="button" class="cbtn">${d.dataset.noheart ? "Escribir un comentario" : "Comentar"}</button>${d.dataset.noheart ? "" : `<button type="button" class="star" aria-pressed="${starsOf(key).some(c => c.person === me)}">${isStar(key) ? "★ Destacada" : "☆ Destacar"}</button>`}</div>
-    ${SENT[key] ? '<p class="sent">⭐ Destacada. En unos minutos llega sola al grupo «Oportunidades Únicas» de WhatsApp.</p>' : ""}
+    ${SENT[key] ? '<p class="sent">⭐ Destacada. Se ha abierto WhatsApp con el mensaje: elige «Oportunidades Únicas» y envíalo.</p>' : ""}
     <div class="clist"></div>
-    <form class="sform" hidden><label>¿Por qué es una oportunidad? Se leerá en el grupo de WhatsApp.<textarea rows="3" maxlength="500" placeholder="Ej.: conozco la zona, me he paseado por ahí y me encanta"></textarea></label><div class="cf-actions"><button type="submit" class="save">⭐ Destacar y mandar al grupo</button><button type="button" class="cancel">Cancelar</button></div></form>
+    <form class="sform" hidden><label>¿Por qué es una oportunidad? Se leerá en el grupo de WhatsApp.<textarea rows="3" maxlength="500" placeholder="Ej.: conozco la zona, me he paseado por ahí y me encanta"></textarea></label><div class="cf-actions"><button type="submit" class="save">⭐ Destacar y abrir WhatsApp</button><button type="button" class="cancel">Cancelar</button></div></form>
     <form class="cform" hidden><textarea rows="3" maxlength="1500" placeholder="¿Qué te parece?"></textarea>
     <div class="cf-actions"><button type="submit" class="save">Guardar comentario</button><button type="button" class="cancel">Cancelar</button></div></form>`;
   if (d._extra) d.querySelector(".soc-row").appendChild(d._extra);
