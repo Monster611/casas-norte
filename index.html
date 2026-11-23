@@ -214,6 +214,9 @@ select.pillbtn{appearance:none;-webkit-appearance:none;padding-right:13px;font-f
 .card .estado{margin:6px 0 2px}
 .social .quitar{border:0;background:none;color:#d70015;font:inherit;font-size:14px;cursor:pointer;padding:8px 0 0;text-align:left}
 .social .sent{margin:4px 0 0;font-size:14px;color:#c99700;font-weight:600}
+.social .coin{margin:8px 0 0;padding:10px 12px;border-radius:12px;background:#fde7ef;color:#9d1747;display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;font-size:14px}
+.social .coin span{flex-basis:100%;font-size:13px}
+.social .coin .coinwa{border:0;border-radius:999px;background:#25a244;color:#fff;font:inherit;font-weight:600;padding:6px 12px;cursor:pointer}
 .sform label{display:grid;gap:6px;font-size:14px;color:var(--muted)}
 .sform textarea{font:inherit;font-size:16px;color:var(--fg);background:var(--surface);border:0;border-radius:12px;padding:12px 14px;width:100%;resize:vertical;outline:2px solid #ffcc00}
 .cform textarea{font:inherit;font-size:16px;color:var(--fg);background:var(--surface);border:0;border-radius:12px;padding:12px 14px;width:100%;resize:vertical;outline:1px solid var(--sep)}
@@ -993,17 +996,28 @@ function contexto(r){
   lineas.push(pos <= Math.ceil(n / 3) ? `${masc ? "De los más baratos" : "De las más baratas"} por metro: puesto ${pos} de ${n} (${m2})` : `Sale a ${m2}`);
   return lineas;
 }
+// texto plano a propósito: WhatsApp de escritorio rompe emojis y descoloca negritas y enlaces con símbolos raros
 function waText(r, motivo){
-  // texto plano a propósito: WhatsApp de escritorio rompe emojis y descoloca negritas y enlaces con símbolos raros
   const who = ALIAS[ME()] || ME() || "Alguien";
+  return waMsg(r, "OPORTUNIDAD ÚNICA", motivo ? `${who} la destaca: "${motivo}"` : `${who} la ha destacado.`);
+}
+// cuando los dos dais ♥ a la misma casa: se abre WhatsApp con el aviso para «Oportunidades Únicas»
+// (y se apunta en el registro para que el vigilante no lo mande otra vez en la pasada de la noche)
+function coinWa(key){
+  const r = DATA.find(x => x.key === key); if (!r) return;
+  const names = heartsOf(key).map(p => "a " + (ALIAS[p] || p)).join(" y "), cap = names[0].toUpperCase() + names.slice(1);
+  track("coincidencia_avisada", {key}); flush();
+  window.open("https://wa.me/?text=" + encodeURIComponent(waMsg(r, "OS GUSTA A LOS DOS", `${cap} os gusta esta casa: los dos le habéis dado me gusta.`)), "_blank");
+}
+function waMsg(r, titulo, quien){
   const donde = r.tab === "madrid" ? "MADRID" : r.zone.startsWith("c_") ? (Z[r.zone] || "").toUpperCase() : (r.zone === "cant" ? "CANTABRIA" : "ASTURIAS");
   const que = RENT(r.tab) ? "ALQUILER" : "COMPRA";
   const uso = {ambas: "Vale para primera y segunda vivienda", primera: "Para primera vivienda", segunda: "Solo para segunda vivienda"}[r.uso] || "";
-  const L = [`${donde} - ${que} - OPORTUNIDAD ÚNICA`];
+  const L = [`${donde} - ${que} - ${titulo}`];
   if (uso) L.push(uso);
   L.push("", r.place, `${fmt(r.price)} euros${RENT(r.tab) ? " al mes" : ""} - ${r.hab} hab - ${fmt(r.m2)} m2`);
   if (r.nearKm >= 5) L.push(`A ${r.nearKm} km de ${r.nearName}`);
-  L.push("", motivo ? `${who} la destaca: "${motivo}"` : `${who} la ha destacado.`, "");
+  L.push("", quien, "");
   if (r.upd) L.push(`- Anuncio actualizado ${hace(r.upd)}`);
   contexto(r).forEach(x => L.push("- " + x));
   L.push("", "Anuncio:", r.url, "", "Nuestra web:", `${WEB}#ficha=${r.key}`);
@@ -1084,6 +1098,7 @@ function fillSocial(d){
     <button type="button" class="cbtn">${d.dataset.noheart ? "Escribir un comentario" : "Comentar"}</button>${d.dataset.noheart ? "" : `<button type="button" class="star" aria-pressed="${starsOf(key).some(c => c.person === me)}">${isStar(key) ? "★ Destacada" : "☆ Destacar"}</button>`}</div>
     <div class="estado-row"></div>
     ${!d.dataset.noheart && canRemove() ? `<button type="button" class="quitar">${isGone(key) ? "↩ Volver a ponerla en la lista" : "🗑 Quitar de la lista"}</button>` : ""}
+    ${!d.dataset.noheart && hs.length > 1 ? `<div class="coin"><b>💞 ${COIN[key] ? "¡Coincidencia! Os gusta a los dos" : "Os gusta a los dos"}</b>${COIN[key] ? "<span>Se ha abierto WhatsApp con el aviso: elige «Oportunidades Únicas» y envíalo.</span>" : ""}<button type="button" class="coinwa">Avisar al grupo por WhatsApp</button></div>` : ""}
     ${SENT[key] ? '<p class="sent">⭐ Destacada. Se ha abierto WhatsApp con el mensaje: elige «Oportunidades Únicas» y envíalo.</p>' : ""}
     <div class="clist"></div>
     <form class="sform" hidden><label>¿Por qué es una oportunidad? Se leerá en el grupo de WhatsApp.<textarea rows="3" maxlength="500" placeholder="Ej.: conozco la zona, me he paseado por ahí y me encanta"></textarea></label><div class="cf-actions"><button type="submit" class="save">⭐ Destacar y abrir WhatsApp</button><button type="button" class="cancel">Cancelar</button></div></form>
@@ -1112,6 +1127,7 @@ function fillSocial(d){
     const id = rid(), ts = new Date().toISOString(); MINE.comments[id] = {key, person: ME(), text, ts}; LS.set("casas-mis", MINE);
     track("comentario", {key, id, value: text}); form.hidden = true; ta.value = ""; keep("c", null); refresh(key); flush(); };
   const er = d.querySelector(".estado-row"); if (er) { if (d.dataset.noheart) er.remove(); else { er.appendChild(statusSelect(key)); const st = statusOf(key); if (st) { const s2 = document.createElement("small"); s2.textContent = `${st.person}, ${when(st.ts)}`; er.appendChild(s2); } } }
+  const cw = d.querySelector(".coinwa"); if (cw) cw.onclick = () => coinWa(key);
   const qb = d.querySelector(".quitar"); if (qb) qb.onclick = () => setGone(key, !isGone(key));
   const sb = d.querySelector(".star"), sf = d.querySelector(".sform");
   const sta = sf.querySelector("textarea");
@@ -1124,9 +1140,12 @@ function fillSocial(d){
   const hb = d.querySelector(".heart");
   if (hb) hb.onclick = () => toggleHeart(key);
 }
+const COIN = {};
 function toggleHeart(key){
   needName(() => { const on = !heartsOf(key).includes(ME()); MINE.hearts[key] = on; LS.set("casas-mis", MINE);
-    track("corazon", {key, value: on ? "on" : "off"}); refresh(key); flush(); });
+    track("corazon", {key, value: on ? "on" : "off"});
+    const coin = on && heartsOf(key).length > 1 && key !== "_general"; if (coin) COIN[key] = true;
+    refresh(key); flush(); if (coin) coinWa(key); });
 }
 function refresh(key){ document.querySelectorAll(`[data-social="${CSS.escape(key)}"]`).forEach(fillSocial); if (window.onShared) onShared(key); }
 
@@ -1217,7 +1236,7 @@ function watchCalc(){
 
 
 // si hay una versión más nueva publicada (la caché del móvil o de GitHub puede servir la vieja), recarga una vez
-const BUILD = "20261122200350";
+const BUILD = "20261123094302";
 fetch(location.pathname + "?nc=" + Date.now(), {cache: "no-store"}).then(r => r.text()).then(t => {
   const m = t.match(/const BUILD = "(\d+)"/); if (!m || m[1] === BUILD) return;
   let ya = false; try { ya = sessionStorage.getItem("casas-upd-" + m[1]); sessionStorage.setItem("casas-upd-" + m[1], "1"); } catch (e) {}
