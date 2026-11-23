@@ -586,18 +586,29 @@ const NEAR_KM = 40;
 const USO = {ambas: "Vale para primera y segunda vivienda", primera: "Vale para primera vivienda", segunda: "Solo segunda vivienda"};
 const usoPill = r => r.uso ? `<span class="uso ${r.uso}">${USO[r.uso]}</span>` : "";
 function kmTo(a, b, c, d){ const p = Math.PI / 180, x = Math.sin((c - a) * p / 2) ** 2 + Math.cos(a * p) * Math.cos(c * p) * Math.sin((d - b) * p / 2) ** 2; return 12742 * Math.asin(Math.sqrt(x)); }
+// «Cerca de»: la frontera la marca el tiempo en coche a Santander (r.sant, minutos, de fuentes/santander_min.json).
+// Hasta SANT_MAX es zona de Santander, en dos tramos (hasta 30 min y de 30 min a 1 h y poco); lo que pase de ahí
+// pertenece a Gijón u Oviedo, la que quede más cerca en línea recta. Sin r.sant se usa la ciudad más cercana en línea recta.
+const SANT_MAX = 70, SANT_CERCA = 30;
 DATA.forEach(r => {
   r.vt = r.tab === "alquiler" ? (r.zone.startsWith("c_") ? "alq_ciudad" : "alq_campo") : r.tab;
-  if (r.tab !== "madrid" && r.ll) { const [c, km] = CITY.map(c => [c, kmTo(r.ll[0], r.ll[1], c[2], c[3])]).sort((a, b) => a[1] - b[1])[0];
-    r.near = km <= NEAR_KM ? c[0] : "lejos"; r.nearName = c[1]; r.nearKm = Math.round(km); }
+  if (r.tab === "madrid" || !r.ll) return;
+  const byKm = cs => cs.map(c => [c, kmTo(r.ll[0], r.ll[1], c[2], c[3])]).sort((a, b) => a[1] - b[1])[0];
+  if (r.sant != null ? r.sant <= SANT_MAX : byKm(CITY)[0][0] === "santander") {
+    r.nearName = "Santander"; r.near = r.sant == null || r.sant <= SANT_CERCA ? "s30" : "s70"; r.nearMin = r.sant;
+    if (r.sant == null) r.nearKm = Math.round(byKm(CITY)[1]);
+  } else { const [c, km] = byKm(CITY.filter(c => c[0] !== "santander")); r.near = c[0]; r.nearName = c[1]; r.nearKm = Math.round(km); }
 });
-// EN PAUSA desde el 23/11/2026: Koke y Sam se centran en Madrid y en Santander y alrededores (lo que esté a una hora y poco en coche).
-// Se esconde lo del norte a más de SANT_MAX minutos de Santander (r.sant, de fuentes/santander_min.json); si una casa no
-// tiene ese dato, se esconde si queda más cerca de Oviedo o de Gijón. Para recuperarlo todo, vaciar PAUSA.
-const PAUSA = ["Oviedo", "Gijón"], SANT_MAX = 70;
-const paused = r => PAUSA.length && r.tab !== "madrid" && (r.sant != null ? r.sant > SANT_MAX : PAUSA.includes(r.nearName));
+// distancia en texto: minutos a Santander o km a Gijón/Oviedo; vacío si está en la misma ciudad
+const distTxt = (r, largo) => r.nearMin != null ? (r.nearMin < 10 ? (largo ? "En Santander" : "") : `a ${r.nearMin} min de Santander${largo ? " en coche" : ""}`)
+  : r.nearKm != null ? (r.nearKm < 5 ? (largo ? "En " + r.nearName : "") : `a ${r.nearKm} km de ${r.nearName}${largo ? " (en línea recta)" : ""}`) : "";
+// EN PAUSA desde el 23/11/2026: Koke y Sam se centran en Madrid y en Santander y alrededores; se esconde lo de Gijón y Oviedo.
+// Para recuperarlo, vaciar PAUSA.
+const PAUSA = ["Oviedo", "Gijón"];
+const paused = r => r.tab !== "madrid" && PAUSA.includes(r.nearName);
 for (let i = DATA.length - 1; i >= 0; i--) if (paused(DATA[i])) DATA.splice(i, 1);
-const NEAR_CITIES = CITY.filter(c => !PAUSA.includes(c[1]));
+const NEAR_OPTS = [["s30", `Hasta ${SANT_CERCA} min de Santander`], ["s70", `De ${SANT_CERCA} min a 1 h de Santander`],
+  ...CITY.filter(c => c[0] !== "santander" && !PAUSA.includes(c[1])).map(c => [c[0], "Cerca de " + c[1]])];
 const PAUSA_TXT = PAUSA.length ? " Oviedo, Gijón y alrededores están en pausa: de momento solo lo que queda a una hora o poco más de Santander." : "";
 const NOTES = {
   campo: "Casas con terreno fuera de la ciudad, para comprar. Hasta 220.000 € valen como segunda residencia; las más caras tienen colegio a 6 km o menos y hospital a 25 km o menos." + PAUSA_TXT,
@@ -690,7 +701,7 @@ function paintTabs(){
     if (op === "comprar") [["primera", "Para primera vivienda"], ["segunda", "Para segunda vivienda"]].forEach(([k, lab]) => {
       const n = DATA.filter(r => inTab(r) && (r.uso === k || r.uso === "ambas")).length; const b = document.createElement("button"); b.type = "button"; b.innerHTML = esc(lab) + `<b>${n}</b>`;
       b.setAttribute("aria-pressed", String(F.uso === k)); b.onclick = () => { F.uso = F.uso === k ? null : k; update(); track("filtro", {value: lab}); }; el.appendChild(b); });
-    const inT = DATA.filter(inTab), opts = [[null, "Todas", inT.length]].concat(NEAR_CITIES.map(c => [c[0], "Cerca de " + c[1], inT.filter(r => r.near === c[0]).length]), [["lejos", "Más lejos", inT.filter(r => r.near === "lejos").length]]);
+    const inT = DATA.filter(inTab), opts = [[null, "Todas", inT.length]].concat(NEAR_OPTS.map(([k, lab]) => [k, lab, inT.filter(r => r.near === k).length]));
     opts.filter(o => o[0] === null || o[2]).forEach(([k, lab, n]) => { const b = document.createElement("button"); b.type = "button"; b.innerHTML = esc(lab) + `<b>${n}</b>`;
       b.setAttribute("aria-pressed", String(F.near === k)); b.onclick = () => { F.near = k; update(); track("filtro", {value: lab}); }; el.appendChild(b); });
   }
@@ -709,7 +720,7 @@ function cardEl(r){
   b.innerHTML = `<div class="thumb"><div class="mosaic"></div><span class="pin"></span>${r.fav ? '<span class="badge-pre">Preseleccionada</span>' : ""}${r.nuevo ? '<span class="badge-new">Nueva</span>' : ""}${isStar(r.key) ? '<span class="badge-star">⭐ Destacada</span>' : ""}${heartsOf(r.key).length > 1 ? '<span class="badge-both">💞 A los dos</span>' : ""}
       <button class="hbtn" type="button" aria-pressed="${mine}" aria-label="Me gusta">${ICON.heart}</button></div>
     <div class="c-line"><div class="c-title"></div><div class="c-price">${euros(r)}</div></div>
-    <div class="c-sub"><span>${esc(Z[r.zone] || "")}</span>${r.nearKm >= 5 ? `<span>a ${r.nearKm} km de ${esc(r.nearName)}</span>` : ""}<span>${r.hab} hab.</span><span>${fmt(r.m2)} m²</span>${parcOf(r) ? `<span>${esc(parcOf(r))} parcela</span>` : ""}</div>
+    <div class="c-sub"><span>${esc(Z[r.zone] || "")}</span>${distTxt(r) ? `<span>${esc(distTxt(r))}</span>` : ""}<span>${r.hab} hab.</span><span>${fmt(r.m2)} m²</span>${parcOf(r) ? `<span>${esc(parcOf(r))} parcela</span>` : ""}</div>
     <div class="c-uso">${usoPill(r)}</div>
     <div class="c-social">${(st => st ? `<span class="c-estado${st.v === "Descartado" ? " descartado" : ""}">${STATE_ICON[st.v] || ""} ${esc(st.v)}</span>` : "")(statusOf(r.key))}${hs.length ? `<span class="h">♥ ${esc(hs.join(", "))}</span>` : ""}${nc ? `<span>${nc} comentario${nc > 1 ? "s" : ""}</span>` : ""}</div>`;
   b.querySelector(".c-title").textContent = r.place;
@@ -755,7 +766,7 @@ function paintMapCtl(){
   group("op", "Qué", [["todo", "Todo"], ["comprar", "Comprar"], ["alquilar", "Alquilar"]]);
   if (M.zona !== "madrid") {
     group("kind", "Tipo", [["todo", "Todo"], ["campo", "Casa de campo"], ["ciudad", "Piso de ciudad"]]);
-    group("near", "Cerca de", [[null, "Cualquier sitio"], ...NEAR_CITIES.map(c => [c[0], c[1]]), ["lejos", "Más lejos"]], true);
+    group("near", "Cerca de", [[null, "Cualquier sitio"], ...NEAR_OPTS], true);
   }
   group("fav", "Mostrar", [[false, "Todas"], [true, "Solo favoritas"]]);
 }
@@ -866,7 +877,7 @@ function openDetail(key, list){
   sh.querySelector(".d-title").textContent = r.place;
   sh.querySelector(".desc").textContent = r.note;
   if (r.warn) sh.querySelector(".dwarn").textContent = "Ojo: " + r.warn;
-  const rows = [["Válida para", r.uso ? USO[r.uso].replace("Vale para ", "").replace("Solo ", "solo ") : "—"], ["Zona", Z[r.zone] || ""], ...(r.nearKm != null ? [["Distancia", r.nearKm < 5 ? "En " + r.nearName : `A ${r.nearKm} km de ${r.nearName} (en línea recta)`]] : []), ["Habitaciones", r.hab], ["Superficie", fmt(r.m2) + " m²"]];
+  const rows = [["Válida para", r.uso ? USO[r.uso].replace("Vale para ", "").replace("Solo ", "solo ") : "—"], ["Zona", Z[r.zone] || ""], ...(distTxt(r, true) ? [["Distancia", distTxt(r, true).replace(/^a /, "A ")]] : []), ["Habitaciones", r.hab], ["Superficie", fmt(r.m2) + " m²"]];
   if (parcOf(r)) rows.push(["Parcela", parcOf(r)]);
   if (r.school_km != null) { rows.push(["Colegio más cercano", fmt(r.school_km) + " km"]); rows.push(["Hospital", `${r.hosp}, ${fmt(r.hosp_km)} km`]); }
   if (r.fav) rows.push(["Estado", "Preseleccionada"]);
@@ -1024,7 +1035,7 @@ function waMsg(r, titulo, quien){
   const L = [`${donde} - ${que} - ${titulo}`];
   if (uso) L.push(uso);
   L.push("", r.place, `${fmt(r.price)} euros${RENT(r.tab) ? " al mes" : ""} - ${r.hab} hab - ${fmt(r.m2)} m2`);
-  if (r.nearKm >= 5) L.push(`A ${r.nearKm} km de ${r.nearName}`);
+  const dist = distTxt(r, true); if (dist && !dist.startsWith("En ")) L.push(dist.replace(/^a /, "A "));
   L.push("", quien, "");
   if (r.upd) L.push(`- Anuncio actualizado ${hace(r.upd)}`);
   contexto(r).forEach(x => L.push("- " + x));
@@ -1244,7 +1255,7 @@ function watchCalc(){
 
 
 // si hay una versión más nueva publicada (la caché del móvil o de GitHub puede servir la vieja), recarga una vez
-const BUILD = "20261123142213";
+const BUILD = "20261123142754";
 fetch(location.pathname + "?nc=" + Date.now(), {cache: "no-store"}).then(r => r.text()).then(t => {
   const m = t.match(/const BUILD = "(\d+)"/); if (!m || m[1] === BUILD) return;
   let ya = false; try { ya = sessionStorage.getItem("casas-upd-" + m[1]); sessionStorage.setItem("casas-upd-" + m[1], "1"); } catch (e) {}
