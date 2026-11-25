@@ -1035,7 +1035,9 @@ function waText(r, motivo){
   const who = ALIAS[ME()] || ME() || "Alguien";
   return waMsg(r, "OPORTUNIDAD ÚNICA", motivo ? `${who} la destaca: "${motivo}"` : `${who} la ha destacado.`);
 }
-// cuando los dos dais ♥ a la misma casa: se abre WhatsApp con el aviso para «Oportunidades Únicas»
+// grupo de WhatsApp de cada casa: Madrid → «Last Minute»; el norte → «Oportunidades Santander» (Koke, 25/11)
+const grupoDe = r => r && r.tab === "madrid" ? "Last Minute" : "Oportunidades Santander";
+// cuando los dos dais ♥ a la misma casa: se abre WhatsApp con el aviso para su grupo
 // (y se apunta en el registro para que el vigilante no lo mande otra vez en la pasada de la noche)
 function coinWa(key){
   const r = DATA.find(x => x.key === key); if (!r) return;
@@ -1094,7 +1096,7 @@ function starNow(key, motivo){
     const id = rid(), ts = new Date().toISOString(), text = STAR + (motivo ? ": " + motivo : "");
     MINE.comments[id] = {key, person: ME(), text, ts}; LS.set("casas-mis", MINE);
     const r = DATA.find(x => x.key === key);
-    // se abre WhatsApp al momento con el mensaje listo; quien destaca elige el grupo «Oportunidades Únicas» y lo envía
+    // se abre WhatsApp al momento con el mensaje listo; quien destaca elige el grupo de la casa (grupoDe) y lo envía
     track("comentario", {key, id, value: text}); track("destacada", {key, value: "on"}); SENT[key] = true; refresh(key); flush();
     if (r) window.open("https://wa.me/?text=" + encodeURIComponent(waText(r, motivo)), "_blank");
   });
@@ -1122,7 +1124,7 @@ function socialBox(key, opts = {}){
   fillSocial(d); return d;
 }
 function fillSocial(d){
-  const key = d.dataset.social, hs = heartsOf(key), me = ME(), mine = !!me && hs.includes(me), cs = commentsOf(key);
+  const key = d.dataset.social, G = grupoDe(DATA.find(x => x.key === key)), hs = heartsOf(key), me = ME(), mine = !!me && hs.includes(me), cs = commentsOf(key);
   // lo que se está escribiendo no se pierde al repintar: se guarda en el navegador (borradores) y se recupera el foco y el cursor
   const B = LS.get("casas-borradores", {}), bd = B[key] || {};
   const ae = document.activeElement, foc = ae && ae.tagName === "TEXTAREA" && d.contains(ae) ? {f: ae.closest("form").className, s: ae.selectionStart, e: ae.selectionEnd, t: ae.scrollTop} : null;
@@ -1132,8 +1134,8 @@ function fillSocial(d){
     <button type="button" class="cbtn">${d.dataset.noheart ? "Escribir un comentario" : "Comentar"}</button>${d.dataset.noheart ? "" : `<button type="button" class="star" aria-pressed="${starsOf(key).some(c => c.person === me)}">${isStar(key) ? "★ Destacada" : "☆ Destacar"}</button>`}</div>
     <div class="estado-row"></div>
     ${!d.dataset.noheart && canRemove() ? `<button type="button" class="quitar">${isGone(key) ? "↩ Volver a ponerla en la lista" : "🗑 Quitar de la lista"}</button>` : ""}
-    ${!d.dataset.noheart && hs.length > 1 ? `<div class="coin"><b>💞 ${COIN[key] ? "¡Coincidencia! Os gusta a los dos" : "Os gusta a los dos"}</b>${COIN[key] ? "<span>Se ha abierto WhatsApp con el aviso: elige «Oportunidades Únicas» y envíalo.</span>" : ""}<button type="button" class="coinwa">Avisar al grupo por WhatsApp</button></div>` : ""}
-    ${SENT[key] ? '<p class="sent">⭐ Destacada. Se ha abierto WhatsApp con el mensaje: elige «Oportunidades Únicas» y envíalo.</p>' : ""}
+    ${!d.dataset.noheart && hs.length > 1 ? `<div class="coin"><b>💞 ${COIN[key] ? "¡Coincidencia! Os gusta a los dos" : "Os gusta a los dos"}</b>${COIN[key] ? "<span>Se ha abierto WhatsApp con el aviso: elige «" + G + "» y envíalo.</span>" : ""}<button type="button" class="coinwa">Avisar al grupo por WhatsApp</button></div>` : ""}
+    ${SENT[key] ? '<p class="sent">⭐ Destacada. Se ha abierto WhatsApp con el mensaje: elige «' + G + '» y envíalo.</p>' : ""}
     <div class="clist"></div>
     <form class="sform" hidden><label>¿Por qué es una oportunidad? Se leerá en el grupo de WhatsApp.<textarea rows="3" maxlength="500" placeholder="Ej.: conozco la zona, me he paseado por ahí y me encanta"></textarea></label><div class="cf-actions"><button type="submit" class="save">⭐ Destacar y abrir WhatsApp</button><button type="button" class="cancel">Cancelar</button></div></form>
     <form class="cform" hidden><textarea rows="3" maxlength="1500" placeholder="¿Qué te parece?"></textarea>
@@ -1270,7 +1272,7 @@ function watchCalc(){
 
 
 // si hay una versión más nueva publicada (la caché del móvil o de GitHub puede servir la vieja), recarga una vez
-const BUILD = "20261124104914";
+const BUILD = "20261125084238";
 fetch(location.pathname + "?nc=" + Date.now(), {cache: "no-store"}).then(r => r.text()).then(t => {
   const m = t.match(/const BUILD = "(\d+)"/); if (!m || m[1] === BUILD) return;
   let ya = false; try { ya = sessionStorage.getItem("casas-upd-" + m[1]); sessionStorage.setItem("casas-upd-" + m[1], "1"); } catch (e) {}
