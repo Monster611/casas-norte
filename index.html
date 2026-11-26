@@ -643,7 +643,7 @@ const NOTES = {
 const Z = {cant:"Cantabria", costa:"Costa oriental", sidra:"Comarca de la Sidra", gijon:"Gijón y Avilés", oviedo:"Alrededores de Oviedo",
   oriente:"Oriente", nalon:"Valle del Nalón", c_oviedo:"Oviedo", c_gijon:"Gijón", c_santander:"Santander",
   m_rozas:"Las Rozas", m_majadahonda:"Majadahonda", m_pozuelo:"Pozuelo", m_pardillo:"Villanueva del Pardillo", m_tres:"Tres Cantos",
-  m_villalba:"Collado Villalba", m_galapagar:"Galapagar", m_villaviciosa:"Villaviciosa de Odón", m_torre:"Torrelodones", m_boadilla:"Boadilla", m_escorial:"El Escorial", m_alcobendas:"Alcobendas", m_hoyo:"Hoyo de Manzanares"};
+  m_villalba:"Collado Villalba", m_galapagar:"Galapagar", m_villaviciosa:"Villaviciosa de Odón", m_torre:"Torrelodones", m_boadilla:"Boadilla", m_escorial:"El Escorial", m_alcobendas:"Alcobendas", m_hoyo:"Hoyo de Manzanares", m_aravaca:"Aravaca"};
 const fmt = n => n.toLocaleString("es-ES");
 const euros = r => fmt(r.price) + " €" + (RENT(r.tab) ? "/mes" : "");
 const $ = s => document.querySelector(s);
@@ -1297,7 +1297,7 @@ function watchCalc(){
 
 
 // si hay una versión más nueva publicada (la caché del móvil o de GitHub puede servir la vieja), recarga una vez
-const BUILD = "20261126174328";
+const BUILD = "20261126182053";
 fetch(location.pathname + "?nc=" + Date.now(), {cache: "no-store"}).then(r => r.text()).then(t => {
   const m = t.match(/const BUILD = "(\d+)"/); if (!m || m[1] === BUILD) return;
   let ya = false; try { ya = sessionStorage.getItem("casas-upd-" + m[1]); sessionStorage.setItem("casas-upd-" + m[1], "1"); } catch (e) {}
