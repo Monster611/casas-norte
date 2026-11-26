@@ -610,13 +610,15 @@ const distTxt = (r, largo) => r.nearMin != null ? (r.nearMin < 10 ? (largo ? "En
 // EN PAUSA desde el 23/11/2026: Koke y Sam se centran en Madrid y en Santander y alrededores; se esconde lo de Gijón y Oviedo.
 // Para recuperarlo, vaciar PAUSA.
 const PAUSA = ["Oviedo", "Gijón"];
-const paused = r => r.tab !== "madrid" && PAUSA.includes(r.nearName);
+// SOLO PRIMERA VIVIENDA desde el 26/11/2026 (Koke): se esconde lo que solo vale como segunda residencia. Para recuperarlo, SOLO_PRIMERA = false.
+const SOLO_PRIMERA = true;
+const paused = r => (r.tab !== "madrid" && PAUSA.includes(r.nearName)) || (SOLO_PRIMERA && r.uso !== "primera" && r.uso !== "ambas");
 for (let i = DATA.length - 1; i >= 0; i--) if (paused(DATA[i])) DATA.splice(i, 1);
 const NEAR_OPTS = [["s30", `Hasta ${SANT_CERCA} min de Santander`], ["s70", `De ${SANT_CERCA} min a 1 h de Santander`],
   ...CITY.filter(c => c[0] !== "santander" && !PAUSA.includes(c[1])).map(c => [c[0], "Cerca de " + c[1]])];
-const PAUSA_TXT = PAUSA.length ? " Oviedo, Gijón y alrededores están en pausa: de momento solo lo que queda a una hora o poco más de Santander." : "";
+const PAUSA_TXT = (PAUSA.length ? " Oviedo, Gijón y alrededores están en pausa: de momento solo lo que queda a una hora o poco más de Santander." : "") + (SOLO_PRIMERA ? " Solo se ve lo que vale como primera vivienda." : "");
 const NOTES = {
-  campo: "Casas con terreno fuera de la ciudad, para comprar. Hasta 220.000 € valen como segunda residencia; las más caras tienen colegio a 6 km o menos y hospital a 25 km o menos." + PAUSA_TXT,
+  campo: "Casas con terreno fuera de la ciudad, para comprar, con 3 habitaciones o más, colegio a 6 km o menos y hospital a 25 km o menos." + PAUSA_TXT,
   ciudad: "Pisos para comprar dentro de Santander." + PAUSA_TXT,
   alq_campo: "Casas fuera de la ciudad para alquilar todo el año, con colegio y hospital cerca." + PAUSA_TXT,
   alq_ciudad: "Pisos para alquilar dentro de Santander." + PAUSA_TXT,
@@ -709,7 +711,7 @@ function paintTabs(){
     if (ns || F.onlyStar) { const b = document.createElement("button"); b.type = "button"; b.innerHTML = `⭐ Destacadas<b>${ns}</b>`; b.setAttribute("aria-pressed", String(F.onlyStar));
       b.onclick = () => { F.onlyStar = !F.onlyStar; update(); track("filtro", {value: "destacadas"}); }; el.appendChild(b); }
     if (op === "madrid") continue;
-    if (op === "comprar") [["primera", "Para primera vivienda"], ["segunda", "Para segunda vivienda"]].forEach(([k, lab]) => {
+    if (op === "comprar" && !SOLO_PRIMERA) [["primera", "Para primera vivienda"], ["segunda", "Para segunda vivienda"]].forEach(([k, lab]) => {
       const n = DATA.filter(r => inTab(r) && (r.uso === k || r.uso === "ambas")).length; const b = document.createElement("button"); b.type = "button"; b.innerHTML = esc(lab) + `<b>${n}</b>`;
       b.setAttribute("aria-pressed", String(F.uso === k)); b.onclick = () => { F.uso = F.uso === k ? null : k; update(); track("filtro", {value: lab}); }; el.appendChild(b); });
     const inT = DATA.filter(inTab), opts = [[null, "Todas", inT.length]].concat(NEAR_OPTS.map(([k, lab]) => [k, lab, inT.filter(r => r.near === k).length]));
@@ -1272,7 +1274,7 @@ function watchCalc(){
 
 
 // si hay una versión más nueva publicada (la caché del móvil o de GitHub puede servir la vieja), recarga una vez
-const BUILD = "20261125084238";
+const BUILD = "20261126113243";
 fetch(location.pathname + "?nc=" + Date.now(), {cache: "no-store"}).then(r => r.text()).then(t => {
   const m = t.match(/const BUILD = "(\d+)"/); if (!m || m[1] === BUILD) return;
   let ya = false; try { ya = sessionStorage.getItem("casas-upd-" + m[1]); sessionStorage.setItem("casas-upd-" + m[1], "1"); } catch (e) {}
